@@ -1,0 +1,163 @@
+body {
+	margin: 0;
+}
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;	
+	text-align: center;
+}
+ ul:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+li {
+	float: left;
+}
+li:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+p {
+	font-size: 20px;
+	color: #f8b408;
+	text-align: center;
+	font-weight: bold;
+}
+a {
+	text-decoration: none;
+	font-size: 20px;
+}
+.ct1 {
+	width: 100%;
+	height: 800px;
+	background: black;
+}
+.ct1 .video {
+	width: 100%;
+	height: 100%;
+}
+.ct1 .nav {
+	position: absolute;
+	left: 50%;
+	top: 10%;	
+	width: 1000px;
+	height: 80px;
+	margin-left: -500px;
+	border-radius: 15px;
+	background: black;
+	clear: both;
+}
+
+.ct1 ul	{	
+	padding-left: 10px;
+}
+.ct1 li {
+	width: 140px;
+	height: 80px;
+	line-height: 80px;	
+}
+.logo {
+	position: relative;
+	margin-top: -40px;
+	margin-left: -50px;
+}
+.ct1 li a {	
+	color: #f8b408;
+}
+.ct21{
+	height: 250px;
+	background: #120d0a;
+}
+.ct2 {
+	width: 1040px;
+	height: 150px;
+	
+	margin: 0 auto;
+}
+.ct2 ul {
+
+	margin-left: -20px;
+}
+.ct2 li {
+	width: 230px;
+	height:  150px;
+	margin-left: 30px;
+	margin-top: 25px;
+}
+.ct2 li img {
+	width: 230px;
+	height: 150px;
+}
+.ct3 {
+	width: 100%;
+	height: 300px;
+	background: black;
+	
+}
+.ct3 .box {
+	width: 1000px;
+	height: 100%;
+	margin: 0 auto;
+	padding-bottom: 10px;	
+	border-bottom: 2px solid gray;
+}
+.ct3-box1,.ct3-box2 {
+	display: inline-block;
+	width: 480px;
+	height: 300px;
+	margin-left: 15px;
+	margin-top: 45px;
+	text-align: center;
+	vertical-align: top;
+}
+.ct3-box1  a {	
+	line-height: 30px;	
+	color: #fff;
+	margin-left: 20px;
+	vertical-align: top;
+}
+.ct3-box2 a {
+	line-height: 30px;
+}
+.ct3-box1 span {
+	display: inline-block;	
+	width: 22px;
+	height: 25px;
+	font-size: 14px;
+	background-image: url(http://book.jirengu.com/jrg-team/frontend-knowledge-ppt/code/task/wow/imgs/icons.png);
+	background-repeat: no-repeat;
+}
+.icon {
+	
+}
+.icon-icon1 {
+	background-position: -6px 0px;
+}
+.icon-icon2 {
+	background-position: -36px 0px;
+}
+.icon-icon3 {
+	background-position: -6px -26px;
+}
+.ct3-box2 a {
+	color: #fff;
+}
+.ct3-box1 img{
+	display: inline-block;
+	vertical-align: bottom;
+	margin-top: 50px;
+	
+}
+.img2 {
+	position: relative;
+	margin-bottom: 85px;
+	margin-left: 20px;
+}
+.ct4 {
+	margin: 0 auto;
+	width: 1000px;
+	font-size: 12px;	
+}
