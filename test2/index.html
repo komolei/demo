@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <style>
+        #btn {
+            width: 100px;
+            height: 100px;
+            background: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>AJAX</h1>
+    <button id="btn"></button>
+</body>
+<script>
+    var btn = document.getElementById('btn');
+    var IsLockUp = false;
+    btn.addEventListener('click', function () {
+        // console.log(2);
+        ajax({
+            url: '/login',   //接口地址
+            type: 'get',               // 类型， post 或者 get,
+            data: {
+                username: 'xiaoming',
+                password: 'abcd1234'
+            },
+            success: function (ret) {
+                console.log(ret);       // {status: 0}
+            },
+            error: function () {
+                console.log('出错了')
+            }
+        })
+    }, false);
+    function ajax(options) {
+        var xhr = new XMLHttpRequest();
+        var str = '';
+        for (var key in options.data) {
+            str += key + '=' + options.data[key] + '&';
+        }
+        str = str.substr(0, str.length - 1);
+        str = options.url + '?' + str;
+        //console.log(str);
+        if (!IsLockUp) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    IsLockUp = true;
+                    // console.log(1);
+                    if (xhr.status == 304 || xhr.status == 200) {
+                        var result = xhr.responseText;
+                        //   console.log(2);
+                        options.success(result);
+                        render(result);
+                    }
+                    else {
+                        options.error();
+                    }
+                }
+            }
+        } else {
+            // return;
+            IsLockUp = true;
+        }
+
+        // xhr.open('get', options.url + '?' + 'username=xiaoming&password=abcd1234', true);
+        // xhr.open('get', options.url + '?' + str, true);
+        xhr.open(options.type, str, true);
+        xhr.send();
+    }
+    function render(result) {
+        var b = document.body;
+        var a = document.createElement('p');
+        a.innerText = result;
+        b.appendChild(a);
+    }
+
+</script>
+
+</html>
