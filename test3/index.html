@@ -1,0 +1,108 @@
+<html>
+
+<head>
+    <!--/<h1>try</h1>-->
+    <style>
+        .btn {
+            display: block;
+            width: 100px;
+            height: 40px;
+            background: #fff;
+            /*position: relative;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);*/
+            margin: 0 auto;
+            border: 1px solid black;
+            font-size: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        
+        div {
+            height: 40px;
+            border: 1px solid black;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        
+        .active {
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div>新闻0</div>
+    <div class="div1">新闻1</div>
+    <button class="btn">加载更多</button>
+</body>
+<script>
+    var length = 0;
+    var pageIndex = 0;
+    var body = document.querySelector('body');
+    var btn = document.getElementsByClassName('btn')[0];
+    var div = document.getElementsByTagName('div');
+    for (var i = 0; i < div.length; i++) {
+                        console.log(pageIndex);
+                        div[i].addEventListener('mouseover', function (e) {
+                            if (e.target && e.target.tagName.toLowerCase() === 'div') {
+                                e.target.classList.add('active');
+                            }
+                        }, false)
+                        // div[i].classList.remove('active');
+                        div[i].addEventListener('mouseout', function (e) {
+                            if (e.target && e.target.tagName.toLowerCase() === 'div') {
+                                e.target.classList.remove('active');
+                            }
+                        }, false)
+                    }
+    btn.addEventListener('click', handler, false);
+    function handler() {
+        // e.target.style.background='yellow';
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200 || xhr.status == 304) {
+                    var result = JSON.parse(xhr.responseText);
+                    // console.log(result);
+                    // result+=5;  
+                    console.log(pageIndex);
+                    pageIndex = pageIndex + 5;
+                    render(result);
+                    for (var i = 0; i < pageIndex + 2; i++) {
+                        console.log(pageIndex);
+                        div[i].addEventListener('mouseover', function (e) {
+                            if (e.target && e.target.tagName.toLowerCase() === 'div') {
+                                e.target.classList.add('active');
+                            }
+                        }, false)
+                        // div[i].classList.remove('active');
+                        div[i].addEventListener('mouseout', function (e) {
+                            if (e.target && e.target.tagName.toLowerCase() === 'div') {
+                                e.target.classList.remove('active');
+                            }
+                        }, false)
+                    }
+                }
+            }
+        }
+        xhr.open('get', '/LoadMore?' + 'length' + '=' + 5 + '&' + 'index' + '=' + pageIndex, true);
+        xhr.send();
+        // return length;
+    }
+    function render(result) {
+        for (var i = 0; i < result.length; i++) {
+            var AddDiv = document.createElement('div');
+            AddDiv.innerText = '新闻' + result[i];
+            // console.log(result[i]);           
+            body.appendChild(AddDiv);
+        }
+        AddDiv.appendChild(btn);
+        btn.style.marginTop = 40 + 'px';
+        // AddDiv.addEventListener('')
+    }
+
+</script>
+
+</html>
