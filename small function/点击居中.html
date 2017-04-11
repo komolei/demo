@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style>
+        div {
+            width: 150px;
+            height: 150px;
+            margin: 20px auto;
+        }
+        
+        img {
+            width: 150px;
+            height: 150px;
+        }
+        
+        .active {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -75px;
+            margin-top: -75px;
+            z-index: -3;
+        }
+        
+        .body {
+            width: 1920px;
+            height: 50000000000px;
+            background: grey;
+        }
+    </style>
+</head>
+
+<body>
+    ssssssssssss
+    <div class="img"><img src="http://img.hb.aicdn.com/f97400cf6ddc707aa58869bdfd0865050b97d1f411455-Qy3hXp_fw658" alt=""></div>
+</body>
+<script>
+    var img = document.getElementsByClassName('img')[0];
+    var body = document.body;
+    var img1 = document.getElementsByTagName('img')[0];
+
+    body.addEventListener('click', handle, false);
+
+    function handle(e) {
+        // console.log(e.target);
+        if (e.target.tagName.toLowerCase() === 'img') {
+            console.log(1);
+            img.classList.add('active');
+            body.classList.add('body');
+            //       img1.classList.add('active');
+
+        } else {
+            console.log(2);
+            img.classList.remove('active');
+            body.classList.remove('body');
+            //       img1.classList.add('active');
+        }
+
+    }
+</script>
+
+</html>
