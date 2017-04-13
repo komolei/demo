@@ -1,0 +1,70 @@
+<!Doctype html>
+<html>
+<meta charset="utf-8">
+<!--<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,initial-scale=1.0,maximun-scale=1.0,minimum-scale=1.0">-->
+<head>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background: yellow;
+        }
+        
+        .active {
+            width: 100px;
+            height: 100px;
+            background: red;
+            visibility: hidden;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div></div>
+    <button class="btn1">点我</button>
+    <button class="btn2">变色</button>
+</body>
+<script src="./jquery-3.2.1.js"></script>
+<script>
+    var $btn2 = $('.btn2');
+    var $btn1 = $('.btn1');
+    $btn2.on('click', function () {
+        // console.log($('div').eq(0));
+        // $('div').eq(0).addClass('active');
+        // if ($('div').hasClass('active')) {              
+        //     $('div').eq(0).removeClass('active');
+        // }
+        // else {
+        //     $('div').eq(0).addClass('active');
+        // }
+        $('div').toggleClass('active'); //是上面代码的简化版
+                                         //通过class来设置style，注意（toggleClass(),其会对class进行判断，有就删除，无就添加)
+                                        //当div中有active类名时，删除类名，则删除visibility，则展示出来了，
+                                        //当没有的时候，则添加active类名，则隐藏元素
+    })
+
+    $btn1.on('click', function () {
+        if (!!$('div').attr('style') == true) {  //判断是否有style
+            $('div').removeAttr('style'); // 有则删除，因为一开始是没有style的，当后续点击button时会添加上style属性，为了清除后续的添加上的style属性而来的。
+        }
+        else {
+            $('div').eq(0).attr(
+              //  'style', 'background:url(http://img.hb.aicdn.com/612a835c0e85de75438222181c01a60fac1e983ca7334-noaIun_sq320)');
+         'style', 'visibility: hidden'); //隐藏元素
+    }
+
+        //     // $('div').
+        // $('div').eq(0).attr('src','http://img.hb.aicdn.com/612a835c0e85de75438222181c01a60fac1e983ca7334-noaIun_sq32'); 
+        //添加了src属性，但是对于div元素来说，在本例中要设置其的background-image是要先设置style属性（这个属性是元素自有的属性）来实现的
+        //应改写为$('div').eq(0).attr('style','background:url(http://img.hb.aicdn.com/612a835c0e85de75438222181c01a60fac1e983ca7334-noaIun_sq32')); 
+        //今天踩的坑，( ╯□╰ )
+        // $('div').eq(0).attr('style','background:green')
+        //console.log($('div').eq(0).attr('background'));
+        // $('div').eq(0).attr('background')
+    })
+
+</script>
+
+</html>
