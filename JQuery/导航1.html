@@ -1,0 +1,297 @@
+<!Doctype html>
+<html>
+<meta charset="utf-8">
+<!--写了两天才写完。爆炸。。但是也提高了跟高。嘻嘻-->
+<head>
+    <style>
+        .ct {
+            width: 240px;
+        }
+        
+        /*.ct>ul {
+            height: 100px;
+        }*/
+        
+        .ct>ul>li {
+            width: 100px;
+            /*height: 25px;*/
+            background: red;
+            /*color: #fff;*/
+            line-height: 30px;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        span {
+            color: #fff;
+        }
+        
+        .ct>ul>li>span:first-of-type {
+            /*float: right;*/
+            cursor: pointer;
+        }
+        
+        .ct>ul>li>span:last-of-type {
+            /*float: right;*/
+            padding-left: 18px;
+            padding-right: 6px;
+            width: 50px;
+        }
+        
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .ct>ul>li>ul {
+            display: none;
+            /*visibility: hidden;*/
+            position: absolute;  /*突然想到可以解决ul撑开.li.clearfix的li的距离，使用position:absolute,将其脱离文档流。*/
+            line-height: 30px; /* 脱离文档流的方式只有两种，一种设置position：absolute，另一种是浮动float*/
+            width: 100px;
+            margin-top: -30px;
+            padding-left: 88px;
+            /*margin-left: 60px;*/
+        }
+        
+        .ct>ul>li>ul>li {
+            width: 44px;
+            float: right;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ct">
+        <ul>
+            <li class="li clearfix">
+                <span>珠宝玉器</span><span>></span>
+                <ul class="a clearfix">
+                    <li>翡翠</li>
+                    <li>玉石</li>
+                    <li>宝石</li>
+                    <li>水晶</li>
+                </ul>
+                <!--<span> </span>-->
+            </li>
+            <li class="li clearfix">
+                <span>珠宝玉器</span><span>></span>
+                <ul class="b clearfix">
+                    <li>翡翠</li>
+                    <li>玉石</li>
+                    <li>宝石</li>
+                    <li>水晶</li>
+                    <li>玛瑙</li>
+                    <li>珍珠</li>
+                </ul>
+            </li>
+            <li class="li clearfix"><span>珠宝玉器</span><span>></span>
+                <ul class="c clearfix">
+                    <li>翡翠</li>
+                    <li>玉石</li>
+                    <li>宝石</li>
+                    <li>水晶</li>
+                </ul>
+            </li>
+            <li class="li clearfix"><span>珠宝玉器</span><span>></span>
+                <ul class="d clearfix">
+                    <li>翡翠</li>
+                    <li>玉石</li>
+                    <li>宝石</li>
+                    <li>水晶</li>
+                    <li>玛瑙</li>
+                    <li>珍珠</li>
+                </ul>
+            </li>
+            <li class="li clearfix"><span>珠宝玉器</span><span>></span>
+                <ul class="e clearfix">
+                    <li>翡翠</li>
+                    <li>玉石</li>
+                    <li>宝石</li>
+                    <li>水晶</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="./jquery-3.2.1.js"></script>
+<script>
+    //console.log($('span').eq(0));
+    //  var span = $('span:odd')
+    var ct = $('.ct'); // 提高浏览器的查找效率，不必再一次查找
+    var a = $('.a');
+    var li = $('.li.clearfix')
+    // console.log(li);
+    ct.on('mouseover', '.li.clearfix', function () { //不能将'.li.clearfix'换成li'会形成错误的判断。
+        //  console.log(this);
+        if (!$(this).children('ul').hasClass('style')) {
+            $(this).children('ul').css('display', 'block');
+            //$(this).children('ul')，选择className=li clearfix 下的ul
+            $(this).children('ul').children('li').off('click').on('click', function () {
+                // console.log($(this)[0].getAttribute('style'));
+                // console.log($(this).parent('ul'));
+                // console.log(this)
+                // $(this).css('color', 'black'); //调试用的，可以删除，留着纪念。
+                $($(this).parent('ul')).each(function () {
+                    // console.log($(this).children());
+                    var a = $(this).children();
+                    for (var i = 0; i < a.length; i++) {
+                        console.log($(a[i]).attr('style'));
+                        if (!!$(a[i]).attr('style')) {
+                            console.log(1);
+                            // console.log($(a[i]).attr('style'));
+                            $(a[i]).removeAttr('style');
+                            // $(a[i]).attr('style','color:black');
+                            // console.log('gg')
+
+                        }
+                    }
+                    // console.log(a);
+                    // -------------------------------------
+                    //    a.each(function (index) {
+                    //          console.log(a[index]);
+                    //         if (a[index].getAttribute('style') == 'red') {
+                    //             console.log(1);
+                    //             $(this).removeAttr('style');
+
+                    //         }
+                    //     })
+                    // --------------------------错误
+                })
+                $(this).css('color', 'red');
+
+            })
+        }
+        $(this).children('ul').on('mouseleave', function () {
+            $(this).removeAttr('style');
+            $(this).children(li).removeAttr('style');  //清楚.li.clearfix的li下的ul的下的li的样式。
+        })
+    });
+
+
+    // --------------------------------------------
+    // for(var i=0;i<li.length;i++){
+    //     // console.log(li.eq(i));
+    //     li.eq(i).on('mouseover.ul',function(){
+    //         console.log( $('.li .clearfix').eq(i));
+    //         $('.li .clearfix').eq(i).css('display','block');
+    //     })
+    // }
+    // -------------------------------------------
+    // li.each((((function(){ //应该使用闭包的思想，等等再搞。?,没有搞。。。
+    //     console.log($(this));
+    //     $(this).on('mouseover',function(){
+    //         console.log(this);
+    //         if($(this).tagName==='li'){
+    //             this.css('display','block')
+    //         }
+    //     })
+    // })))(li));
+    // console.log(li)
+    // document.getElementsByClassName('a')[0].addEventListener('mousemove', function () {
+    //     console.log(this);
+    //     this.style.display = 'block';
+    //     //  this.setAttribute('style','null');
+    //     this.removeAttribute('style');
+    // })
+    // $('.a').on('mouseout','a', function () {
+    //     console.log(1);
+    //     a.removeAttr('style');
+    // })
+    // $('.ct').on('mouseover',function(){
+    //     console.log(this);
+    //     if(this.nodeName.toLowerCase()==='span'){
+    //         a.css('display','block');
+    //     }
+    // })
+    // $('.ct').on('mouseover', function (e) {
+    //     // console.log(this);
+    //     //     if (this.tagName.toLowerCase() == 'span' || this.nodeName.toLowerCase() == 'ul') {
+    //     //         a.css('display', 'block');
+    //     //         /*-------------------------------for方法------------------*/
+    //     //         // a.off('click').on('click.a', 'li', function () {
+    //     //         //     // console.log($('.a'));
+    //     //         //     console.log(this);
+    //     //         //     for (var i = 0; i < $('.a>li').length; i++) {
+    //     //         //         $('.a>li').eq(i).css('color', 'black');
+    //     //         //     }
+    //     //         //     $(this).css('color', 'red'); // 又忘记了要使用JQuery，this要转化的，加$();
+
+    //     //         // })
+    //     //  }
+    //     //         /*-------------------------------each方法------------------*/
+
+    //     // if (e.target.tagName.toLowerCase() == 'span') {
+    //     //     a.css('display', 'block');
+    //     //     //    a.css('visibility', 'visible');
+    //     //     a.off('click').on('click.a', 'li', function () {  //a.off().on(),只绑定一次，因为先解绑在绑定。参考 http://www.cnblogs.com/xiaobaimsy/p/5808269.html
+    //     //         $('.a>li').each(function () {
+    //     //             // console.log($('.a>li'));
+    //     //             // console.log(this);
+    //     //             if (this.style.color == 'red') {
+    //     //                 //console.log(this, 1);
+    //     //                 $(this).removeAttr('style');
+    //     //                 //  this.style.color='balck';
+    //     //                 // $(this).css('color', 'balck');
+    //     //             }
+    //     //             // console.log(2);
+    //     //         })
+    //     //         $(this).css('color', 'red'); // 又忘记了要使用JQuery，this要转化的，加$();
+    //     //     })
+    //     // }
+
+    //     // if (e.target.tagName.toLowerCase() !== 'li') {
+    //     //     console.log(1);
+    //     //     e.target.removeAttribute('style');
+    //     // }
+
+    //     //         /*-----------------------------------------------------------*/
+
+    // })
+    // console.log(a);
+    // a.on('mouseleave', function (e) {  //一开始设置a.on('mouseout',function(){}); ,但是每次是在ul中执行的，当要判断的时候
+
+    //     /*  白写，2017.4.14大晚上搞了那么久时间还不能实现，今天看mdn，看到了mouseleave就能实现功能
+    //     多看mdn有好处啊。香蕉皮*/
+
+    //     // console.log(e.currentTarget.tagName);  
+    //     // console.log(e.currentTarget);
+    //     // var ul = document.getElementsByClassName('a')[0]; //不需要的。。。之前写的留着纪念
+    //     // var li =$(' .clearfix>li').eq(0);
+    //     // console.log(li);
+    //     //  console.log(ul);
+    //     // if (e.target.nodeName.toLowerCase() == 'ul') {
+    //     //   a.removeAttr('style');
+    //     // console.log(typeof(e.target))
+    //     // console.log(e.target);
+    //     // if (e.target.className.toLowerCase() == '') {
+    //     //     if (e.target.className.toLowerCase() == 'li') {
+    //     //         console.log(1);
+    //     //         // e.preventDefault();
+    //     //         a.removeAttr('style');
+    //     //     }
+    //     // }
+    //     // if ( e.target.tagName.toLowerCase() == 'li') {
+    //     //     console.log(1);
+    //     //     // e.preventDefault();
+    //     a.removeAttr('style');
+    //     // }
+    //     // e.preventDefault()
+    //     // e.stopPropagation();
+    //     // console.log('gg');
+    //     // a.removeAttr('style');
+    //     // e.stopPropagation();           
+    //     // a.removeAttr('style');
+    // })
+    // ct.on('mouseout.a',function(){
+    //     a.removeAttr('style');
+    // })
+
+</script>
+
+</html>
