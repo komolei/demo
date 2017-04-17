@@ -1,0 +1,252 @@
+<!Doctype html>
+<html>
+<meta charset="utf-8">
+
+<head>
+
+    <style>
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        div,
+        ul,
+        li,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+        
+        a {
+            text-decoration: none;
+            line-height: 200px;
+            color: red;
+            border: 1px solid darkred;
+            background: #fff;
+            border-radius: 4px;
+        }
+        
+        li {
+            list-style: none;
+            width: 200px;
+            height: 200px;
+            margin-left: 20px;
+            float: left;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        p {
+            font-size: 14px;
+        }
+        
+        ul {
+            margin: 0 auto;
+            width: 666px;
+            /*border: 1px solid black;*/
+        }
+        
+        img {
+            margin: 0 auto;
+        }
+        
+        span {
+            color: red;
+        }
+        
+        .ct>ul>li>div {
+            position: absolute;
+            display: none;
+            left: 50%;
+            top: 50%;
+            width: 200px;
+            height: 200px;
+            margin-top: -100px;
+            margin-left: -100px;
+            background: #111;
+            opacity: .4;
+        }
+        
+        button {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <tittle>代理.之使用了函数调用和闭包html</tittle>
+    <div class="ct">
+        <ul class="ul clearfix">
+            <li>
+                <div>
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="吊坠">
+                <p>藏美千足金和田玉金镶玉路路通吊坠</p>
+                <span>￥1699.00</span>
+            </li>
+            <li>
+                <div>
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="吊坠">
+                <p>藏美千足金和田玉金镶玉路路通吊坠</p>
+                <span>￥1699.00</span>
+            </li>
+            <li>
+                <div>
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="吊坠">
+                <p>藏美千足金和田玉金镶玉路路通吊坠</p>
+                <span>￥1699.00</span>
+            </li>
+            <li>
+                <div>
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="吊坠">
+                <p>藏美千足金和田玉金镶玉路路通吊坠</p>
+                <span>￥1699.00</span>
+            </li>
+            <li>
+                <div>
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="吊坠">
+                <p>藏美千足金和田玉金镶玉路路通吊坠</p>
+                <span>￥1699.00</span>
+            </li>
+            <li>
+                <div>
+                    <a href="">立即抢购</a>
+                </div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="吊坠">
+                <p>藏美千足金和田玉金镶玉路路通吊坠</p>
+                <span>￥1699.00</span>
+            </li>
+            <button>添加</button>
+        </ul>
+
+    </div>
+
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="./jquery-3.2.1.js"></script>
+<script>
+    var products = [{
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金手 猴哥款', price: '￥405.00'
+    }, {
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金转运珠 猴哥款', price: '￥100.00'
+    }, {
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金手链 3D猴哥款', price: '￥45.00'
+    }];
+
+    var ct = $('.ct');
+    // var li = $('.ct ul li div')
+    // console.log(li); 
+    //----------------事件代理---------
+    $('.ct ').on('mouseenter', 'li', function () {
+        $(this).children('div').css('display', 'block');
+    })
+    $('.ct').on('mouseleave', 'li', function () {
+        $(this).children('div').css('display', 'none');
+    })
+
+    // //----------原生js--------------- -----------------------
+    // var button1 = document.getElementsByTagName('button')[0];
+    // button1.addEventListener('click', handler, false)
+    // function handler() {
+    //     var docfrag = document.createDocumentFragment();
+    //     for (var key in products) {
+
+    //         //忘记写div，怪不得不行。现在补上就ok了
+    //         var li = document.createElement('li');
+    //         var div = document.createElement('div');
+    //         var img = document.createElement('img')
+    //         var name = document.createElement('p')
+    //         var span = document.createElement('span')
+    //         img.setAttribute('src', products[key].img)
+    //         // img=products[key].img;
+    //         name.textContent = products[key].name;
+    //         span.textContent = products[key].price;
+    //         // var a = document.createElement('a');    等同于====//  div.innerHTML = "<a href='#'>立即抢购</a>"        
+    //         // a.innerText="立即抢购"
+    //         // a.setAttribute('href','#')
+    //         // div.appendChild(a);
+    //         //----------------使用innerHTML试试看-------
+    //         div.innerHTML = "<a href='#'>立即抢购</a>"//gg，省了好多的代码，早知道使用innerHTML了。
+    //         li.appendChild(div)
+    //         li.appendChild(img);
+    //         li.appendChild(name);
+    //         li.appendChild(span);
+    //         docfrag.appendChild(li);
+    //         var ul = document.getElementsByClassName('ul')[0]; //得到的是一个类数组。对于下面的insertBefore()方法而言，是一个元素对应一个方法，多个元素想要绑定方法，需要使用遍历，即使用for，foreach循环。
+    //         var button = document.getElementsByTagName('button')[0];//所以使用下标来取得第一个元素，也是本demo中所需要的元素。
+    //         console.log(ct);
+    //         ul.insertBefore(docfrag, button);
+    //     }
+    // }
+    //     // //----------------------------原生js结束------------------------------------
+    //----------------------------JQuery---------------------------
+    // 一句话。上面的添加元素，来形成li要不要写啊。算了，写一个，巩固。
+    //发现bug，新加的li无法触发弹窗。gg，现在修改，原来之前忘记加弹窗div了。。。。
+    var button = $('button');
+    button.on('click', function () {
+        for (var key in products) {
+            var lli = $('<li class="llli"><div><a href="#">立即抢购</a></div><img><p></p><span></span></li>');
+            // console.log($(this)); //这个要使用$(this)，来转化，console.log()才知道的。麻蛋
+            // console.log(products[key].name);
+            // this.before(lli);
+            var c = ($(this).before(lli));
+            $('.llli>div').css('display', 'none');
+            // $('.llli>img').attr('src', products[key].img);
+            // $('.llli>p').text(products.name);
+            console.log(c)
+            function bigao() {
+                return !function () {
+                    //----------错误
+                    // ($('.llli>p').text(function (key) {
+                    //     return products[key].name;
+                    // }));
+                    //-------------尝试1--fail--囧
+                    //    $('.llli>p').eq(key).text(function (key) {
+                    //         return products[key].name;
+                    //     });
+                    // -----------------尝试2
+                    // console.log();
+                    $('.llli>img').attr('src', products[key].img);
+                    var p = $('.llli>p').eq(key);
+                    p.text(products[key].name);
+                    // console.log(p);
+                    // console.log($('.llli>p').eq(key)[0].textContent);
+                    $('.llli>span').eq(key).text(products[key].price);
+                    // $('.llli>span').eq(key).contents(products[key].price);
+                }(key);
+            }
+            bigao();
+            // $('.llli>span').text(products[key].price);
+            // console.log($('.llli>img'));
+            // fn(); //通过函数调用来完成弹窗，机智boy~ //爆炸，这个函数调用只有在button在click之后才能调用，故在函数前先调用一次fn();
+            //等等去试试看事件代理，则不能设置li为绑定事件了----------------------------！！！！！！！！！！。
+            // $('.llli').removeAttr('class');
+            //为什么不能放在for循环里面里？因为当执行一次的时候，li就没有classname了，那在bigao中的$('llli>span')这样的选择器就有失效。
+            // 所以也就不会读取product中的index>0的内容了，少了选择器的定位。
+            // -----------------------！！！为什么原声js不用这样去除classname?因为在原生js中li和li的子元素是按照for循环的次数，一次一次地添加到document中的，即添加到网页中的。
+            //循环结束，添加也结束，再一次点击时，又开始新的循环。
+        }
+    })
+    $('.llli').removeAttr('class');//为了让在for循环中的key变化的值可以重新找到新加入的li，这个是需要classname='llli'进行定位的。
+        //----------------------------JQuery结束------------------------------------
+
+</script>
+
+</html>
