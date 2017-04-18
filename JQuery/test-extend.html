@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery.extend demo</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<style>
+    div {
+        width: 100px;
+        height: 100px;
+        border: 1px solid goldenrod;
+        float: left;
+    }
+    
+    input {
+        width: 200px;
+        height: 200px;
+        border: 11px solid yellow;
+    }
+    
+    select {
+        float: left;
+    }
+</style>
+
+<body>
+
+    <input type="text">
+    <p></p>
+    <select class="select">
+        <option value="name">name: clc</option>
+        <option value="age">age: 23</option>
+        <option value="sex">sex: male</option>
+        <option value="height">height: 175cm</option>
+    </select>
+    <div></div>
+    <script>
+        //----------------------------------------input--------------------------------
+        // console.log($('input'));
+        $('input').focus(function () {
+            $(this).css('borderColor', 'blue');
+            console.log('-------------------');
+        })
+        //---------------------try one variable----------------
+        $('input').change(function () {
+            // let value1;
+            // value1 = this.value.toUpperCase();
+            // console.log(value1);
+            // console.log(this.value.toUpperCase())
+            // console.log($('input').val().toUpperCase(), 2);
+            // console.log($('input')[0].value, 1);
+            $(this).val($(this).val().toUpperCase());
+        })
+
+        //-----------------------------两个变量-------------
+
+        // var a = $('input')
+        // a.change(function () {
+        //     var b = function handler() {
+        //         return $('input').val().toUpperCase();
+        //     }
+        //     a.val(b);
+        //     // console.log(a.val());  //使用两个变量，将得到的value，变为大写在传入。
+        // })
+        // --------------------------------------------------------
+        $('input').blur(function () {
+            $(this).css('borderColor', '');
+        })
+        //---------------------------------select---------------
+        //  console.log('select')
+        // var s=$('select').change().contents(); //错误。。并不能行
+
+        // var s=$('select').trigger('change',$(this).val());//
+        // ----------------------error
+        var s = $('select').change(function () { $('div').text($('select option:selected').text()) }); //错误。。并不能行
+
+        // $('.select').change(function () {
+        //     var s = $('.select option:selected').text();  //要在选择器中加上option：selected
+        //     $('div').text(s);
+        console.log(s);
+        // })
+
+        $('div').add(s);
+    </script>
+
+</body>
+
+</html>
