@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+<head>
+    <title> 香蕉皮，重写一次，爆炸</title>
+    <style>
+        /*body {
+            text-align: center;
+        }*/
+        
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        a {
+            width: 70px;
+            height: 50px;
+            text-align: cneter;
+            text-decoration: none;
+            line-height: 50px;
+            display: block;
+            margin: 0 auto;
+            border: 1px solid darkred;
+            border-radius: 4px;
+        }
+        
+        li {
+            list-style: none;
+            line-height: 50px;
+            border: 1px solid gray;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        
+        li:hover {
+            background: greenyellow;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="ct">
+        <li>内容1</li>
+        <li>内容2</li>
+    </ul>
+    <a href="#">加载更多</a>
+
+</body>
+<!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script>
+    // var val = 0;
+    // if ($('a').click(function () {
+    //     $.ajax({
+    //         url: '/a',
+    //         dataType: 'json', //错误将'json'写成JSON,以为靠着快捷打出来的就是对的，太傻了，我，
+    //         data: {
+    //             length: 3,
+    //             index: val,
+    //         },
+    //         success: function (data) {
+    //             // var a = data;
+    //             // console.log(a);
+    //             var a = data;
+    //             // console.log(a);                
+    //             for (var key in a) {
+    //                 $('ul').append("<li>" + key + "</li>")
+    //             }
+
+    //             // console.log(val);
+    //         },
+    //         error: function () {
+    //             console.log('gg');
+    //         }
+
+    //     })
+    //     // val += length;
+    //     // console.log('gg', val);
+    //     // // return val;
+    // })) {
+    //     val += 2;
+    // }
+    // ----------------- 
+    var val = 0;
+    $('a').click(function () {
+        $.ajax({
+            url: '/a',
+            dataType: 'json', //错误将'json'写成JSON,以为靠着快捷打出来的就是对的，太傻了，我，
+            data: {
+                length: 3,
+                index: val
+            },
+            success: function (data) {
+                // var a = data;
+                // console.log(a);
+                var a = data;
+                console.log(a);
+                for (var key in a) {
+                    $('ul').append("<li>" + a[key] + "</li>")
+                }
+                // val += 3;
+                // val +=parseInt(length); // 错误  //为什么这个不行？ 因为这个是无法得到data的length的，这个是发给服务器的。
+                // //既然发给服务器的话，我就试试看从服务器得到length，试试看
+                val +=a.length; //可以的。
+                // console.log(val); //都可以。
+            },
+            error: function () {
+                console.log('gg');
+            }
+
+        })
+        // val += 3; //放在这里或是上面都可以的。
+        // console.log('gg', val);
+        // // return val;
+    })
+
+</script>
+
+</html>
