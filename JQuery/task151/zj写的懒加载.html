@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>自己写的懒加载</title>
+    <meta charset="utf-8">
+    <style>
+        ul:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        img {
+            height: 400px;
+        }
+        
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/0f14ad30f6c0b4e4cf96afcad7a0f9d6332e5b061b5f3c-uSUEUC_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/c1bd94fc89f73c24a19221167f2387d2e914778f1bbac4-jcqyr1_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/6285af1c7fb1b488756446ef2a2fcc63205a7e9e1221c2-DBVfZb_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/3f9d1434ba618579d50ae8c8476087f1a04d7ee3169f8e-zD2u09_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/81427fb53bed38bf1b6a0c5da1c5d5a485e00bd1149232-gn4CO1_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/916b5194a7692ab55142be6f5c99fdb12f5eb9e0168342-dBIspJ_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/d9f7f2e228a35dc8aa79282089b2ea3a3395f08f1e5cd3-yRWvbe_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/e41e09c65210c9caf94920d984ae80665aa83bc519a473-3oDXRy_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/76d022dacb461fa3e2697342b49cded7f33d5b121a0953-r6n9df_fw658"
+                    alt=""></a>
+        </li>
+
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/46af9c99033722ef9cd7577067ac66d081b78d0415c25d-S9VQE0_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/ad92b487448c97dfceda0a3c9075a9793eb5d9f01278be-rrmms4_fw658"
+                    alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3069225263,3486976657&fm=117&gp=0.jpg" data-src="http://img.hb.aicdn.com/795a8baff06fc83abde8d03f18dd24b7d9bd8e0326bd3-rPRUKi_fw658"
+                    alt=""></a>
+        </li>
+    </ul>
+</body>
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+
+<script>
+    function show($node) {
+        var url = $node.attr('data-src');
+        $node.attr('src', url);
+        $node.addClass('show');
+    }
+    function isVisible($node) {
+        var windowH = $(window).height();
+        var st = $(window).scrollTop();
+        var ot = $node.offset().top;
+        var nodeH = $node.outerHeight();
+        if (ot < windowH + st && st < ot + nodeH) {
+            return true;
+            // show($(this));
+        }
+        else {
+            return false;
+        }
+    }
+    check();
+    function check() {
+        $('img').not('show').each(function () {
+            if (isVisible($(this))) {
+                show($(this));
+            }
+        })
+    }
+    $(window).on('scroll', check)
+
+</script>
+
+</html>

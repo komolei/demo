@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<meta charset="utf-8">
+
+<head>
+    <title>天气展示</title>
+    <style>
+        div {
+            width: 400px;
+            height: 300px;
+            border: 1px solid red;
+            border-radius: 5px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="ct">
+        天气
+    </div>
+</body>
+ <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+ <!--<script type="text/javascript" src="scripts/hmac-sha1.js"></script>-->
+ <!--<script src="https://cdn.bootcss.com/jsSHA/2.2.0/sha.js"></script>-->
+<!--<script type="text/javascript" src="https://api.seniverse.com/v3/weather/now.json?location=beijing&ts=1443079775&ttl=30&uid=U67343FACD&sig=dHM9MTQ0MzA3OTc3NSZ0dGw9MzAmdWlkPVU2NzM0M0ZBQ0Q%3d&callback=showWeather">-->
+<!--<script src="https://api.seniverse.com/v3/weather/now.json?key=bprtgokz0gp1bdvi&location=beijing&language=zh-Hans&unit=c"></script>-->
+
+</script>
+<script>
+    var a = $.ajax({
+
+        // url: "https://api.seniverse.com/v3/weather/now.json?location=beijing&ts=1443079775&ttl=30&uid=U67343FACD&sig=dHM9MTQ0MzA3OTc3NSZ0dGw9MzAmdWlkPVU2NzM0M0ZBQ0Q%3d&callback=showWeather",
+        // url: "https:api.thinkpage.cn/v2/weather/all.json?city=CHBJ000000&language=zh-chs&unit=c&aqi=city&key=bprtgokz0gp1bdvi",
+        // data: 'city=CHBJ000000&language=zh-chs&unit=c&key=bprtgokz0gp1bdvi',
+        url: "https://api.seniverse.com/v3/weather/now.json?key=bprtgokz0gp1bdvi&location=beijing&language=zh-Hans&unit=c",
+        type: 'get',
+        dataType: 'json',
+        jsonp: false,
+        jsonpCallback: function(data){
+            console.log(this);
+        },
+        // data: 'www.komolei.ml',
+        success: function (data) {
+            var jsonCallback = data.result[0];
+            console.log(jsonCallback);
+            $('div').text(jsonCallback);
+        },
+        error: function () {
+            console.log('gg');
+        }
+    })
+    /******** 本示例仅做开发参考使用，不建议在生产环节下暴露 key！ ********/
+    
+
+</script>
+
+</html>
