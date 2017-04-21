@@ -1,0 +1,274 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>自己写的新闻懒加载</title>
+    <style>
+        .ct {
+            width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        
+        .ct>div {
+            /*height: 200px;*/
+            float: left;
+        }
+        
+        .ct::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .ct>div:last-child {
+            /*background: #000;*/
+            /*float: right;*/
+            margin-top: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--<a href="http://xw.qq.com/mil/20160830028700/MIL2016083002870002">
+        <div class='ct'>
+            <div><img src="http://inews.gtimg.com/newsapp_ls/0/531644649_150120/0" alt=""></div>
+            <div>
+                <span>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</span>
+                <p>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</p>
+            </div>
+        </div>
+    </a>
+    <a href="http://xw.qq.com/mil/20160830028700/MIL2016083002870002">
+        <div class='ct'>
+            <div><img src="http://inews.gtimg.com/newsapp_ls/0/531644649_150120/0" alt=""></div>
+            <div>
+                <span>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</span>
+                <p>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</p>
+            </div>
+        </div>
+    </a>
+    <a href="http://xw.qq.com/mil/20160830028700/MIL2016083002870002">
+        <div class='ct'>
+            <div><img src="http://inews.gtimg.com/newsapp_ls/0/531644649_150120/0" alt=""></div>
+            <div>
+                <span>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</span>
+                <p>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</p>
+            </div>
+        </div>
+    </a>
+    <a href="http://xw.qq.com/mil/20160830028700/MIL2016083002870002">
+        <div class='ct'>
+            <div><img src="http://inews.gtimg.com/newsapp_ls/0/531644649_150120/0" alt=""></div>
+            <div>
+                <span>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</span>
+                <p>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</p>
+            </div>
+        </div>
+    </a>
+    <a href="http://xw.qq.com/mil/20160830028700/MIL2016083002870002">
+        <div class='ct'>
+            <div><img src="http://inews.gtimg.com/newsapp_ls/0/531644649_150120/0" alt=""></div>
+            <div>
+                <span>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</span>
+                <p>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</p>
+            </div>
+        </div>
+    </a>
+    <a href="http://xw.qq.com/mil/20160830028700/MIL2016083002870002">
+        <div class='ct'>
+            <div><img src="http://inews.gtimg.com/newsapp_ls/0/531644649_150120/0" alt=""></div>
+            <div>
+                <span>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</span>
+                <p>韩促朝停止诋毁韩国元首 批其丧失最基本礼仪常识</p>
+            </div>
+        </div>
+    </a>-->
+</body>
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+    var page = 1;
+    ajax();
+    ajax();
+    ajax();
+    ajax();
+    ajax();
+    ajax();
+
+    // var a = $('<p>没有数据</p>')
+    // $('body').append(a);
+    // console.log($(window));
+    // function check() {
+    //     // ajax();
+    //     console.log(1);
+    //     // console.log(ajax().success());
+    //     if (ajax()) {
+    //         var a = $('<p>没有数据</p>')
+    //         $('body').append(a);
+    //         // $(window).off('scroll');
+    //     }
+    // }
+
+    // $(window).scroll(ajax);
+    // $(window).on('scroll',function(){
+    //     if ($(window).text()==='没有数据') { //浏览器没有渲染，就没有文字，也就无法选定
+    //     // console.log(1);
+    //     $(window).off('scroll');
+    // }
+    // else {
+    //     $(window).scroll(ajax);
+    // }
+    // })
+
+    // function check() {
+
+    //     ajax();
+
+    // }
+    // function show($node) {  
+
+    // }
+    // function isVisible($node) {
+    //     var windowH = $(window).height();
+    //     var ot = $node.offset().top;
+    //     // var st = $node.scroll();
+    //     var st = $(window).scroll();
+    //     var nodeH = $node.outerHeight();
+    //     if (ot < st + windowH && st < ot + nodeH) {
+    //         return true;
+    //     }
+    //     else {
+    //         return false;
+    //     }
+    // }
+
+    // var zt = true;
+    // if (!ajax()) {
+    //     // $(window).off('scroll');
+    //     $('body').append('<p>没有数据</p>')
+    // }
+    // else {
+    //     $(window).scroll(ajax);
+
+    // }
+    // $(window).scroll(check);
+    // console.log($('window p').text()); //没有效果，因为 这些是浏览器渲染的时候是不存在的，只有浏览器渲染完才会有。
+    // function check() {
+    //     if ($('p').text() == '没有数据') {
+    //         $(window).off('scroll');
+    //     }
+    //     else {
+    //         ajax();
+    //     }
+    // }
+
+    // $(window).scroll(ajax);
+    // $(document).ajaxComplete(function (data) {
+    //     console.log(1);
+    //     if ($.isEmptyObject(data.data)) {
+    //         $('body').append('<p>没有数据</p>')
+    //         $(this).abort();
+    //         function ajax() {
+    //             console.log(2);
+    //         }
+    //     }
+
+    //     // else {
+    //     //         $(window).scroll(ajax);
+    //     //     }
+    // });
+    // $(document).ajaxStop();
+    // console.log(ajax())
+    //------------------------------------
+    // $(window).scroll(ajax);
+    // function ajax() {
+    //     $.ajax({
+    //         url: './getNews',
+    //         data: { page: page },
+    //         type: 'get',
+    //         dataType: 'json',
+    //         success: function (data) {
+    //             var status = data.status;
+    //             // console.log('status：', status);
+    //             // var retNews = data.retNews;
+    //             // console.log(typeof data.data);
+    //             if ($.isEmptyObject(data.data)) {
+    //                 // console.log('no result')
+    //                 // $('body').append('<p>没有数据</p>')
+    //                 // return zt = false;
+    //                 // $(document).ajaxStop();
+    //                 // $(this).abort();
+    //                 $('body').append('<p>没有数据</p>');
+    //                 // zhuangtai = false;
+    //                 $.ajax().abort();//没有用的，白搞。。
+    //                 // break;
+    //                 // continue;
+    //             } else {
+    //                 for (var key in data.data) {
+    //                     // console.log(data.data);
+    //                     // var a=('<a></a>')
+    //                     // a.attr('href',key[link]);
+    //                     // // var a = $("<a href=><div><div><img></div><div><span></span><p></p></div></div></a>")
+    //                     // var b = $('<a></a>')
+    //                     // b.attr()
+    //                     // // $('body').append(a);
+    //                     // var html='';
+    //                     // html +='<a>'
+    //                     // html +='<div class="ct"></div>' //想想还是使用下面的写法，快一点！
+    //                     var html;
+    //                     html = $("<a href='" + data.data[key].link + "'><div class='ct'><div ><img src='" + data.data[key].img + "'></div><div><span>" + data.data[key].title + '</span><p>' + data.data[key].brif + '+</p></div></div></a>')
+    //                     // html = $('<div>sssssssssssss</div>');
+    //                     $('body').append(html);
+    //                     // page += 1;
+    //                     // return page;//错误的写法。 没有搞清变量的作用域！！！
+    //                 }
+
+    //             }
+    //         },
+    //         error: function () {
+    //             console.log('gg');
+    //         },
+    //         // complete: function (data) {
+    //         //     if ($.isEmptyObject(data.data)) {
+    //         //         $('body').append('<p>没有数据</p>')
+
+    //         //         // return false;
+    //         //         $(window).off('scroll');
+    //         //     }
+    //         // },
+    //         page: page += 1,
+    //     })
+    // }
+    //------------------别的方式
+    $(window).scroll(ajax);
+    function ajax() {
+        $.ajax({
+            url: './getNews',
+            data: { page: page },
+            type: 'get',
+            dataType: 'json',
+            success: function (data) {
+                var status = data.status;
+                if ($.isEmptyObject(data.data)) { //isEmptyObject()可以判断是否 对象是否为空
+                    $(window).off('scroll');                     //当对象为空的时候，则窗口不能进行scroll。
+                    $('body').append('<p>没有数据</p>');
+                } else {
+                    for (var key in data.data) {
+                        var html;
+                        html = $("<a href='" + data.data[key].link + "'><div class='ct'><div ><img src='" + data.data[key].img + "'></div><div><span>" + data.data[key].title + '</span><p>' + data.data[key].brif + '+</p></div></div></a>')
+                        $('body').append(html);
+                    }
+
+                }
+            },
+            error: function () {
+                console.log('gg');
+            },
+            page: page += 1,
+        })
+    }
+
+</script>
+
+</html>
