@@ -1,0 +1,226 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> 轮播</title>
+    <style>
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .carousel {
+            position: relative;
+            /*height: 200px;*/
+            width: 300px;
+            overflow: hidden;
+        }
+        
+        .ct-img {
+            /*position: relative;*/
+            width: 1200px;
+            font-size: 0;
+        }
+        
+        .ct-img>li {
+            /*display: block;*/
+            width: 300px;
+            height: 200px;
+            display: inline-block;
+        }
+        
+        .ct-img>li>a>img {
+            width: 300px;
+            height: 200px;
+        }
+        
+        .btn {
+            position: absolute;
+            top: 50%;
+            border-radius: 50%;
+            background: #111;
+            opacity: .5;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            font-size: 30px;
+            text-decoration: none;
+            text-align: center;
+            line-height: 28px;
+            margin-top: -15px;
+        }
+        
+        .btn-pre {
+            /*top: 50%;*/
+            /*left: 40%;*/
+            /*transform: translate(-0%, -50%);*/
+        }
+        
+        .btn-next {
+            /*top: 10%;*/
+            left: 270px;
+            /*transform: translate(0%, -50%);*/
+        }
+        
+        .bullet {
+            position: absolute;
+            margin-left: -3px;
+            top: 80%;
+            left: 50%;
+            /*width: 60px;*/
+            transform: translateX(-50%);
+            text-align: center;
+            /*margin-left: -20px;*/
+        }
+        
+        .bullet>li {
+            /*text-align: center;*/
+            width: 10px;
+            height: 5px;
+            display: inline-block;
+            margin-left: 3px;
+            border-radius: 4px;
+            background: #fff;
+            /*border: 1px solid red;*/
+        }
+        
+        #active {
+            background: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="ct-img">
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+            <li index='1'>
+                <a href=""><img src="http://img.hb.aicdn.com/7fba91ae701ac1d8784ff0c37c1f6b30f017a45856106-G6sTxo_fw658" alt=""></a>
+            </li>
+            <li index='2'>
+                <a href=""><img src="http://img.hb.aicdn.com/4ea78ff63d50ea74d6cffa67d9ab32daba4daa234f735-SAfvcW_fw658" alt=""></a>
+            </li>
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+        </ul>
+
+        <a class="btn btn-pre" href="">&lt;</a>
+        <a class="btn btn-next" href="">&gt;</a>
+        <ul class="bullet">
+            <li id="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="./jquery-3.2.1.js"></script>
+
+<script>
+    var $btnpre = $('.btn-pre')
+    var $btnnext = $('.btn-next')
+    var $ctimg = $('.ct-img ')
+    var $ctimglil = $('.ct-img >li').length;
+    // console.log($ctimglil)
+    // $ctimg.width(function () {
+    //     $(this).width='($ctimglil * 300)'+'px';
+    // })
+    $ctimg.css('marginLeft', '-300px');
+    $ctimg.width($ctimglil * 300);//width()接受value；
+    // $ctimg.css('width','$ctimglil.length*300')
+    // console.log($btnnext)
+    var sum = 1;
+    var isLockup = false;
+    $btnnext.on('click', function (e) {
+        // e.stopPropagation();
+        // isLockup=true;
+        if (!isLockup) {
+            isLockup = true;
+
+            // console.log(ssum);
+            e.preventDefault();
+            $ctimg.animate({
+                marginLeft: '+=-300px'
+            }, function () {
+                sum += 1;
+                // var ssum = -300 * sum + 'px';
+                // isLockup=true;
+                // console.log($('.ct-img').css('marginLeft'));
+                // console.log(sum);
+                if (sum == 4) {
+                    sum = 0;
+                    $ctimg.css('marginLeft', '-300px');
+                    // console.log(1);
+                    // $('.ct-img').append($('.ct-img li').eq($ctimglil - 1).$ctimg.children().clone())
+                }
+            })
+            return isLockup = false;
+        }
+        else {
+            return;
+        }
+        // return isLockup = false;
+    })
+
+    $btnpre.on('click', function (e) {
+        // e.stopPropagation();
+        e.preventDefault();
+        // $ctimg.css('marginLeft','-900px');
+        // console.log($ctimg.children());
+        if (!isLockup) {
+            isLockup = true;
+
+            $ctimg.animate({
+                marginLeft: '+=300px'
+            }, function () {
+                sum += 1;
+
+                // var l = $ctimg.children();
+                // // $ctimg.prepend('($ctimg.children().eq($ctimglil-1))');
+                if (sum == 2) {
+
+                    $ctimg.css('marginLeft', '-900px');
+                }
+                if (sum == 3) {
+                    $ctimg.css('marginLeft', '-600px');
+                }
+                if (sum == 4) {
+                    $ctimg.css('marginLeft', '-300px');
+                    sum = 0;
+                }
+                return isLockup = false;
+                // else {
+                //     $ctimg.prepend(l.eq(4-sum))
+                // }
+                // console.log(l);
+                // // $ctimg.prepend(l.eq(sum))
+                // console.log(1);
+                //--------------
+                // $ctimg.css('marginLeft','-1500px');
+            })
+        }
+        else {
+            return;
+        }
+
+
+    })
+
+</script>
+
+</html>
