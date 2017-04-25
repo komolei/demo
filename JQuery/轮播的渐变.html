@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> 轮播渐变的乞丐版</title>
+    <style>
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .carousel {
+            position: relative;
+            /*height: 200px;*/
+            width: 300px;
+            overflow: hidden;
+        }
+        
+        .ct-img {
+            /*position: relative;*/
+            width: 1200px;
+            font-size: 0;
+        }
+        
+        .ct-img>li {
+            /*display: block;*/
+            width: 300px;
+            height: 200px;
+            display: inline-block;
+        }
+        
+        .ct-img>li>a>img {
+            width: 300px;
+            height: 200px;
+        }
+        
+        .btn {
+            position: absolute;
+            top: 50%;
+            border-radius: 50%;
+            background: #111;
+            opacity: .5;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            font-size: 30px;
+            text-decoration: none;
+            text-align: center;
+            line-height: 28px;
+            margin-top: -15px;
+        }
+        
+        .btn-next {
+            /*top: 10%;*/
+            left: 270px;
+            /*transform: translate(0%, -50%);*/
+        }
+        
+        .bullet {
+            position: absolute;
+            margin-left: -3px;
+            top: 80%;
+            left: 50%;
+            /*width: 60px;*/
+            transform: translateX(-50%);
+            text-align: center;
+            /*margin-left: -20px;*/
+        }
+        
+        .bullet>li {
+            /*text-align: center;*/
+            width: 10px;
+            height: 5px;
+            display: inline-block;
+            margin-left: 3px;
+            border-radius: 4px;
+            background: #fff;
+            /*border: 1px solid red;*/
+        }
+        
+        #active {
+            background: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="ct-img">
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+            <li index='1'>
+                <a href=""><img src="http://img.hb.aicdn.com/7fba91ae701ac1d8784ff0c37c1f6b30f017a45856106-G6sTxo_fw658" alt=""></a>
+            </li>
+            <li index='2'>
+                <a href=""><img src="http://img.hb.aicdn.com/4ea78ff63d50ea74d6cffa67d9ab32daba4daa234f735-SAfvcW_fw658" alt=""></a>
+            </li>
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+        </ul>
+
+        <a class="btn btn-pre" href="">&lt;</a>
+        <a class="btn btn-next" href="">&gt;</a>
+        <ul class="bullet">
+            <li id="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="./jquery-3.2.1.js"></script>
+
+<script>
+    var $btnpre = $('.btn-pre')
+    var $btnnext = $('.btn-next')
+    var $ctimg = $('.ct-img ')
+    var $ctimglil = $('.ct-img >li').length;
+    var bullet = $('.bullet');
+    $ctimg.css('marginLeft', '-300px');
+    $ctimg.width($ctimglil * 300);//width()接受value；
+    var sum = 1;
+    var isLockup = false;
+    $btnnext.on('click', function (e) {
+        if (!isLockup) {
+            isLockup = true;
+            e.preventDefault();
+            $ctimg.animate(
+                {
+                    marginLeft: '+=-300px',
+                },
+                function () {
+                    console.log($ctimg.children())
+                    sum += 1;
+                    $ctimg.children().eq(sum).css('opacity', '1');
+                    $ctimg.children().eq(sum).fadeTo(.5);
+                    setbullet(sum);
+                    if (sum == 5) {
+                        sum = 0;
+                        $ctimg.css('marginLeft', '-300px');
+                    }
+                })
+            return isLockup = false;
+        }
+        else {
+            return;
+        }
+    })
+
+    $btnpre.on('click', function (e) {
+        e.preventDefault();
+        $ctimg.prepend($ctimg.clone().children().not().eq($ctimglil - 3));
+        $ctimg.children().last().remove();
+        $ctimg.css('marginLeft', '-300px');
+        if (!isLockup) {
+            isLockup = true;
+            if (sum == 1) {
+            }
+            $ctimg.animate({
+                marginLeft: '+=300px'
+            }, function () {
+                sum += 1;
+                setbullet(sum);
+                if (sum == 4) {
+                    sum = 0;
+                }
+                return isLockup = false;
+            })
+        }
+        else {
+            return;
+        }
+    })
+    function setbullet(sum) {
+        bullet.children().filter('#active').removeAttr('id');
+        bullet.children().eq(sum - 1).attr('id', 'active');
+    }
+    var a = setInterval(fade, 1000);
+    // var b = setInterval(show, 1000)
+    // function show() {
+    //     $ctimg.children().animate({
+    //         opacity: 1,
+    //     })
+    // }
+    setTimeout(cleartimelock, 4000);
+    function cleartimelock() {
+        window.clearInterval(a);
+        // window.clearInterval(b);
+    }
+    $btnnext.click(cleartimelock)
+    function fade() {
+        $ctimg.animate(
+            {
+                marginLeft: '+=-300px',
+            },
+            function () {
+                sum += 1;
+                $ctimg.children().css('display', 'inline-block');
+                $ctimg.children().eq(sum).fadeIn('slow', function () {
+                    $(this).css('opacity', '.1');
+                });
+                $ctimg.children().eq(sum).fadeOut('slow', function () {
+                    $(this).css('opacity', '1');
+                });
+                setbullet(sum);
+                if (sum == 4) {
+                    sum = 0;
+                    $ctimg.css('marginLeft', '-300px');
+                }
+            })
+        $ctimg.children().css('opacity', '1');
+        return isLockup = false;
+    }
+
+</script>
+
+</html>

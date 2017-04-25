@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>淡入淡出的测试</title>
+    <style>
+        .ct>div {
+            width: 200px;
+            height: 200px;
+            display: inline-block;     
+            /*margin: 10px 10px;*/
+        }
+        
+        .ct {
+            position: absolute;
+            font-size: 0;
+        }
+        
+        .a {
+            background: red;
+            display: none;
+        }
+        
+        .b {
+            background: blue;
+        }
+        
+        .c {
+            background: yellow;
+        }
+        button {
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ct">
+        <div class="a"></div>
+        <div class="b"></div>
+        <div class="c"></div>
+    </div>
+    <button>点我</button>
+</body>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="../jquery-3.2.1.js"></script>
+
+<script>
+    var a = $('.a')
+    var b = $('.b')
+    var c = $('.c')
+    var ct = $('.ct')
+    var index = 0;
+    var btn = $('button')
+    function fade(node) {
+        node.fadeIn(13000);
+        node.fadeOut(2000);
+    }
+    // fade(a);
+    btn.click(function () {
+        // fade(a);
+        scroll();
+        if (index == 2) {
+            index = 0;
+            ct.css('left','0px');
+        }
+        index++;
+        
+    });
+    function scroll() {
+        ct.animate({
+            left: '-=300px',
+        })
+    }
+
+</script>
+
+</html>
