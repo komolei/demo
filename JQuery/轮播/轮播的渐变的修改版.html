@@ -95,7 +95,7 @@
 <body>
     <div class="carousel">
         <ul class="ct-img">
-         
+
             <li index='0'>
                 <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
             </li>
@@ -137,6 +137,9 @@
     ctimg.prepend(ctimgli.last().clone()); //ctimg.prepend(ctimg.children().last().clone())
     ctimg.append(ctimgli.first().clone());// ctimg.append(ctimg.children().first().clone())的区别是：当上门执行完之后，是在ctimg的子元素中查询克隆的，而子元素中包含了上门增加的元素；
     //而另一个就是不包含增加的子元素，进行查询和克隆的。
+    // ctimg.children().first().css('display', 'inline-block'); //这两句话。没有什么用的，div并没有有塌陷的现象。可以删除！
+    // ctimg.children().last().css('display', 'inline-block');
+
     function setbullet(index) {
         bullet.children().filter('#active').removeAttr('id');
         bullet.children().eq(index).attr('id', 'active');
@@ -158,6 +161,47 @@
         clearInterval(a);
     }
     ctimg.css('marginLeft', '-300px');
+    //---------------重写btnnext事件----------------- 
+    //!!!!麻蛋，原来 将if(index==4)写在前面，
+    //当index=4的时候，就直接ctimg的left到0px了，这其中少了animate的转化，所以就突然会跳一下
+    // btnnext.click(function (e) {
+    //     // ctimg.css('marginLeft', '-300px')
+    //     if (isLockUp) { return; }
+    //     isLockUp = true;
+    //     e.preventDefault();
+    //     clear();
+    //     ctimgli.css('display', 'inline-block');
+    //     index++;
+    //     if (index == 4) {
+    //         // ctimg.css('marginLeft', '00px');//视觉看上去很突兀，所以换一种方式        
+    //         ctimg.css('left','00px'); //为什么突然跳一下。无法解决啊。。。
+    //         // ctimg.css({ left: -300, })
+    //         index = 0;
+
+    //         isLockUp = false;
+    //         ctimg.animate({
+    //             // marginLeft: '-300px',
+    //         }, function () {
+    //             setbullet(index);
+    //             isLockUp = false;
+    //         })
+    //     }
+    //     else {
+    //         if (index < 4) {
+    //             ctimg.animate({
+    //                 // left: '+=-300px',//修改left: '-=300px',为什么这样，不知道。
+    //                 //哎，估计是运算顺序的问题吧。虽然结果一样。但是浏览器不买账啊
+    //                 left: '-=300px'
+    //             }, function () {
+    //                 setbullet(index);
+    //                 isLockUp = false;
+    //             })
+    //         } else {
+    //             return;  //发现还是连点击的时候，状态锁不生效。。。很奇怪啊。
+    //         }
+    //     }
+    // });
+    // ----------------------------------------------
     btnnext.click(function (e) {
         // ctimg.css('marginLeft', '-300px')
         if (isLockUp) { return; }
@@ -166,64 +210,100 @@
         clear();
         ctimgli.css('display', 'inline-block');
         index++;
-        if (index == 4) {
-            index = 0;
-            // ctimg.css('marginLeft', '00px');//视觉看上去很突兀，所以换一种方式        
-            // ctimg.css('left','00px'); //为什么突然跳一下。无法解决啊。。。
-            ctimg.css({ left: 0, })
+        ctimg.animate({
+            // left: '+=-300px',//修改left: '-=300px',为什么这样，不知道。
+            //哎，估计是运算顺序的问题吧。虽然结果一样。但是浏览器不买账啊
+            left: '-=300px'
+        }, function () {
+            setbullet(index);
             isLockUp = false;
-            ctimg.animate({
-                marginLeft: '-300px',
-            }, function () {
-                setbullet(index);
+            if (index == 4) {
+                // ctimg.css('marginLeft', '00px');//视觉看上去很突兀，所以换一种方式        
+                ctimg.css('left', '00px'); //为什么突然跳一下。无法解决啊。。。
+                // ctimg.css({ left: -300, })//已解决，看上面的demo带！！！
+                //突然看见下面的btnpre.mouseover事件。gg
+                // 当我注释掉的时候，不行，说明，我还要继续改啊，先注释掉这个事件，想起应该是从大到小的顺序，即4到1的顺序，
+                // 所以我准备去修改一下，试试看行不行
+                index = 0;
                 isLockUp = false;
-            })
-        }
-        else {
-            if (index < 4) {
                 ctimg.animate({
-                    left: '+=-300px',
+                    // marginLeft: '-300px',
                 }, function () {
                     setbullet(index);
 
-                    isLockUp = false;
                 })
-            } else {
-                return;  //发现还是连点击的时候，状态锁不生效。。。很奇怪啊。
             }
-        }
-    });
-    btnpre.mouseover(function () {
-        ctimg.css('marginLeft', '-1500px');
-        clear();
+        })
 
-    })
+
+    });
+    // btnpre.mouseover(function () {
+    //     ctimg.css('marginLeft', '-1500px');
+    //     clear();
+
+    // })
+    // ----------------------重写状态锁的--------------------------
     btnpre.on('click', function (e) {
         // ctimg.css('left', '0px');
         ctimgli.css('display', 'inline-block');
-        
         e.preventDefault();
+        // $ctimg.css('left', '-1200px');
         clear();
-        index += 1;
-        if (!isLockUp) {
-            isLockUp = true;
-            ctimg.animate({
-                left: '+=300px'
-            }, function () {
-                setbullet(4 - index);
-                if (index == 4) {
-                    index = 0;
-                    ctimg.css('left', '0px');
+        // index += 1; 将这里注释掉，然后写到下面就好了。因为这样，只有在animate运行的时候，才能index++，从而限制了index>4的情况
+        if (isLockUp) return;
 
-                }
-                return isLockUp = false;
-            })
-        }
-        else {
-            return;
-        }
+        isLockUp = true; //状态锁还是没有用。这个知识点要解决啊，所以我决定在重写。
+        ctimg.animate({
+            left: '+=300px'
+        }, function () {
+            console.log(index);
+            index += 1;
+            ctimg.css({ left: -(4 - index) * 300 + 'px' })
+            setbullet(4 - index);
+            if (index == 4) {
+                index = 0;
+                ctimg.css('left', 0 + 'px');
+                isLockUp = false;
+
+            } else {
+                isLockUp = false;
+
+            }
+        })
     })
-    //--------------
+        // else {
+            // return;
+        // }
+    // })
+    // -----------------------------------------------------------
+
+    // btnpre.on('click', function (e) {
+    //     // ctimg.css('left', '0px');
+    //     ctimgli.css('display', 'inline-block');
+    //     e.preventDefault();
+    //     // $ctimg.css('left', '-1200px');
+    //     clear();
+    //     index += 1;
+    //     if (!isLockUp) {
+    //         isLockUp = true; //状态锁还是没有用。这个知识点要解决啊，所以我决定在重写。
+    //         ctimg.animate({
+    //             left: '+=300px'
+    //         }, function () {
+    //             ctimg.css({ left: -(4 - index) * 300 + 'px' })
+    //             setbullet(4 - index);
+    //             if (index == 4) {
+    //                 index = 0;
+    //                 ctimg.css('left', 0 + 'px');
+
+    //             }
+    //             isLockUp = false;
+    //         })
+    //     }
+    //     else {
+    //         return;
+    //     }
+    // })
+    //------------------------------------------------------------
     // btnpre.click(function (e) {
     //     if (isLockUp) { return; }
     //     isLockUp = true;

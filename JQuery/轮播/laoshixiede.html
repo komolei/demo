@@ -209,6 +209,7 @@
 
         var imgCount = $imgs.length
         var imgWidth = $imgs.width()
+        console.log(imgWidth);
         $imgCt.append($imgs.first().clone())
         $imgCt.prepend($imgs.last().clone())
         $imgCt.width((imgCount + 2) * imgWidth)
@@ -241,6 +242,7 @@
                 left: '-=' + len * imgWidth
             }, function () {
                 pageIndex += len
+                console.log('xxx',imgCount);
                 if (pageIndex === imgCount) {
                     pageIndex = 0
                     console.log(imgWidth);

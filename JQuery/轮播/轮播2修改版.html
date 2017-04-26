@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> 轮播修改版。使用了clone（）,在往前滚动的时候会出现bug</title>
+    <style>
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .carousel {
+            position: relative;
+            /*height: 200px;*/
+            width: 300px;
+            overflow: hidden;
+        }
+        
+        .ct-img {
+            /*position: relative;*/
+            width: 1200px;
+            font-size: 0;
+        }
+        
+        .ct-img>li {
+            /*display: block;*/
+            width: 300px;
+            height: 200px;
+            display: inline-block;
+        }
+        
+        .ct-img>li>a>img {
+            width: 300px;
+            height: 200px;
+        }
+        
+        .btn {
+            position: absolute;
+            top: 50%;
+            border-radius: 50%;
+            background: #111;
+            opacity: .5;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            font-size: 30px;
+            text-decoration: none;
+            text-align: center;
+            line-height: 28px;
+            margin-top: -15px;
+        }
+        
+        .btn-pre {
+            /*top: 50%;*/
+            /*left: 40%;*/
+            /*transform: translate(-0%, -50%);*/
+        }
+        
+        .btn-next {
+            /*top: 10%;*/
+            left: 270px;
+            /*transform: translate(0%, -50%);*/
+        }
+        
+        .bullet {
+            position: absolute;
+            margin-left: -3px;
+            top: 80%;
+            left: 50%;
+            /*width: 60px;*/
+            transform: translateX(-50%);
+            text-align: center;
+            /*margin-left: -20px;*/
+        }
+        
+        .bullet>li {
+            /*text-align: center;*/
+            width: 10px;
+            height: 5px;
+            display: inline-block;
+            margin-left: 3px;
+            border-radius: 4px;
+            background: #fff;
+            /*border: 1px solid red;*/
+        }
+        
+        #active {
+            background: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="ct-img">
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+            <li index='1'>
+                <a href=""><img src="http://img.hb.aicdn.com/7fba91ae701ac1d8784ff0c37c1f6b30f017a45856106-G6sTxo_fw658" alt=""></a>
+            </li>
+            <li index='2'>
+                <a href=""><img src="http://img.hb.aicdn.com/4ea78ff63d50ea74d6cffa67d9ab32daba4daa234f735-SAfvcW_fw658" alt=""></a>
+            </li>
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+        </ul>
+
+        <a class="btn btn-pre" href="">&lt;</a>
+        <a class="btn btn-next" href="">&gt;</a>
+        <ul class="bullet">
+            <li id="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="./jquery-3.2.1.js"></script>
+
+<script>
+    var $btnpre = $('.btn-pre')
+    var $btnnext = $('.btn-next')
+    var $ctimg = $('.ct-img ')
+    var $ctimglil = $('.ct-img >li').length;
+    var bullet = $('.bullet');
+    // console.log($ctimglil)
+    // $ctimg.width(function () {
+    //     $(this).width='($ctimglil * 300)'+'px';
+    // })
+    $ctimg.css('marginLeft', '-300px');
+    $ctimg.width($ctimglil * 300);//width()接受value；
+    // $ctimg.css('width','$ctimglil.length*300')
+    // console.log($btnnext)
+    // var sum = 1;
+    var sum = 0;
+    var isLockup = false;
+    $btnnext.on('click', function (e) {
+        // e.stopPropagation();
+        // isLockup=true;
+        // var index = $(this).index();
+        // console.log(index);
+        if (!isLockup) {
+            isLockup = true;
+            // console.log(ssum);
+            e.preventDefault();
+            $ctimg.animate({
+                // marginLeft: '+=-300px' //找到原因了，突然跳一下的原因是
+                marginLeft: '-=300px' //改成这样就好了。想不明白啊
+            }, function () {
+                sum += 1;
+                // var ssum = -300 * sum + 'px';
+                // isLockup=true;
+                // console.log($('.ct-img').css('marginLeft'));
+                // console.log(sum);
+                setbullet(sum);
+                if (sum == 4) {
+                    sum = 0;
+                    setbullet(sum);
+
+                    $ctimg.css('marginLeft', '-300px');
+                    // console.log(1);
+                    // $('.ct-img').append($('.ct-img li').eq($ctimglil - 1).$ctimg.children().clone())
+                }
+            })
+            return isLockup = false;
+        }
+        else {
+            return;
+        }
+        // return isLockup = false;
+    })
+
+    $btnpre.on('click', function (e) {
+        // e.stopPropagation(); 
+        e.preventDefault();
+        // $ctimg.css('marginLeft','-900px');
+        // console.log($ctimg.children());
+        //---------------
+        // $ctimg.prepend($ctimg.clone().children().eq($ctimglil - 3));
+        //！！！！！ $ctimg.prepend($ctimg.clone().children().not().eq($ctimglil - 3));
+        // ！！！！$ctimg.children().last().remove();
+        // $ctimg.prepend($ctimg.clone().children().eq($ctimglil-3));
+        // $ctimg.prepend($ctimg.clone().children().eq($ctimglil-2));
+        // $ctimg.css('marginLeft', '-300px');
+
+        if (!isLockup) {
+            isLockup = true;
+            // $ctimg.css('marginLeft', '-300px');
+            // $ctimg.css('marginLeft', '00px');
+
+            // if (sum == 1) {
+            //     // $ctimg.css('marginLeft', '-1500px');
+            // }
+
+            $ctimg.animate({
+                marginLeft: '+=300px'
+                // marginLeft: '+=300px'
+                //-----------------通过对元素的克隆添加和删除最后的元素来达到ctimg的子元素的滚动，这里是形成新的ctimg！
+                //但是这其中的问题是重新形成的元素的长度是不变的，但是在进行animate的时候，
+                //动画是根据当前原来未增加和删除子元素的ctimg进行，即老的ctimg上的元素进行动画的，所以造成的影响就是
+                //在新的ctimg上marginleft双倍的距离。
+                //所以在下面改成 marginleft=0;，但是这里又出现一个bug，没有动画效果。
+                //所以还是要将marginleft改为300,那我们就不应该通过添加和删除来形成新的ctimg，
+                //则删除新的ctimg，即删除
+                //$ctimg.prepend($ctimg.clone().children().not().eq($ctimglil - 3));
+                // $ctimg.children().last().remove();
+                //改用marginleft：'+=300px'
+
+            }, function () {
+                $ctimg.css('marginLeft', -300 * (4 - sum) + 'px');
+                // $ctimg.css('marginLeft', -300*sum+'px');
+                //想法错误，还是没有理解透彻轮播的原理，是外窗口在移动的过程中，其中的里面的内容元素也是在移动的。
+                //！！同时子元素的移动是根据父元素而来的，是依靠的关系。//错误。这一句话是错误的，这里没有子元素，都是对ctimg进行marginleft的！！
+                //在这里，举例。当ctimg滚动300px的时候，因为是往前进行滚动的，所以当他滚得过程中，他的margin也是在改变的，是一个不断改变的值。
+                //同时因为要往前，所以要从4到1的顺序，在本demo中是4到1的顺序，所以是（4-sum)。
+                sum += 1;
+                setbullet((4 - sum));
+                // $ctimg.prepend($ctimg.clone().children().eq($ctimglil - 3));
+                // $ctimg.children().last().remove();
+                // ------------------------然后又出现新的bug了-----------------------------
+                // 当点击btnnext的时候，在点击btnpre的时候，不会返回。想想看怎么解决
+                // 通过监听btnnext和btnpre的事件。举例：当点击btnnext的时候，看看是不是点击了btnpre，点击了就，-------写到一半，发现是错误的思想。
+                // 我们应该记录切换到的图片的序号，通过序号来让btnnext和btnpre来运行。
+                if (sum == 4) {
+                    $ctimg.css('marginLeft', '-300px');
+                    sum = 0;
+                    setbullet(sum);
+                }
+                return isLockup = false;
+            })
+        }
+        else {
+            return;
+        }
+    });
+    function setbullet(sum) {
+        // console.log(sum)
+        // bullet.children().css('background','#fff');
+        bullet.children().filter('#active').removeAttr('id');
+        //------------------------
+        // bullet.children().find('#active').removeAttr('id');
+        // bullet.find('#active').removeAttr('id');//!!！区别，为什么我一直不成功？因为find是在子元素中找，而filter是在平级，同级的元素中查找.
+        // //而我已经在前面指定了children()，说明他们在是同级的，那我在使用find，肯定是查找不到的。。一坑！
+        // //----------------------
+        bullet.children().eq(sum).attr('id', 'active');
+    }
+
+</script>
+
+</html>

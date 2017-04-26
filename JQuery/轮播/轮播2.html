@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title> 轮播修改版。使用了clone（）</title>
+    <title> 轮播修改版。使用了clone（）,在往前滚动的时候会出现bug</title>
     <style>
         body,
         ul,
@@ -145,7 +145,8 @@
     $ctimg.width($ctimglil * 300);//width()接受value；
     // $ctimg.css('width','$ctimglil.length*300')
     // console.log($btnnext)
-    var sum = 1;
+    // var sum = 1;
+    var sum = 0;
     var isLockup = false;
     $btnnext.on('click', function (e) {
         // e.stopPropagation();
@@ -157,7 +158,8 @@
             // console.log(ssum);
             e.preventDefault();
             $ctimg.animate({
-                marginLeft: '+=-300px'
+                // marginLeft: '+=-300px' //找到原因了，突然跳一下的原因是
+                marginLeft: '-=300px' //改成这样就好了。想不明白啊
             }, function () {
                 sum += 1;
                 // var ssum = -300 * sum + 'px';
@@ -167,6 +169,8 @@
                 setbullet(sum);
                 if (sum == 4) {
                     sum = 0;
+                    setbullet(sum);
+
                     $ctimg.css('marginLeft', '-300px');
                     // console.log(1);
                     // $('.ct-img').append($('.ct-img li').eq($ctimglil - 1).$ctimg.children().clone())
@@ -185,36 +189,56 @@
         e.preventDefault();
         // $ctimg.css('marginLeft','-900px');
         // console.log($ctimg.children());
-        $ctimg.prepend($ctimg.clone().children().not().eq($ctimglil - 3));
+        //---------------
         // $ctimg.prepend($ctimg.clone().children().eq($ctimglil - 3));
-
-        $ctimg.children().last().remove();
+        //！！！！！ $ctimg.prepend($ctimg.clone().children().not().eq($ctimglil - 3));
+        // ！！！！$ctimg.children().last().remove();
         // $ctimg.prepend($ctimg.clone().children().eq($ctimglil-3));
         // $ctimg.prepend($ctimg.clone().children().eq($ctimglil-2));
-        $ctimg.css('marginLeft', '-300px');
+        // $ctimg.css('marginLeft', '-300px');
 
         if (!isLockup) {
             isLockup = true;
+            // $ctimg.css('marginLeft', '-300px');
             // $ctimg.css('marginLeft', '00px');
 
-            if (sum == 1) {
-                // $ctimg.css('marginLeft', '-1500px');
-            }
+            // if (sum == 1) {
+            //     // $ctimg.css('marginLeft', '-1500px');
+            // }
 
             $ctimg.animate({
                 marginLeft: '+=300px'
+                // marginLeft: '+=300px'
+                //-----------------通过对元素的克隆添加和删除最后的元素来达到ctimg的子元素的滚动，这里是形成新的ctimg！
+                //但是这其中的问题是重新形成的元素的长度是不变的，但是在进行animate的时候，
+                //动画是根据当前原来未增加和删除子元素的ctimg进行，即老的ctimg上的元素进行动画的，所以造成的影响就是
+                //在新的ctimg上marginleft双倍的距离。
+                //所以在下面改成 marginleft=0;，但是这里又出现一个bug，没有动画效果。
+                //所以还是要将marginleft改为300,那我们就不应该通过添加和删除来形成新的ctimg，
+                //则删除新的ctimg，即删除
+                //$ctimg.prepend($ctimg.clone().children().not().eq($ctimglil - 3));
+                // $ctimg.children().last().remove();
+                //改用marginleft：'+=300px'
+
             }, function () {
+                $ctimg.css('marginLeft', -300*(4-sum)+'px');
+                // $ctimg.css('marginLeft', -300*sum+'px');
+                //想法错误，还是没有理解透彻轮播的原理，是外窗口在移动的过程中，其中的里面的内容元素也是在移动的。
+                //！！同时子元素的移动是根据父元素而来的，是依靠的关系。//错误。这一句话是错误的，这里没有子元素，都是对ctimg进行marginleft的！！
+                //在这里，举例。当ctimg滚动300px的时候，因为是往前进行滚动的，所以当他滚得过程中，他的margin也是在改变的，是一个不断改变的值。
+                //同时因为要往前，所以要从4到1的顺序，在本demo中是4到1的顺序，所以是（4-sum)。
                 sum += 1;
                 setbullet(sum);
-
-                // $ctimg.css('marginLeft', '00px');
+                
 
                 // $ctimg.prepend($ctimg.clone().children().eq($ctimglil - 3));
                 // $ctimg.children().last().remove();
 
                 if (sum == 4) {
-                    // $ctimg.css('marginLeft', '-300px');
+                    $ctimg.css('marginLeft', '-300px');
                     sum = 0;
+                    setbullet(sum);
+
                 }
                 return isLockup = false;
 
@@ -235,7 +259,7 @@
         // bullet.find('#active').removeAttr('id');//!!！区别，为什么我一直不成功？因为find是在子元素中找，而filter是在平级，同级的元素中查找.
         // //而我已经在前面指定了children()，说明他们在是同级的，那我在使用find，肯定是查找不到的。。一坑！
         // //----------------------
-        bullet.children().eq(sum - 1).attr('id', 'active');
+        bullet.children().eq(sum).attr('id', 'active');
     }
 
 </script>
