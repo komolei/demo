@@ -12,7 +12,7 @@
             padding: 0;
             /*list-style: none;*/
         }
-        
+
         .carousel {
             position: relative;
             width: 300px;
@@ -20,29 +20,29 @@
             overflow: hidden;
             margin-left: 200px;
         }
-        
+
         .ct-img {
             position: relative;
             font-size: 0;
         }
-        
+
         .ct-img:after {
             content: '';
             display: block;
             clear: both;
         }
-        
+
         .ct-img>li {
             width: 300px;
             height: 200px;
             float: left;
         }
-        
+
         .ct-img>li>a>img {
             width: 300px;
             height: 200px;
         }
-        
+
         .btn {
             position: absolute;
             top: 50%;
@@ -58,11 +58,11 @@
             line-height: 28px;
             margin-top: -15px;
         }
-        
+
         .btn-next {
             left: 270px;
         }
-        
+
         .bullet {
             position: absolute;
             margin-left: -3px;
@@ -71,7 +71,7 @@
             transform: translateX(-50%);
             text-align: center;
         }
-        
+
         .bullet li {
             width: 10px;
             height: 5px;
@@ -81,7 +81,7 @@
             /*background: #fff;*/
             border: 1px solid #fff;
         }
-        
+
         .active {
             background: #111;
         }
@@ -117,9 +117,8 @@
 
     </div>
 </body>
-<!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
-<script src="../jquery-3.2.1.js"></script>
-<script src="https://github.com/komolei/demo/blob/master/JQuery/jquery-3.2.1.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<!--<script src="../jquery-3.2.1.js"></script>-->
 
 <script>
     var carousel = $('.carousel');
@@ -135,49 +134,129 @@
     // console.log(len);
     // var a = setInterval(scroll, 1000);
     var isLockUp = false;
+    var pageIndex = 0;
     var value = 1;
     ctimg.css('left', -len);
     ctimg.width(ctimg.children().length * len);
 
     var a = setInterval(scroll, 1000);
     setTimeout(clear, 7000);
+
     function clear() {
         clearInterval(a);
         // ctimg.children().css('display', 'block');
     }
 
-    // function opacity() {
-    //     var b = setInterval(change, 100)
-    //     function change() {
-    //         value -= 0.01;
-    //         // console.log(1);
-    //         ctimgli.eq(index).css({ opacity: value });
-    //         // console.log('this:',$(this));
-    //         if (ctimgli.eq(index).css('opacity') == 0) {
-    //             clearInterval(b);
-    //             // ctimgli.css('opacity', '1');
-    //         }
-    //     }
-    // }
+    function opacity() {
+        var b = setInterval(change, 100)
+
+        function change() {
+            value -= 0.2;
+            // console.log(1);
+            ctimgli.eq(index).css({
+                opacity: value
+            });
+            // console.log('this:',$(this));
+            if (ctimgli.eq(index).css('opacity') == 0) {
+                clearInterval(b);
+                ctimgli.eq(index).css('display', 'none');
+                // ctimgli.css('opacity', '1');
+            }
+        }
+    }//坑
+
+    function showopacity() {
+        var c = setInterval(change, 100)
+
+        function change() {
+            value += 0.2;
+            // console.log(1);
+            ctimgli.eq(index).css({
+                opacity: value
+            });
+            // console.log('this:',$(this));
+            if (ctimgli.eq(index).css('opacity') == 1) {
+                clearInterval(c);
+                // ctimgli.eq(index).css('display', 'none');
+                // ctimgli.css('opacity', '1');
+            }
+        }
+    }//坑记录
+
     function scroll() {
         // setTimeout(opacity, 100);
-        setBullet();
-        ctimg.children().eq(index).fadeIn(500);
-        ctimg.children().eq(index).fadeOut(500);
+        // setBullet();
+
+        // ctimg.children().eq(index + 2).fadeOut(500, function () {
+        //     $(this).show();
+        // });
         // setTimeout(opacity(ctimgli.eq(index)),1000);
         // ctimgli.eq(3).css('display','block');
         // ctimg.children().css('display','inline-block');
-        playNext();
-        // index++
         // ctimg.show();
-        if (index == 4) {
-            // ctimg.show();
-            // ctimg.children().css('display', 'block');
 
+        // ctimg.children().eq(index + 1).hide();
+        // playNext()
+        // ctimg.children().eq(index + 1).fadeIn(500, function () {
+        //     $(this).show();
+        // });
+        // ctimgli.eq(index).fadeOut(500);
+        //---------------------------------------------------------
+        // ctimgli.eq(index).hide(); //!!!应该写一个function来模拟opacity的1到0的过程。
+        //失败。哎，不行。采用setinterval来模拟。当下面的动画结束了，才能开始运行。看上去很不流畅。
+        //日常加坑！！！
+        //--------------------------------------------------------------
+        // opacity();
+        // showopacity();
+        // ctimgli.eq(index-1).fadeOut(500);
+        //考虑到set interval是异步执行的，总是在最后的队列中执行的，所以添加判断条件
+        // if (ctimgli.eq(index).css('display') === 'none') {
+        //     console.log(1)
+        //     playNext();
+        //     // ctimgli.eq(index).fadeIn(500)
+        //     // ctimgli.eq(index).fadeIn(500, function () {
+        //         // $(this).show();
+        //     // })
+        // }
+
+        // ctimgli.eq(index).fadeOut(500);
+        // ctimg.children().eq(index + 2).fadeOut(500, function () {
+        //     $(this).show();
+        // });
+        //---------------------------------------------
+        // ctimgli.eq(index).hide();
+        // ctimgli.eq(curindex).fadeOut(500);
+        ////  playNext();
+        ////  ctimgli.eq(index).fadeIn(500);
+        // playNext();
+        // curindex=index;
+        // console.log('ctimg.eq:',ctimgli.eq(pageIndex))
+        //-----------------------------无奈啊------------------------------------------------------------------
+        //上面写的时候，都是希望通过动画在运动的过程中，在键入渐出的，但是想法错误了。
+        // fadeIn()和fadeOut()，这两个api，本身就是动画。我不应该是动画套动画的，而是
+        // 通过研究上面两个api进行设置的。
+        //通过设置一个新的变量来或是直接在index上来设置。
+        // 对于当前的元素是渐出的，即下面分割线上的语句，来控制当前元素的渐出。
+
+        // ctimgli.eq(pageIndex).fadeOut(500) //把当前显示的图片隐藏
+        ctimgli.eq(index).fadeOut(500) //把当前显示的图片隐藏
+        //------------------------------------
+        // playNext();
+        index++;
+        if (index == 4) {
             index = 0;
         }
-
+        /////这语句来控制元素的渐入。
+        //哎不该使用在fadeIn()和fadeOut()有的情况下，在使用animate(),在这里就是使用了playNext()函数，因为其中包含animate()。
+        //坑结束。！！！！！！！！
+        ctimgli.eq(index).fadeIn(500, function () { //把需要展现的图片显示
+            // isAnimate = false //展示过程中把锁关闭，避免重复点击请求
+        })
+        console.log(index);
+        pageIndex = index //把当前展示的页面记录到 页标中
+        setBullet() //下方小标志状态跟着变动
     }
+
     function playNext() {
         if (isLockUp) {
             return;
@@ -237,13 +316,13 @@
             setBullet();
         })
     })
+
     function setBullet() {
         console.log();
         bullet.children().removeClass('active')
             .eq(index)
             .addClass('active');
     }
-
 </script>
 
 </html>
