@@ -8,6 +8,7 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 
     <style type="text/css">
         /*		
@@ -86,35 +87,35 @@
 		    background: #666;
 		}
 */
-        
+
         .carousel {
             position: relative;
             width: 320px;
             height: 180px;
             overflow: hidden;
         }
-        
+
         .carousel ul,
         .carousel li {
             margin: 0;
             padding: 0;
             list-style: none;
         }
-        
+
         .carousel .img-ct {
             position: absolute;
             overflow: hidden;
         }
-        
+
         .carousel .img-ct>li {
             float: left;
         }
-        
+
         .carousel .img-ct img {
             width: 320px;
             height: 180px;
         }
-        
+
         .carousel .arrow {
             position: absolute;
             top: 50%;
@@ -129,19 +130,19 @@
             text-align: center;
             text-decoration: none;
         }
-        
+
         .carousel .arrow:hover {
             opacity: 0.8;
         }
-        
+
         .carousel .pre {
             left: 10px;
         }
-        
+
         .carousel .next {
             right: 10px;
         }
-        
+
         .carousel .bullet {
             position: absolute;
             bottom: 10px;
@@ -150,7 +151,7 @@
             z-index: 1;
             text-align: center;
         }
-        
+
         .carousel .bullet>li {
             display: inline-block;
             width: 30px;
@@ -160,7 +161,7 @@
             margin: 0 3px;
             cursor: pointer;
         }
-        
+
         .carousel .bullet>li.active {
             background-color: #ccc;
         }
@@ -213,7 +214,9 @@
         $imgCt.append($imgs.first().clone())
         $imgCt.prepend($imgs.last().clone())
         $imgCt.width((imgCount + 2) * imgWidth)
-        $imgCt.css({ left: -imgWidth })
+        $imgCt.css({
+            left: -imgWidth
+        })
 
         $nextBtn.click(function () {
             playNext(1)
@@ -235,24 +238,27 @@
 
 
         function playNext(len) {
-            console.log('playNext', len*imgWidth)
+            console.log('playNext', len * imgWidth)
             if (isAnimate) return
             isAnimate = true
             $imgCt.animate({
                 left: '-=' + len * imgWidth
             }, function () {
                 pageIndex += len
-                console.log('xxx',imgCount);
+                console.log('xxx', imgCount);
                 if (pageIndex === imgCount) {
                     pageIndex = 0
                     console.log(imgWidth);
-                    $imgCt.css({ left: -imgWidth })
+                    $imgCt.css({
+                        left: -imgWidth
+                    })
                 }
                 console.log(pageIndex)
                 setBullet()
                 isAnimate = false
             })
         }
+
         function playPre(len) {
             $imgCt.animate({
                 left: '+=' + len * imgWidth
@@ -260,7 +266,9 @@
                 pageIndex -= len
                 if (pageIndex < 0) {
                     pageIndex = imgCount - 1
-                    $imgCt.css({ left: -imgCount * imgWidth })
+                    $imgCt.css({
+                        left: -imgCount * imgWidth
+                    })
                 }
                 setBullet()
             })
@@ -278,106 +286,106 @@
 
     <script type="text/javascript">
         //$(function(){
-/*
-			var $ct = $('.img-ct'),
-				$items = $ct.children(),
-				$pre = $('.pre'),
-				$next = $('.next'),
-				$bullet = $('.bullet'),
-				imgWidth = $items.width(),
-				imgCount = $ct.children().size();
+        /*
+        			var $ct = $('.img-ct'),
+        				$items = $ct.children(),
+        				$pre = $('.pre'),
+        				$next = $('.next'),
+        				$bullet = $('.bullet'),
+        				imgWidth = $items.width(),
+        				imgCount = $ct.children().size();
 
-			$ct.prepend($items.last().clone());
-			$ct.append($items.first().clone());
-			imgRealCount = $ct.children().length;
-			$ct.css({left: 0-imgWidth, width: imgRealCount*imgWidth})
-
-
-
-
-
-			var curIdx = 0;
-			var isAnimate = false;
-
-			$next.on('click', function(){
-				playNext();
-			});
-			$pre.on('click', function(){
-				playPre();
-			});
-			$bullet.find('li').on('click', function(){
-				var idx = $(this).index();
-				if(idx > curIdx){
-					playNext(idx - curIdx);
-				}else if(idx < curIdx){
-					playPre(curIdx - idx);
-				}
-			});
-
-			//autoPlay();
-
-			function stopAuto(){
-				clearInterval(clock);
-			}
-
-			function autoPlay(){
-				clock = setInterval(function(){
-					playPre();
-				}, 3000);	
-			}
-
-
-			function playNext(idx){
-				var idx = idx || 1;
-				if(!isAnimate){
-					isAnimate = true;
-					$ct.animate({left: '-='+(imgWidth*idx)},function(){
-						// curIdx = (curIdx + idx)%imgCount;
-						// if(curIdx === 0){
-						// 	$ct.css({left: 0-imgWidth});;
-						// }
-						curIdx++;
-						if(curIdx === imgCount){
-							$ct.css({left: 0-imgWidth});;
-							curIdx = 0;
-						}
-						isAnimate = false;
-						setBullet();
-					});
-				}
-			}
+        			$ct.prepend($items.last().clone());
+        			$ct.append($items.first().clone());
+        			imgRealCount = $ct.children().length;
+        			$ct.css({left: 0-imgWidth, width: imgRealCount*imgWidth})
 
 
 
 
-			function playPre(idx){
-				var idx = idx || 1;
-				if(!isAnimate){
-					isAnimate = true;
-					$ct.animate({left: '+='+(imgWidth*idx)},function(){
-						curIdx = (imgCount + curIdx - idx)%imgCount;
-						if(curIdx === (imgCount - 1)){
-							$ct.css({left: 0-imgWidth*imgCount});;
-						}
-						isAnimate = false;
-						setBullet();
-					});
-				}
-			}
 
-			function setBullet(){
-				$bullet.find('li').removeClass('active')
-								  .eq(curIdx).addClass('active');
-			}
-*/
-			/**
-			 * 存在的问题：
-			 * 1. 变量可能会重名
-			 * 2. 无法复用（页面上有多个轮播）
-			 */
+        			var curIdx = 0;
+        			var isAnimate = false;
+
+        			$next.on('click', function(){
+        				playNext();
+        			});
+        			$pre.on('click', function(){
+        				playPre();
+        			});
+        			$bullet.find('li').on('click', function(){
+        				var idx = $(this).index();
+        				if(idx > curIdx){
+        					playNext(idx - curIdx);
+        				}else if(idx < curIdx){
+        					playPre(curIdx - idx);
+        				}
+        			});
+
+        			//autoPlay();
+
+        			function stopAuto(){
+        				clearInterval(clock);
+        			}
+
+        			function autoPlay(){
+        				clock = setInterval(function(){
+        					playPre();
+        				}, 3000);	
+        			}
 
 
-		//});
+        			function playNext(idx){
+        				var idx = idx || 1;
+        				if(!isAnimate){
+        					isAnimate = true;
+        					$ct.animate({left: '-='+(imgWidth*idx)},function(){
+        						// curIdx = (curIdx + idx)%imgCount;
+        						// if(curIdx === 0){
+        						// 	$ct.css({left: 0-imgWidth});;
+        						// }
+        						curIdx++;
+        						if(curIdx === imgCount){
+        							$ct.css({left: 0-imgWidth});;
+        							curIdx = 0;
+        						}
+        						isAnimate = false;
+        						setBullet();
+        					});
+        				}
+        			}
+
+
+
+
+        			function playPre(idx){
+        				var idx = idx || 1;
+        				if(!isAnimate){
+        					isAnimate = true;
+        					$ct.animate({left: '+='+(imgWidth*idx)},function(){
+        						curIdx = (imgCount + curIdx - idx)%imgCount;
+        						if(curIdx === (imgCount - 1)){
+        							$ct.css({left: 0-imgWidth*imgCount});;
+        						}
+        						isAnimate = false;
+        						setBullet();
+        					});
+        				}
+        			}
+
+        			function setBullet(){
+        				$bullet.find('li').removeClass('active')
+        								  .eq(curIdx).addClass('active');
+        			}
+        */
+        /**
+         * 存在的问题：
+         * 1. 变量可能会重名
+         * 2. 无法复用（页面上有多个轮播）
+         */
+
+
+        //});
     </script>
 </body>
 
