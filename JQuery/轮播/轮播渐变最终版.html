@@ -117,8 +117,7 @@
 
     </div>
 </body>
-<!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="../jquery-3.2.1.js"></script>
 
 <script>
@@ -135,20 +134,60 @@
     // console.log(len);
     // var a = setInterval(scroll, 1000);
     var isLockUp = false;
+    var value = 1;
     ctimg.css('left', -len);
     ctimg.width(ctimg.children().length * len);
 
-    btnnext.click(function () {
-        event.preventDefault();
+    var a = setInterval(scroll, 1000);
+    setTimeout(clear, 7000);
+    function clear() {
+        clearInterval(a);
+        // ctimg.children().css('display', 'block');
+    }
+
+    // function opacity() {
+    //     var b = setInterval(change, 100)
+    //     function change() {
+    //         value -= 0.01;
+    //         // console.log(1);
+    //         ctimgli.eq(index).css({ opacity: value });
+    //         // console.log('this:',$(this));
+    //         if (ctimgli.eq(index).css('opacity') == 0) {
+    //             clearInterval(b);
+    //             // ctimgli.css('opacity', '1');
+    //         }
+    //     }
+    // }
+    function scroll() {
+        // setTimeout(opacity, 100);
+        setBullet();
+        ctimg.children().eq(index).fadeIn(500);
+        ctimg.children().eq(index).fadeOut(500);
+        // setTimeout(opacity(ctimgli.eq(index)),1000);
+        // ctimgli.eq(3).css('display','block');
+        // ctimg.children().css('display','inline-block');
+        playNext();
+        // index++
+        // ctimg.show();
+        if (index == 4) {
+            // ctimg.show();
+            // ctimg.children().css('display', 'block');
+
+            index = 0;
+        }
+
+    }
+    function playNext() {
         if (isLockUp) {
             return;
         }
         isLockUp = true;
         ctimg.animate({
             left: '-=' + len,
+            // opacity: 1,
         }, function () {
             index++;
-            // console.log(ctimgli.length);
+
             if (index == ctimgli.length) {
                 index = 0;
                 // ctimg.css('left', '-300px');
@@ -159,6 +198,11 @@
             setBullet();
             isLockUp = false;
         })
+    }
+    btnnext.click(function () {
+        event.preventDefault();
+        clear();
+        playNext();
     })
     // btnpre.
     btnpre.click(function () {
