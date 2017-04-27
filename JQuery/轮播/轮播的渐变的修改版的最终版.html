@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <title> 轮播渐变的修改版,点的慢还行。点快就爆炸版</title>
-    <script src="https://github.com/komolei/demo/blob/master/JQuery/jquery-3.2.1.js" type="text/javascript"></script>
 
     <style>
         body,
@@ -14,7 +13,7 @@
             padding: 0;
             list-style: none;
         }
-        
+
         .carousel {
             /*position: absolute;*/
             position: relative;
@@ -24,7 +23,7 @@
             overflow: hidden;
             float: left;
         }
-        
+
         .ct-img {
             position: relative;
             width: 1800px;
@@ -32,24 +31,24 @@
             /*position: relative;*/
             font-size: 0;
         }
-        
+
         .ct-img:after {
             content: '';
             display: block;
             clear: both;
         }
-        
+
         .ct-img>li {
             width: 300px;
             height: 200px;
             float: left;
         }
-        
+
         .ct-img>li>a>img {
             width: 300px;
             height: 200px;
         }
-        
+
         .btn {
             position: absolute;
             top: 50%;
@@ -65,11 +64,11 @@
             line-height: 28px;
             margin-top: -15px;
         }
-        
+
         .btn-next {
             left: 270px;
         }
-        
+
         .bullet {
             position: absolute;
             margin-left: -3px;
@@ -78,7 +77,7 @@
             transform: translateX(-50%);
             text-align: center;
         }
-        
+
         .bullet>li {
             width: 10px;
             height: 5px;
@@ -87,7 +86,7 @@
             border-radius: 4px;
             background: #fff;
         }
-        
+
         #active {
             background: #111;
         }
@@ -125,8 +124,9 @@
 </body>
 <!--<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>-->
 <!--<script src="../jquery-3.2.1.js"></script>-->
-<!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>-->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 <!--<script src="https://github.com/komolei/demo/blob/master/JQuery/jquery-3.2.1.js"></script>-->
+<!--<script src="https://github.com/komolei/demo/blob/master/JQuery/jquery-3.2.1.js" type="text/javascript"></script>-->
 
 
 <script>
@@ -140,7 +140,7 @@
     var a = setInterval(scroll, 1000);
     var isLockUp = false;
     ctimg.prepend(ctimgli.last().clone()); //ctimg.prepend(ctimg.children().last().clone())
-    ctimg.append(ctimgli.first().clone());// ctimg.append(ctimg.children().first().clone())的区别是：当上门执行完之后，是在ctimg的子元素中查询克隆的，而子元素中包含了上门增加的元素；
+    ctimg.append(ctimgli.first().clone()); // ctimg.append(ctimg.children().first().clone())的区别是：当上门执行完之后，是在ctimg的子元素中查询克隆的，而子元素中包含了上门增加的元素；
     //而另一个就是不包含增加的子元素，进行查询和克隆的。
     // ctimg.children().first().css('display', 'inline-block'); //这两句话。没有什么用的，div并没有有塌陷的现象。可以删除！
     // ctimg.children().last().css('display', 'inline-block');
@@ -149,6 +149,7 @@
         bullet.children().filter('#active').removeAttr('id');
         bullet.children().eq(index).attr('id', 'active');
     }
+
     function scroll() {
         // console.log(1);
         ctimgli.eq(index).fadeIn(500);
@@ -162,6 +163,7 @@
         }
     }
     setTimeout(clear, 4000)
+
     function clear() {
         clearInterval(a);
     }
@@ -209,7 +211,9 @@
     // ----------------------------------------------
     btnnext.click(function (e) {
         // ctimg.css('marginLeft', '-300px')
-        if (isLockUp) { return; }
+        if (isLockUp) {
+            return;
+        }
         isLockUp = true;
         e.preventDefault();
         clear();
@@ -263,7 +267,9 @@
         }, function () {
             console.log(index);
             index += 1;
-            ctimg.css({ left: -(4 - index) * 300 + 'px' })
+            ctimg.css({
+                left: -(4 - index) * 300 + 'px'
+            })
             setbullet(4 - index);
             if (index == 4) {
                 index = 0;
@@ -276,9 +282,9 @@
             }
         })
     })
-        // else {
-            // return;
-        // }
+    // else {
+    // return;
+    // }
     // })
     // -----------------------------------------------------------
 
@@ -342,45 +348,44 @@
     //     }
     // });
 
-//   //-----------------------------------------------重写------------------------
-//     // console.log(ctimg.eq(2))
-//     function scroll() {
-//         //    console.log(1)
-//         display($('.ct-img '));
+    //   //-----------------------------------------------重写------------------------
+    //     // console.log(ctimg.eq(2))
+    //     function scroll() {
+    //         //    console.log(1)
+    //         display($('.ct-img '));
 
-//         ctimg.animate({
-//             marginLeft: '+=-300px',
-//         }, function () {
-//             // console.log(ctimg.eq(index));、
-//             ctimgli.eq(index).fadeOut(5500);
-//             // ctimgli.eq(index+1).css('display','none');
-//             // ctimgli.eq(index + 1).fadeIn(500);
-//             // ctimgli.fadeToggle(500);
-//             index++;
-//             if (index == 4) {
-//                 index = 0;
-//                 // console.log(index);
-//                 ctimg.css('marginLeft', '0');
-//             }
-//             display($('.ct-img '));
+    //         ctimg.animate({
+    //             marginLeft: '+=-300px',
+    //         }, function () {
+    //             // console.log(ctimg.eq(index));、
+    //             ctimgli.eq(index).fadeOut(5500);
+    //             // ctimgli.eq(index+1).css('display','none');
+    //             // ctimgli.eq(index + 1).fadeIn(500);
+    //             // ctimgli.fadeToggle(500);
+    //             index++;
+    //             if (index == 4) {
+    //                 index = 0;
+    //                 // console.log(index);
+    //                 ctimg.css('marginLeft', '0');
+    //             }
+    //             display($('.ct-img '));
 
-//         })
-//         // display;
-//     }
-//     setTimeout(clear, 18000);
-//     function clear() {
-//         clearInterval(a);
+    //         })
+    //         // display;
+    //     }
+    //     setTimeout(clear, 18000);
+    //     function clear() {
+    //         clearInterval(a);
 
-//     }
-//     function display(node) {
-//         node.children().each(function () {
-//             // $(this).show();
-//             $(this).css('display', 'inline-block');
-//         })
+    //     }
+    //     function display(node) {
+    //         node.children().each(function () {
+    //             // $(this).show();
+    //             $(this).css('display', 'inline-block');
+    //         })
 
-//     }
-//   //-----------------------------------------------重写------------------------
-
+    //     }
+    //   //-----------------------------------------------重写------------------------
 </script>
 
 </html>
