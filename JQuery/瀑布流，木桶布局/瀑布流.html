@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> 瀑布流</title>
+    <style>
+        div,
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .ct {
+            position: relative;
+        }
+
+        .item {
+            position: absolute;
+            /*我去，这坑，原来还要绝对定位*/
+            width: 200px;
+            height: 300px;
+            margin: 10px 10px;
+            border: 1px solid black;
+            float: left;
+            transition: all 1s;
+        }
+
+        img {
+            width: 200px;
+            height: 300px;
+        }
+
+        .h1 {
+            height: 400px;
+        }
+
+        .h2 {
+            height: 100px;
+        }
+
+        .h3 {
+            height: 200px;
+        }
+
+        .h4 {
+            height: 500px;
+        }
+
+        .h5 {
+            height: 150px;
+        }
+        /*.ct:after {
+            content: '';
+            display: block;
+            clear: both;
+        }*/
+    </style>
+</head>
+
+<body>
+    <div class="ct">
+        <div class="item h1">
+            <a href=""><img src="http://img.hb.aicdn.com/3a08954e29fbff042d8b2ae973bc52f95622863a246a3-wlXRIH_fw658" alt=""></a>
+        </div>
+        <div class="item h2">
+            <a href=""><img src="http://img.hb.aicdn.com/01d55221e510c59fc94fc6510544bc58e60540893571c-Jez7Vw_fw658" alt=""></a>
+        </div>
+        <div class="item h3">
+            <a href=""><img src="http://img.hb.aicdn.com/14fad686e029a2c292885c628d6026a35f92a8dd2e096-1BMkt6_fw658" alt=""></a>
+        </div>
+        <div class="item h4">
+            <a href=""><img src="http://img.hb.aicdn.com/b11142aafade2fd1e31e3ef78ef6a37fbee3c70328bd1-5GYeRN_fw658" alt=""></a>
+        </div>
+        <div class="item h1">
+            <a href=""><img src="http://img.hb.aicdn.com/748cf23663ad9bd6f7253703ca18ed41c8b59a5a361fa-ROuyFu_fw658" alt=""></a>
+        </div>
+        <div class="item h2">
+            <a href=""><img src="http://img.hb.aicdn.com/566b12f7bca91bb3c1913c072b6f7565e341e55771bc2-b76WWm_fw658" alt=""></a>
+        </div>
+        <div class="item h3">
+            <a href=""><img src="http://img.hb.aicdn.com/bcaa3a49dc241d1daec86e5460005ff7ea4748a21a55d-ig6uat_fw658" alt=""></a>
+        </div>
+        <div class="item h4">
+            <a href=""><img src="http://img.hb.aicdn.com/d59056d46eb45bed066fb0906158a4223b7a062f3d043-ogr49H_fw658" alt=""></a>
+        </div>
+        <div class="item h1">
+            <a href=""><img src="http://img.hb.aicdn.com/c3891404b211dc6bf009d8a788e69c1eb47c521413dc2-wQdukd_fw658" alt=""></a>
+        </div>
+        <div class="item h2">
+            <a href=""><img src="http://img.hb.aicdn.com/9af2e5bb700d4e3ac6e152a217af7c74efae0bad4996d-hxqDL9_fw658" alt=""></a>
+        </div>
+        <div class="item h3">
+            <a href=""><img src="http://img.hb.aicdn.com/04fe47713c08a30477b6b46bc28a7e178da701ea434af-SmL325_fw658" alt=""></a>
+        </div>
+        <div class="item h4">
+            <a href=""><img src="http://img.hb.aicdn.com/cab840ad4572d1442f0c871cedc42efbbca3514f1b5af-c0gJal_fw658" alt=""></a>
+        </div>
+        <div class="item h2">
+            <a href=""><img src="http://img.hb.aicdn.com/82e8b111a18fd273e71c63945f5164da7990fc1f50599-f1cpuJ_fw658" alt=""></a>
+        </div>
+        <div class="item h3">
+            <a href=""><img src="http://img.hb.aicdn.com/14fad686e029a2c292885c628d6026a35f92a8dd2e096-1BMkt6_fw658" alt=""></a>
+        </div>
+        <div class="item h4">
+            <a href=""><img src="http://img.hb.aicdn.com/b11142aafade2fd1e31e3ef78ef6a37fbee3c70328bd1-5GYeRN_fw658" alt=""></a>
+        </div>
+        <div class="item h1">
+            <a href=""><img src="http://img.hb.aicdn.com/748cf23663ad9bd6f7253703ca18ed41c8b59a5a361fa-ROuyFu_fw658" alt=""></a>
+        </div>
+        <div class="item h2">
+            <a href=""><img src="http://img.hb.aicdn.com/566b12f7bca91bb3c1913c072b6f7565e341e55771bc2-b76WWm_fw658" alt=""></a>
+        </div>
+        <div class="item h3">
+            <a href=""><img src="http://img.hb.aicdn.com/bcaa3a49dc241d1daec86e5460005ff7ea4748a21a55d-ig6uat_fw658" alt=""></a>
+        </div>
+        <div class="item h3">
+            <a href=""><img src="http://img.hb.aicdn.com/14fad686e029a2c292885c628d6026a35f92a8dd2e096-1BMkt6_fw658" alt=""></a>
+        </div>
+        <div class="item h4">
+            <a href=""><img src="http://img.hb.aicdn.com/b11142aafade2fd1e31e3ef78ef6a37fbee3c70328bd1-5GYeRN_fw658" alt=""></a>
+        </div>
+        <div class="item h1">
+            <a href=""><img src="http://img.hb.aicdn.com/748cf23663ad9bd6f7253703ca18ed41c8b59a5a361fa-ROuyFu_fw658" alt=""></a>
+        </div>
+        <div class="item h2">
+            <a href=""><img src="http://img.hb.aicdn.com/566b12f7bca91bb3c1913c072b6f7565e341e55771bc2-b76WWm_fw658" alt=""></a>
+        </div>
+        <div class="item h3">
+            <a href=""><img src="http://img.hb.aicdn.com/bcaa3a49dc241d1daec86e5460005ff7ea4748a21a55d-ig6uat_fw658" alt=""></a>
+        </div>
+    </div>
+</body>
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    // //----------------------------------------------原来将这些参数写到这里也函数里面是不一样的，因为在函数里面的时候，会重新生成和调用
+    // //但是写在这里，在运行一次之后，这些值就固定不变了，所以只能刷新才有效果。
+    // var $img = $('img');
+    // var $item = $('.item');
+    // var arrimg = []; //存放元素的高度
+    // var colsum = parseInt($('.ct').outerWidth() / $item.outerWidth())
+    // // console.log(colsum);
+    // var sum = 0; //记录窗口resize次数的
+    // //----------------------------------------------
+
+    // var wf = {
+    //     wfull: waterfull()
+    // };
+    // var obj = {
+    //     init: 0,
+    // }
+    // var wf = (function () {
+    //     waterfull();
+    //     return init = 1;
+    // })();
+
+
+    // var Waterfull = (function () {
+    //     waterfull();
+    // })()
+    waterfull();
+    // $(window).resize(waterfull);
+    $(window).resize(function () {
+    //   Waterfull;
+        waterfull();
+        // console.log(sum++);
+    })
+
+    function waterfull() {
+        var $img = $('img');
+        var $item = $('.item');
+        var arrimg = []; //存放元素的高度
+        var colsum = parseInt($('.ct').outerWidth() / $item.outerWidth())
+        // console.log(colsum);
+        for (var i = 0; i < colsum; i++) {
+            arrimg[i] = 0;
+        }
+        $item.each(function () {
+            var img = $(this).children().find('img');
+            img.css({
+                height: $(this).height()
+            });
+            var min = Math.min.apply(null, arrimg);
+
+            var minIndex = arrimg.indexOf(min);
+            // console.log('min:', min, 'minIdex:', minIndex);
+            $(this).css({
+                // top: $(min).outerHeight(true),//一开始想打的使这种写法，直接报错。
+                // top: $(min).top,//效果错误，是因为每一次的$(min).top的值都是以前的。突然想到一个方式，那我在下面的数组存储的时候，存储为top不就好了。试试看！//gg，//并不行。同时写法错误，就算在item的css的position：relative;也是无效的。
+                // 应该为top:$(min).css('top'),
+                // top: $(min).css('top'),
+                top: arrimg[minIndex], //这些要用在定位的元素上的。妈蛋，现在才想起来。
+                // margin: -arrimg[minIndex],
+                left: minIndex * $item.outerWidth(true),
+            })
+            arrimg[minIndex] += $(this).outerHeight(true); //给添加好的元素记录高度，为下次的比较而准备。
+            // arrimg[minIndex] += $(this).css('top');
+            // console.log(minIndex)
+        })
+    }
+</script>
+
+</html>
