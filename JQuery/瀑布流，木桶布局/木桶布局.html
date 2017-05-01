@@ -1,0 +1,143 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        木桶布局(有问题的)
+    </title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-preview">
+
+    </div>
+</body>
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    var imgpreview = $('.img-preview');
+
+
+    needimg(10, 200, 300, 500, 300);
+    // needimg(10, 200, 300, 500, 300);
+    // loadimg();
+    // winSize();
+    winResize();
+
+    function winResize() {
+        $(window).resize(function () {
+            needimg(10, 200, 300, 500, 300);
+            // needimg();
+            // winSize();
+        })
+    }
+
+    function needimg(sum1, height, width, maxheight, maxwidth) {
+        var winSize = $(window).width();
+        // var width = $(this).vwidth * ($(this).vheight / 400);
+        console.log(winSize);
+        var imgSumWidth = [];
+        var count = winSize % maxheight;
+        var sum = parseInt(winSize / maxheight);
+        var winC = parseInt(winSize / sum);
+        console.log('count:', count, 'sum:', sum);
+        // for (let i = 0; i < $('img').length; i++) {
+        //     imgSumWidth[i] = $('img').eq(i).width(); //这里的width()是获取不到width的，原因同上。将这行视为伪代码
+        imgSumWidth = $('img');
+
+
+        for (let i = 0; i < sum1; i++) {
+            //         // ($('<div><img src="http://unsplash.it/'+''height''/''width/?random"></div>').appendTo(imgpreview))
+            var imgsrc = $('<img>')
+            var vheight = Math.floor(Math.random() * (maxheight - height + 1)) + height;
+            var vwidth = Math.floor(Math.random() * (maxwidth - width + 1)) + width;
+            var url = "https://unsplash.it/" + vheight + '/' + vwidth + '/?random'
+            // var url = "https://unsplash.it/200/300/?random"
+            //         // imgsrc[i].css({src:url});
+            //         // console.log(url);
+            imgsrc.attr('src', url)
+
+            //         console.log(imgsrc[i]);
+            $(imgsrc).appendTo(imgpreview);
+            // loadimg();
+            $('img').each(function () {
+                // console.log($(this).height());
+                var width = $(this).vwidth * ($(this).vheight / maxheight);
+                $(this).css('height', '400px');
+            })
+        }
+        if (count > 0) {
+            for (var i = 0; i < $('img').length; i++) {
+                $('img').eq(i).width(winC);
+            }
+        }
+    }
+
+    // function loadimg() {
+    //     $('img').each(function () {
+    //         console.log($(this).height()); //问题：无法得到img的高度。猜想原因是上面添加img的代码还没有执行完的时候，这段代码已经执行结束了。
+    //         //所以基于这个猜想，选择使用直接将img的高度更改。因为上面的demo中，img的高度不可能超过400px;
+    //         // if (!$(this).height() == 400) {
+    //         // console.log(1);
+    //         // $(this).css('height', '400px');
+    //         // }
+    //         // var height = $(this).height();
+    //         var width = $(this).vwidth * ($(this).vheight / 400);
+    //         // console.log('height:', height, 'width:', width);
+    //         $(this).css('height', '400px');
+
+
+    //         // $(this).css('width', width); //想要等比缩放。由于无法直接获取img的width的值，就无法使用（400/height)*width;
+    //         //但是想到我们在请求img的时候，会发送图片的宽高。所以直接在上面的demo的，进行比例的缩放。
+    //     })
+    // }
+
+    // function winSize() {
+    //     var winSize = $(window).width();
+    //     var width = $(this).vwidth * ($(this).vheight / 400);
+    //     console.log(winSize);
+    //     var imgSumWidth = [];
+    //     var count = winSize % 400;
+    //     var sum = parseInt(winSize / 400);
+    //     var winC = parseInt(winSize / sum);
+    //     console.log('count:', count, 'sum:', sum);
+    //     // for (let i = 0; i < $('img').length; i++) {
+    //     //     imgSumWidth[i] = $('img').eq(i).width(); //这里的width()是获取不到width的，原因同上。将这行视为伪代码
+    //     imgSumWidth = $('img');
+
+    //     if (count > 0) {
+    //         for (var i = 0; i < $('img').length; i++) {
+    //             $('img').eq(i).width(winC);
+    //         }
+    //     }
+    // }
+
+    // function winResize() {
+    //     $(window).resize(function () {
+    //         winSize();
+    //     })
+    // }
+    // function appendimg() {
+    //     var divimg=$('<img>')
+    //     var url='https://unsplash.it/233'
+    //     divimg.attr('src',url);
+    //     imgpreview.append(divimg);
+    //     // var div = $('<div><img src="https://unsplash.it/200/300/?random"></div>')
+    //     // imgpreview.append(div);
+
+    // }
+    // appendimg();
+</script>
+<!--<script src="https://unsplash.it/200/300/?random"></script>-->
+
+</html>
