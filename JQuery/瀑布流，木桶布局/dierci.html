@@ -1,0 +1,132 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        木桶布局
+    </title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        div {
+            float: left;
+        }
+        
+        .img-preview {
+            width: 1000px;
+            border: 1px solid red;
+            margin-left: 200px;
+            /*height: 33333px;*/
+            /*margin: 0 auto;*/
+            /*border: 1px solid #ccc;*/
+            /*text-align: center;*/
+        }
+        
+        .img-preview:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-preview">
+
+    </div>
+</body>
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script>
+    var imgPreview = $('.img-preview');
+
+    function img(num, width, height) {
+        var max = 400;
+        var imgCount = [];
+        for (var i = 0; i < num; i++) {
+            var needWidth = Math.floor(Math.random() * (max - width + 1)) + width;
+            var needHeight = Math.floor(Math.random() * (max - height + 1)) + height;
+            var url = "https://unsplash.it/" + needWidth + '/' + needHeight;
+            imgCount[i] = {
+                width: 200*(needWidth/needHeight), //少了比例。原来对图片也有比例的要求的。
+                //怪不得自己一直怎么弄都不对，今天看视频的时候，才想到，先要对图片进行处理的，才能在
+                //后面的设置rowHeight的时候生效。哎，一个坑，踩了一个礼拜。gg。
+                // 老师那个,照抄还是可以的，但是自己还是没有懂原型的，虽然之前看过。但是还是不太懂，等会了在来补上。
+                // height: needHeight,
+                height: 200,
+                url: url,
+            }
+        }
+        // console.log(imgCount.length)
+        var sum = 0;
+        var rowWidth = 0;
+
+        for (let a = sum; a < imgCount.length; a++) {
+            var imgNeed = [];
+            // console.log('imgCount[i]', imgCount[a]);
+            rowWidth += imgCount[a].width;
+            var rowHeight = 0;
+            if (rowWidth > imgPreview.width()) {
+                // imgNeed.pop();
+                // imgCount.pop();
+                // var rowHeight = 0;
+                // console.log('------------------------')
+                // // console.log(imgNeed[a]);
+                // $.each(imgCount, function (idx, value) {
+                //     var img = $('<img>');
+                //     rowHeight = imgPreview.width() * height / rowWidth;
+                //     // console.log('rowHeight', rowHeight);
+                //     img.attr({ src: value.url, height: rowHeight })
+                //     // console.log(img)
+                //     // img.height(rowHeight);
+
+                //     // console.log(1);
+                //     img.appendTo(imgPreview);
+                //     rowWidth = 0;
+                //     imgNeed = [];
+                //     console.log(imgNeed[a]);
+                // })
+
+                //----------------------------------------------
+                var newrowWidth = 0;
+                for (let c = sum; c < a; c++) {
+                    newrowWidth += imgCount[c].width;
+                    console.log(imgCount[c].width);
+                }
+                console.log(rowWidth);
+                rowHeight = imgPreview.width() * height / newrowWidth;
+                console.log('rowWidth', rowWidth, 'rowHeight', rowHeight);
+                for (let b = sum; b < a; b++) {
+                    // console.log('a:', a, 'b:', b);
+
+                    // console.log(imgCount[b]);
+                    var img = $('<img>');
+                    // console.log('rowHeight', rowHeight);
+                    img.attr({ src: imgCount[b].url, height: rowHeight })
+                    // console.log(img)
+                    // img.height(rowHeight);
+
+                    // console.log(1);
+                    img.appendTo(imgPreview);
+                    rowWidth = 0;
+                    imgNeed = [];
+                    // sum=b;
+                }
+                sum = a;
+                //---------------------------------------------
+            }
+            // sum = a;
+        }
+    }
+    img(20, 200, 200);
+    function imgRender() {
+
+    }
+
+</script>
+
+
+</html>

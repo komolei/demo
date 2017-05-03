@@ -1,0 +1,310 @@
+<!Doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        木桶布局(看看老师是怎么写的。)
+    </title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        div {
+            float: left;
+        }
+        
+        .img-preview {
+            width: 1000px;
+            border: 1px solid red;
+            margin-left: 200px;
+            /*height: 33333px;*/
+            /*margin: 0 auto;*/
+            /*border: 1px solid #ccc;*/
+            /*text-align: center;*/
+        }
+        
+        .img-preview:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="img-preview">
+
+    </div>
+</body>
+<!--<script src="../jquery-3.2.1.js"></script>-->
+<!--<script src="//cdn.bootcss.com/jquery/3.2.1/core.js"></script>-->
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<!--<script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script>-->
+<script>
+    var imgpreview = $('.img-preview');
+    // needimg(10, 200, 300, 500, 300);
+    // // needimg(10, 200, 300, 500, 300);
+    // // loadimg();
+    // // winSize();
+    var imgCount = [];
+    var max = 800;
+    function imgRequset(num, width, height) {
+        for (let i = 0; i < num; i++) {
+            var widthR = Math.floor(Math.random() * (max - width + 1)) + width;
+            var heightR = Math.floor(Math.random() * (max - height + 1)) + height;
+            var img = $('<img>');
+            // console.log(url);
+            // var url = "https://unsplash.it/" + heightR + '/' + widthR + '/?random'
+            var url = "https://unsplash.it/" + heightR + '/' + widthR;
+
+            imgCount[i] = {
+                index: i,
+                width: widthR,
+                height: heightR,
+                url: url,
+            }
+            // img.attr('src', url);
+            // img.appendTo(imgpreview);
+        }
+        // console.log(imgCount);
+        return imgCount;
+    }
+    imgRequset(10, 200, 200);
+    imgRender();
+    // layout();
+    // console.log( imgCount)
+    // $(imgCount).each(function(){
+    // })
+    var newRowHeight = 0;
+    function imgRender() {
+        var imgPreviewWidth = $('.img-preview').width();
+        var rowWidth = 0;
+        var newImg = [];
+        // console.log(imgCount.length);
+        var l = 0;
+        for (let i = l; i < imgCount.length; i++) {
+            // imgCount[i].height = 200;
+            newImg = imgCount;
+            rowWidth = rowWidth + imgCount[i].width;
+            // imgCount[i].width=
+            console.log('i:', i, 'rowWidth', rowWidth, 'imgPreviewWidth', imgPreviewWidth);
+            if (rowWidth > imgPreviewWidth) {
+                // console.log('l',l);
+                // console.log(i);
+                var xx = i;
+                // return ;
+                // var index = imgCount.indexOf(imgCount[i]);
+                // newImg.pop();
+                // var rowWidth=0;
+                // newImg.pop();
+                // newRowHeight = imgPreviewWidth * 200 / rowWidth;
+                // layout(newImg, newRowHeight);
+                // newImg = [];
+                var addImg = $('<img>')
+                console.log(xx);
+                for (let a = l; a < xx; a++) {
+                    var newImg = [];
+                    newImg[a] = imgCount[a];
+                    // console.log(newImg1[a]);
+                    rowWidth = rowWidth + newImg[a].width;
+                    newRowHeight = imgPreviewWidth * 400 / rowWidth;
+                    // console.log(imgPreviewWidth)
+                    // console.log(rowWidth);
+                    // console.log(newImg[a].height);
+                    console.log('newRowHeight:', newRowHeight);
+                    // console.log('----------------------')
+                    console.log(newImg);
+                    // layout(newImg, newRowHeight);
+                    // addImg.attr({ src: newImg[a].url });
+                    // addImg.height(newRowHeight);
+                    // addImg.appendTo(imgpreview);
+                    // ll(newImg, newRowHeight);
+                    // newImg = [];
+                    // return;
+                    // l=i;
+                    console.log('xx:', xx);
+                    for (var b = 0; b < xx; b++) {
+                        var addImg = $('<img>')
+                            
+                        console.log('b:', b);
+                        console.log('newImg[b]', newImg[b].url);
+                        addImg.attr({ src: newImg[b].url });
+                        addImg.height(newRowHeight);
+                        addImg.appendTo(imgpreview);
+                        newImgs = [];
+                    }
+                }
+
+                // ll(newImg, newRowHeight);
+
+                // addImg.attr({ src: newImg[a].url });
+                // addImg.height(newRowHeight);
+                // addImg.appendTo(imgpreview);
+                l = l + i;
+                // function layout(newImg,newRowHeight){
+
+                // }
+                // layout(newImg, newRowHeight);
+                // newImg = [];
+
+                // imgCount.pop();
+                // newRowHeight = imgPreviewWidth * 200 / rowWidth;
+                // layout(newImg, newRowHeight);
+                // newImg = [];
+            }
+            // l += i;
+        }
+    }
+    function ll(newImg, newRowHeight) {
+
+    }
+    //=======================================================
+    // function layout(newImg, newRowHeight) {
+    //     // var a = $('<div></div>');
+    //     var a = newImg;
+    //     console.log('----------------------')
+
+    //     console.log(a);
+    //     // $(a).each(function () {
+    //     //     console.log($(a))
+    //     //     // $(this).attr({ height: newRowHeight });
+    //     //     $(this).height(newRowHeight);
+    //     //     $(this).appendTo(imgpreview);
+    //     // })
+    //     $.each(a, function (idx, value) {
+    //         // console.log(typeof value);
+
+    //         var a = $('<img>')
+    //         a.attr({ src: value.url });
+    //         // a.height(newRowHeight);
+    //         // a.attr('src',value.url);  
+    //         a.appendTo(imgpreview)
+    //         a.height(newRowHeight);
+
+    //         // value.height(newRowHeight);
+    //         // value.appendTo(imgpreview);
+    //     })
+
+    //     // for (let i = 0; i < a.length; i++){
+    //     //     $(a).eq(i).height=newRowHeight;
+
+    //     //     console.log($(a).eq(i).height);
+    //     //     // $(a).eq(i).appendTo(imgpreview)
+    //     // }
+    // }
+
+
+    //-----------------------------------------
+    // function layout(newRowHeight) {
+    //     var $rowCt = $('<div class="img-row"></div>');
+    //     $.each(imgpreview, function (idx, imgCount) {
+    //         console.log(1);
+    //         var $imgCt = $('<div class="img-box"></div>'),
+    //             $img = $(imgCount);
+    //         $img.height(newRowHeight);
+    //         $imgCt.append($img);
+    //         $rowCt.append($imgCt);
+    //     })
+    //     imgpreview.append($rowCt);
+    // }
+    winResize();
+    function winResize() {
+        $(window).resize(function () {
+            // needimg(10, 200, 300, 500, 300);
+            // needimg();
+            // winSize();
+        })
+    }
+    function needimg(sum1, height, width, maxheight, maxwidth) {
+        var winSize = $(window).width();
+        // var width = $(this).vwidth * ($(this).vheight / 400);
+        console.log(winSize);
+        var imgSumWidth = [];
+        var count = winSize % maxheight;
+        var sum = parseInt(winSize / maxheight);
+        var winC = parseInt(winSize / sum);
+        console.log('count:', count, 'sum:', sum);
+        // for (let i = 0; i < $('img').length; i++) {
+        //     imgSumWidth[i] = $('img').eq(i).width(); //这里的width()是获取不到width的，原因同上。将这行视为伪代码
+        imgSumWidth = $('img');
+        for (let i = 0; i < sum1; i++) {
+            //         // ($('<div><img src="http://unsplash.it/'+''height''/''width/?random"></div>').appendTo(imgpreview))
+            var imgsrc = $('<img>')
+            var vheight = Math.floor(Math.random() * (maxheight - height + 1)) + height;
+            var vwidth = Math.floor(Math.random() * (maxwidth - width + 1)) + width;
+            var url = "https://unsplash.it/" + vheight + '/' + vwidth + '/?random'
+            // var url = "https://unsplash.it/200/300/?random"
+            //         // imgsrc[i].css({src:url});
+            //         // console.log(url);
+            imgsrc.attr('src', url)
+            //         console.log(imgsrc[i]);
+            $(imgsrc).appendTo(imgpreview);
+            // loadimg();
+            $('img').each(function () {
+                // console.log($(this).height());
+                var width = $(this).vwidth * ($(this).vheight / maxheight);
+                $(this).css('height', '400px');
+            })
+        }
+        if (count > 0) {
+            for (var i = 0; i < $('img').length; i++) {
+                $('img').eq(i).width(winC);
+            }
+        }
+    }
+    // function loadimg() {
+    //     $('img').each(function () {
+    //         console.log($(this).height()); //问题：无法得到img的高度。猜想原因是上面添加img的代码还没有执行完的时候，这段代码已经执行结束了。
+    //         //所以基于这个猜想，选择使用直接将img的高度更改。因为上面的demo中，img的高度不可能超过400px;
+    //         // if (!$(this).height() == 400) {
+    //         // console.log(1);
+    //         // $(this).css('height', '400px');
+    //         // }
+    //         // var height = $(this).height();
+    //         var width = $(this).vwidth * ($(this).vheight / 400);
+    //         // console.log('height:', height, 'width:', width);
+    //         $(this).css('height', '400px');
+    //         // $(this).css('width', width); //想要等比缩放。由于无法直接获取img的width的值，就无法使用（400/height)*width;
+    //         //但是想到我们在请求img的时候，会发送图片的宽高。所以直接在上面的demo的，进行比例的缩放。
+    //     })
+    // }
+    // function winSize() {
+    //     var winSize = $(window).width();
+    //     var width = $(this).vwidth * ($(this).vheight / 400);
+    //     console.log(winSize);
+    //     var imgSumWidth = [];
+    //     var count = winSize % 400;
+    //     var sum = parseInt(winSize / 400);
+    //     var winC = parseInt(winSize / sum);
+    //     console.log('count:', count, 'sum:', sum);
+    //     // for (let i = 0; i < $('img').length; i++) {
+    //     //     imgSumWidth[i] = $('img').eq(i).width(); //这里的width()是获取不到width的，原因同上。将这行视为伪代码
+    //     imgSumWidth = $('img');
+    //     if (count > 0) {
+    //         for (var i = 0; i < $('img').length; i++) {
+    //             $('img').eq(i).width(winC);
+    //         }
+    //     }
+    // }
+    // function winResize() {
+    //     $(window).resize(function () {
+    //         winSize();
+    //     })
+    // }
+    // function appendimg() {
+    //     var divimg=$('<img>')
+    //     var url='https://unsplash.it/233'
+    //     divimg.attr('src',url);
+    //     imgpreview.append(divimg);
+    //     // var div = $('<div><img src="https://unsplash.it/200/300/?random"></div>')
+    //     // imgpreview.append(div);
+    // }
+    // appendimg();
+
+</script>
+<!--<script src="https://unsplash.it/200/300/?random"></script>-->
+
+</html>
