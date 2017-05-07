@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>原型完成的木桶布局</title>
+    <style>
+        .ct {
+            width: 800px;
+            border: 1px solid #ccc;
+            /*height: 1000px;*/
+            margin: 0 auto;
+        }
+
+        .ct :after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ct">
+
+    </div>
+</body>
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    // var ct = $('.ct');
+    // var url = "https://unsplash.it/" + needWidth + '/' + needHeight;
+    // var imgarray = new ImgArray(20);
+    // var ImgArray = function (num) {
+    // function ImgArray(num) {
+    //     this.num = num;
+    //     // this.
+    // }
+    function ImgArray($ct) {
+        this.ct = $ct;
+
+        // console.log($ct);
+        // this.num = 20;
+        // this.imgCount = [];
+        // this.randoming(num);//错误输入
+        this.randomImg();
+
+    }
+    // Img.prototype = function () {
+    ImgArray.prototype = {
+        randomImg: function () {
+            var num = 25;
+            var max = 400;
+            min = 200;
+
+            var imgCount = []
+            for (let i = 0; i < num; i++) {
+                var width = Math.floor(Math.random() * (max - min + 1)) + min;
+                var height = Math.floor(Math.random() * (max - min + 1)) + min;
+                var url = "http://unsplash.it/" + width + '/' + height;
+                imgCount[i] = {
+                    width: 200 * (width / height),
+                    // height: height * (width / height),
+                    height: 200,
+                    url: url,
+                }
+                // console.log(imgCount);
+            }
+            // return imgCount;
+            this.imgRender(imgCount);
+        },
+        imgRender: function (imgCount) {
+            // var imgCount = randomImg();
+            var rowWidth = 0;
+            var newRowHeight = 0;
+            var imgRow = [];
+            var newImgRow= [];
+            var sum = 0;
+            var newRowWidth = 0;
+            for (let i = sum; i < imgCount.length; i++) {
+                rowWidth += imgCount[i].width;
+                imgRow[i] = imgCount[i];
+                // imgRow.eq(i)=imgCount.eq(i);
+                if (rowWidth > $('.ct').width()) {
+                    // sum = i;
+                    // for (var c = 0; c < sum; c++) {
+                    //     imgRow[c] = imgCount[c]
+                    // }
+                    var newImgRow= imgRow;
+                    newRowHeight = $('.ct').width() * 200 / rowWidth;
+                    // imgRow.pop();
+                    // var last = imgRow.pop(); //pop(),用于删除和返回最后一个元素
+                    // var last = imgRow[i];//undefined
+                    var last=  newImgRow.pop();
+                    // $.each(imgCount, function (idx, value) {
+                    // newRowWidth += value.width;
+                    // $(this).height(newRowHeight);
+                    // console.log(imgCount);
+                    // imgRow[i] = imgCount[i];
+                
+                    this.layout(newImgRow, newRowHeight);
+                    imgRow = [];
+                    rowWidth = 0;
+                    newImgRow.push(last);
+                    // })
+                }
+
+
+
+                // var imgRow = [];
+                // var ct = $('.ct')
+                // // console.log('imgCount:', imgCount[i].width, ct.width());
+                // // console.log('imgRow：', imgRow);
+                // rowWidth += imgCount[i].width;
+                // imgRow[i] = imgCount[i];
+                // // console.log(imgRow);
+                // if (rowWidth > ct.width()) {
+                //     a = i;
+                //     // console.log('a',a);
+                //     var rowWidth = 0;
+                //     var newRowHeight = 0;
+                //     for (let c = sum; c < a; c++) {
+                //         rowWidth += imgCount[c].width;
+                //     }
+                //     // var last = $(imgRow).last();
+                //     // imgRow.pop();
+                //     // console.log(imgRow);
+                //     // newRowHeight = rowWidth / ct.width * height;
+                //     // newRowHeight = rowWidth * 200 / ct.width(); //写反了，哎
+                //     newRowHeight = ct.width() * 200 / rowWidth;
+                //     this.layout(imgCount, newRowHeight);
+                //     // $.each(imgCount,function(idx,value){
+                //     imgRow = [];
+                //     // imgRow.push(last);
+
+                //     sum = a;
+
+                // }
+            }
+        }, //要重写的。md
+        layout: function (imgRow, newRowHeight) {
+            // var imgCount = randomImg();
+            var ct = $('.ct');
+            for (var i = 0; i < imgRow.length; i++) {
+                var a = $('<img>')
+                console.log(imgRow)
+                if (imgRow[i] == undefined) {
+                    // a.attr({
+                    //     src: '#',
+                    //     display: 'none', 
+                    // })
+                    // imgRow[i].text = 1;
+                    // $(imgRow).remove($(this).find($(this).text=1));
+                    // imgRow[i].remove();
+                    $(this).remove();
+
+                } else {
+                    a.attr({
+                        src: imgRow[i].url,
+                        height: newRowHeight,
+                    })
+                    a.appendTo(ct);
+                }
+                // $.each(imgRow, function (idx, value) {
+                //     var a = $('<img>')
+                //     // console.log(typeof value.url);
+                //     // if (typeof value.url == 'undefined' || typeof value.url == 'null') {
+                //     //     a.attr({
+                //     //         src: '#',
+                //     //         display: none,
+                //     //     })
+
+                //     // } else { //can't read prototype 'url' of undefined 前面的判断条件并不能起作用，gg
+                //         a.attr({
+                //             src: value.url,
+                //             height: newRowHeight,
+                //         })
+                //     // }
+
+                //     // $(this).height(newRowHeight);
+                //     // idx.height(newRowHeight);
+                //     // console.log(idx);
+                //     a.appendTo(ct);
+
+                // })
+                // }
+
+            }
+        }
+    }
+    var imgarray = new ImgArray($('.ct')); //我去，这个还跟放在上面和下面有关系的啊
+</script>
+
+</html>

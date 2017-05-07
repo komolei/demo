@@ -1,0 +1,22 @@
+<script>
+    var s = function () {
+        console.log('-----分界线')
+        console.log(this)
+        console.log(arguments)
+    }
+    //每个函数都有this和arguments，并且完全由该函数调用的方式决定
+    s()
+    //this + 参数数组
+    s.apply({
+        a: 1
+    }, [1, 2, 3, 4])
+    //this + 以,分隔的参数
+    s.call({
+        a: 1
+    }, 1, 2, 3, 4)
+    //绑定this和部分参数 【 除了构造函数调用的情况 】
+    var bind_s = s.bind({
+        c: 1
+    }, 1, 2) //this==>{c:1} ,1,2,3
+    bind_s(3) //==> s.apply({c:1},[1,2,3])
+</script>
