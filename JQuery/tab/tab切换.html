@@ -1,0 +1,389 @@
+<!Doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .headnav>li {
+            float: left;
+            padding: 10px 50px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .container>.activey {
+            /*使用这个.container>.activey是为了提高比重。在后续的css重写中可以突显出来*，妈蛋，害的我半天不知道为了后续样式出不来*/
+            display: block;
+            border: 1px solid #333;
+            padding-bottom: 100px;
+            /*background: red;*/
+            /*opacity: .1;*/
+        }
+
+        .container li {
+            display: none;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .active {
+            background: #777;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="head">
+        <ul class="headnav clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <ul class="container">
+            <li class="activey">内容1</li>
+            <li>内容2</li>
+            <li>内容3</li>
+        </ul>
+    </div>
+    <div class="head">
+        <ul class="headnav clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <ul class="container">
+            <li class="activey">内容1</li>
+            <li>内容2</li>
+            <li>内容3</li>
+        </ul>
+    </div>
+    <div class="head">
+        <ul class="headnav clearfix">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <ul class="container">
+            <li class="activey">内容1</li>
+            <li>内容2</li>
+            <li>内容3</li>
+        </ul>
+    </div>
+    <script>
+        // var Finish = function () {
+        //     this.name = 'finish:鱼';
+        //     this.sayName = function () {
+        //         console.log('吐泡泡');
+        //     }
+        // }
+        // var Finisha = function () {  //{}=this；{}._proto_===>Finisha.prototype
+        //     // Finish.apply(null);      //   
+        //     this.run = function () {
+        //         console.log('run');
+        //     }
+        // }
+        // var Finishb = function () {
+        //     Finish.apply(this);
+        //     this.run = function () {
+        //         console.log('run');
+        //     }
+        // }
+        // var finisha = new Finisha();
+        // var finishb = new Finishb();
+        // //---------------------------------------
+        // console.log('               /n', )
+        // // function Dog(){
+        // //     this.name='小白';
+        // // }
+        // var Dog = {
+        //     name: '小白',
+        //     say: function () {
+        //         console.log(10);
+        //     }
+        // }
+
+        // function Temp() {};
+        // Temp.prototype = Dog;
+        // var dog = new Temp();
+        // // console.dir('dog:', dog);
+
+        // // function Cat() {
+        // //     var cat = { //这个是对象的形式。
+        // //         name: '小黄',
+        // //         sex: 'female',
+        // //         age: 1,
+        // //         sayName: function () {
+        // //             console.log('my name is:', this.name);
+        // //         }
+        // //     }
+        // //     // console.log(cat);
+        // //     return cat;
+        // // }
+        // // Cat()
+        // // var cat = Cat();
+        // // console.log(cat);
+        // console.log('//-------------------------------变形记')
+
+        // var Cat1 = function () { //现在将这个对象的形式改变为函数的形式。则去掉var cat这样的东西
+        //     // var cat = {  //同时符号,变成分号; 
+        //     this.name = '小黄';
+        //     // name = 'clc';
+        //     this.sex = 'female';
+        //     //new的作用，帮我们创建空对象，this={};
+        //     //而this可以指向这个临时对象
+        //     //则{}._proto_ ===>Cat1.prototype
+        //     //{}.name='小黄',
+        //     // return 这个空对象，也就是这个this，则返回this。其中带有两个属性:name,sayName();
+        //     this.age = 1;
+        //     // sayName: function () {
+        //     this.sayName = function () {
+        //         console.log('my name is:', this.name);
+        //         console.log('....')
+        //         // console.log('my name is ', name);
+
+        //     }
+
+        //     // function sayName() {
+        //     //     console.log('my name is:', this.name);
+        //     //     // }
+        //     // }
+        //     // console.log(cat);
+        //     // return cat; //去掉return;
+        // }
+        // // Cat()
+        // // var cat = Cat(); //改变为new的形式;
+        // var cat1 = new Cat1();
+        // console.log(cat1);
+        //--------------------------------------------------------------------------------------------------分界线')
+        console.log('//-------------------------------------------------------------分界线')
+        // function Tab(ct) { //var 临时对象={};this就是等于这个临时对象
+        //     this.ct = ct; //临时对象的属性ct=ct;
+        //     // console.log('this', 'ct:', this, ct, );
+        //     this.init();
+        //     this.bind();
+        // }
+        var Tab = function (ct) { //var 临时对象={};this就是等于这个临时对象
+            this.ct = ct; //临时对象的属性ct=ct;
+            // console.log('this', 'ct:', this, ct, );
+            this.init();
+            this.bind();
+            // handler1();
+        }
+        Tab.prototype.init = function () {
+            this.ul = this.ct.querySelectorAll('.headnav')[0] //老是会忘记[0];
+            this.ulhead = this.ct.querySelector('.headnav');
+            this.ulnav = this.ct.querySelectorAll('.headnav>li');
+            this.containerul = this.ct.querySelectorAll('.container>li');
+
+        }
+        // //------------------------------------------------------------------------试试看bind()-----------------------
+        // //感悟。虽然成功，但是没有达到自己想要的效果啊。使用不行啊，还是得加强使用啊。老铁。。。。。。。。。下次多试试看。。。。。。
+        // // Tab.prototype.bind = handler.bind(this.ct);
+        // Tab.prototype.bind = handler.bind(document.querySelectorAll('.head')[0])
+        // function handler() {
+        //     ul = this.querySelectorAll('.headnav')[0] //老是会忘记[0];
+        //     ulhead = this.querySelector('.headnav');
+        //     ulnav = this.querySelectorAll('.headnav>li');
+        //     containerul = this.querySelectorAll('.container>li');
+        //     console.log(this.ulnav);
+        //     ul.onclick = function (e) {
+        //         console.log(1);
+        //         // this.ulnav.forEach(function () {})
+        //         var target = e.target;
+        //         var index;
+        //         ulnav.forEach(function (element) { //在这里的this是window了，因为这个是函数调用。所以要得到真正的ulnav。则要在上面保存一下this。
+        //             element.classList.remove('active');
+        //         })
+        //         target.classList.add('active');
+        //         // console.log(_this.ulnav);
+        //         // ulnav1=Array.prototype.slice.call(_this.ulnav);
+        //         // index=ulnav1.indexOf(target);
+        //         index = [].indexOf.call(ulnav, target); //不能使用bind。。。。因为bind()会创建一个函数，并返回。
+        //         // index=_this.ulnav.indexOf.bind(Array,target);
+        //         console.log('index:', index);
+        //         containerul.forEach(function (element) {
+        //             element.classList.remove('activey');
+        //         })
+        //         containerul[index].classList.add('activey'); //classlist!!!打错了，打的太快了。classList
+        //     }
+        // }
+        // // var handler1=handler.bind(document.querySelectorAll('.head')[0])
+        //------------------------------------------------------------------------------------------------------
+        Tab.prototype.bind = function () {
+            // var target = e.target;
+            var _this = this;//保持this=tab，实例化的对象  。this，会根据函数调用的方式不同，this的返回的对象也不同。所以在下面的onclick中，this是属于函数调用。所以this会等于window。这样不行。所以要保留一下this=tab的这个结果。
+            // console.log(this.ulhead);
+            // console.log('ct',this);
+
+            //this.ulhead.onclick()！！！智障啊。是onclick,不是onclick()
+            // this.ulhead.onclick= function (e) {
+            //     console.log(1);
+            //     // this.ulnav.forEach(function () {})
+            //     var target = e.target;
+            //     var index;
+            //     this.ulnav.forEach(function (element) { //在这里的this是window了，因为这个是函数调用。所以要得到真正的ulnav。则要在上面保存一下this。
+            //         element.classList.remove('active');
+            //     })
+            //     target.classList.add('active');
+            //     // console.log(_this.ulnav);
+            //     // ulnav1=Array.prototype.slice.call(_this.ulnav);
+            //     // index=ulnav1.indexOf(target);
+            //     index = [].indexOf.call(this.ulnav, target);//不能使用bind。。。。因为bind()会创建一个函数，然后将bind(obj)中的obj作为这个创建好的函数中的this，并返回。
+            //     // index=_this.ulnav.indexOf.bind(Array,target);
+            //     console.log('index:',index);
+            //     this.containerul.forEach(function (element) {
+            //         element.classList.remove('activey');
+            //     })
+            //     this.containerul[index].classList.add('activey');//classlist!!!打错了，打的太快了。classList
+            // }
+            //------------------------------------------------------fenkai-----------
+            this.ulhead.onclick = function (e) {
+                console.log(1);
+                // this.ulnav.forEach(function () {})
+                var target = e.target;
+                var index;
+                _this.ulnav.forEach(function (element) { //在这里的this是window了，因为这个是函数调用。所以要得到真正的ulnav。则要在上面保存一下this。
+                    element.classList.remove('active');
+                })
+                target.classList.add('active');
+                // console.log(_this.ulnav);
+                // ulnav1=Array.prototype.slice.call(_this.ulnav);
+                // index=ulnav1.indexOf(target);
+                index = [].indexOf.call(_this.ulnav, target); //不能使用bind。。。。因为bind()会创建一个函数，并返回。
+                // index=_this.ulnav.indexOf.bind(Array,target);
+                console.log('index:', index);
+                _this.containerul.forEach(function (element) {
+                    element.classList.remove('activey');
+                })
+                _this.containerul[index].classList.add('activey'); //classlist!!!打错了，打的太快了。classList
+            }
+        }
+        //000------------------------------
+        // Tab.prototype.bind = function () {
+        //     // console.log('Tab:', Tab);
+        //     // console.log('this:',this);
+        //     // // console.log('this:', this); //this.ct.onclick=function(e),事件委托不太好，会导致点击到下面的container的时候，e.target选取不到想要的值。
+        //     var _this = this; //为什么要用这个_this=this；因为这里的this为上面的Tab，
+        //     // console.log("_this", _this);
+        //     this.ul.onclick = function (e) {
+        //         console.log('this:2',this);//而这里的this是ul。则下面的_this.ulnav就会出错了，所以要上面保存一下this。
+        //         var target = e.target;
+        //         var index;
+        //         if (target.tagName.toLowerCase() === 'li') {
+        //             // var ul1 = Array.prototype.slice.call(this.querySelectorAll('.headnav>li'));
+        //             // ulnav = this.ct.querySelectorAll('.headnav>li');
+        //             // console.log(ulnav);
+        //             // var ul1 = Array.prototype.slice.call(ulnav);
+
+        //             var ul1 = Array.prototype.slice.call(_this.ulnav);
+        //             // var ul1=Array.call(_this.ulnav);
+        //             // ul1.call(_this.ulnav)
+        //             // console.log(ul1);
+        //             var containerul1 = Array.prototype.slice.call(_this.containerul);
+        //             ul1.forEach(function (element, index) {
+        //                 element.classList.remove('active');
+        //                 containerul1[index].classList.remove('activey');
+        //             })
+        //             e.target.classList.add('active');
+        //             var index = ul1.indexOf(target); //这个居然也可以用
+        //             containerul1[index].classList.add('activey');
+
+        //         } else {
+        //             console.log("点错了")
+        //         }
+        //     }
+        // }
+        var tab = new Tab(document.querySelectorAll('.head')[0]);
+        //new一下就创建了Tab的实例对象tab。
+        // console.log("shili:",tab instanceof Tab)
+        var tab = new Tab(document.querySelectorAll('.head')[1]);
+        var tab = new Tab(document.querySelectorAll('.head')[2]);
+
+
+        //----------修改去----------------------------------------
+        // function Tab(ct) {
+        //     this.ct = ct;
+        //     this.ul = document.querySelectorAll('.headnav')[0] //老是会忘记[0];
+        //     this.ul.onclick = function (e) { //this.ct.onclick=function(e),事件委托不太好，会导致点击到下面的container的时候，e.target选取不到想要的值。
+        //         var target = e.target;
+        //         var index;
+        //         if (target.tagName.toLowerCase() === 'li') {
+        //             var ul = document.querySelectorAll('.headnav>li');
+        //             var containerul = document.querySelectorAll('.container>li');
+        //             var ul1 = Array.prototype.slice.call(ul);
+        //             var containerul1 = Array.prototype.slice.call(containerul);
+        //             ul1.forEach(function (element, index) {
+        //                 // console.log(this);
+        //                 element.classList.remove('active');
+        //                 // ul1..classList.remove('active');
+        //                 // containerul1[index].classList.add('activey');
+        //                 // console.log(index);
+        //                 // index=ul1.indexOf(e.target);
+        //                 containerul1[index].classList.remove('activey');
+        //             })
+        //             e.target.classList.add('active');
+        //             var index = ul1.indexOf(target); //这个居然也可以用
+        //             console.log(index);
+        //             // if (index == 'undefined') {
+        //             //     containerul1[index].classList.add('activey');
+
+        //             // }
+        //             containerul1[index].classList.add('activey');
+        //             // if (!index == undefined) {
+        //             //     containerul1[index].classList.add('activey');
+
+        //             // }
+        //         } else {
+        //             console.log("点错了")
+        //         }
+        //         // }
+
+        //     }
+        // }
+        // var tab = new Tab(document.querySelectorAll('.head')[0]);
+        // //-----------------------------------------------------
+        // $('.headnav').addEventListener('click', handler, false)
+
+        // function handler(e) {
+        //     var target = e.target;
+        //     if (target && target.tagName.toLowerCase() === 'li') {
+        //         var headnavli = $$('.headnav>li');
+        //         for (var i = 0; i < headnavli.length; i++) {
+        //             headnavli[i].classList.remove('active');
+        //         }
+        //         target.classList.add('active');
+        //         var containerli = $$('.container>li');
+
+        //         var index = [].indexOf.call(headnavli, target);
+        //         // console.log(index);
+        //         for (var i = 0; i < containerli.length; i++) {
+        //             containerli[i].classList.remove('activey');
+        //         }
+        //         containerli[index].classList.add('activey');
+        //     }
+        // }
+
+        // function $(id) {
+        //     return document.querySelector(id);
+        // }
+
+        // function $$(cls) {
+        //     return document.querySelectorAll(cls);
+        // }
+    </script>
+</body>
+
+</html>
