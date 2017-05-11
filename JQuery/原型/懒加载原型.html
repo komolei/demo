@@ -1,0 +1,391 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>懒加载</title>
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            /*overflow: scroll;*/
+            height: 500px;
+        }
+
+        ul:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        li {
+            /*overflow: scroll;*/
+            margin-bottom: 20px;
+            border: 1px solid gray;
+            border-radius: 5px;
+            list-style: none;
+            height: 300px;
+            /*visibility: hidden;*/
+        }
+
+        img {
+            /*display: inline-block;*/
+            height: 300px;
+        }
+        /*.a {
+            visibility: visible;
+        }*/
+    </style>
+</head>
+
+<body>
+    <ul class="ct">
+
+        <li>
+            <a href="#"><img src="" data-src="http://img.hb.aicdn.com/64bb914ed6388066f74def9c73c262784f8799ce21671-L3R0uM_fw658" alt=""></a>
+
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/2904510ca3e30bfee1f810a12135abaff8b0499dbae6-3zhIDB_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/0ed635a0f1500180a07cb96b4c9a624c95c2abc3acc3-M2ugmp_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/c186eed03fd255f202d4c4333ea71e2f5aecaf191d6aa-zGCvof_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/b64f4154467ab4055324796ac9c472f3cd82cfdd26a02-NZ56Mg_fw658" alt=""></a>
+        </li>
+
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/03424bf3ca11baaa137e4ba5f0d0f6ad62ad1cbba405-ILcj8j_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/81f36902bff2bfb6325c29e865cc1c43c49a90ab1c7cd-cCg6PS_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href="#"><img src="" data-src="http://img.hb.aicdn.com/64bb914ed6388066f74def9c73c262784f8799ce21671-L3R0uM_fw658" alt=""></a>
+
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/2904510ca3e30bfee1f810a12135abaff8b0499dbae6-3zhIDB_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/0ed635a0f1500180a07cb96b4c9a624c95c2abc3acc3-M2ugmp_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/c186eed03fd255f202d4c4333ea71e2f5aecaf191d6aa-zGCvof_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/b64f4154467ab4055324796ac9c472f3cd82cfdd26a02-NZ56Mg_fw658" alt=""></a>
+        </li>
+
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/03424bf3ca11baaa137e4ba5f0d0f6ad62ad1cbba405-ILcj8j_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/81f36902bff2bfb6325c29e865cc1c43c49a90ab1c7cd-cCg6PS_fw658" alt=""></a>
+        </li>
+
+        <li>
+            <a href="#"><img src="" data-src="http://img.hb.aicdn.com/64bb914ed6388066f74def9c73c262784f8799ce21671-L3R0uM_fw658" alt=""></a>
+
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/2904510ca3e30bfee1f810a12135abaff8b0499dbae6-3zhIDB_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/0ed635a0f1500180a07cb96b4c9a624c95c2abc3acc3-M2ugmp_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/c186eed03fd255f202d4c4333ea71e2f5aecaf191d6aa-zGCvof_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/b64f4154467ab4055324796ac9c472f3cd82cfdd26a02-NZ56Mg_fw658" alt=""></a>
+        </li>
+
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/03424bf3ca11baaa137e4ba5f0d0f6ad62ad1cbba405-ILcj8j_fw658" alt=""></a>
+        </li>
+        <li>
+            <a href=""><img src="" data-src="http://img.hb.aicdn.com/81f36902bff2bfb6325c29e865cc1c43c49a90ab1c7cd-cCg6PS_fw658" alt=""></a>
+        </li>
+
+
+
+    </ul>
+
+</body>
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="../jquery-3.2.1.js"></script>
+
+<script>
+    // var ct = $('.ct');
+    // if (ct.offsetTop()>($(window).height+ct.scrolltop())){
+
+    // }
+    // var imgscroll = $('.ct img').scrollTop();
+    // console.log(imgscroll);
+    // $('li').scroll(function(){
+    // //   $(this).each(function () {
+    //         console.log(($(this)));
+    //         // if ($(this).offset().top < ($(window).height + $(this).scrollTop())) {
+    //         //     var url = $(this).attr('data-src');
+    //         //     $(this).attr('src', url)
+    //         //     // $(this).css('visibility', 'visible');
+    //         // }
+    //         // else {
+    //         //     // console.log('gg');
+    //         // }
+    //     });
+    // // })
+    // $(window).on('scroll', function () {
+    //     // console.log($(this).scrollTop());
+    //     $('.ct li').each(function () {
+    //         // console.log($(window).scrollTop());
+
+    //         // console.log($(this).offset().top);
+    //         if ($(this).offset().top > 1000) {
+    //             var url = $(this).attr('data-src');
+    //             $(this).attr('src', url);
+    //         }
+    //     })
+    // })
+    // var se=$('.ct li');
+    // $(window).on('scroll', function () {
+    //     console.log($(this).scrollTop());
+    //     if (se.scrollTop()> 1000 ) {
+    //         var url = $(this).attr('data-src');
+    //         $(this).attr('src', url);
+    //     }
+    // $('.ct li').each(function () {
+    // console.log($(window).scrollTop());
+
+    // console.log($(this).offset().top);
+
+    // })
+    // })
+    // $('body .ct').on('scroll',function(){
+    //     console.log(1);
+    // })
+    // $('.ct img').each(function () {
+    //     // console.log($(this).eq(1).offset());
+    //     if (scrolllength < $(this).eq(1).offset()) {
+    //         var url = $(this).eq(1).attr('data-src')
+    //         $(this).css('src', url);
+    //     }
+    // })
+    // var scrolllength = $(window).scroll(function () {
+    //     console.log($(this).scrollTop());
+    //     // $('.ct li').each(function () {
+    //     //     console.log($(this))
+    //     //     if (($(this).scrollTop() + $(window).height) < $(this).offset().top) {
+    //     //         var url = $(this).attr('data-src')
+    //     //         $(this).css('src', url);
+    //     //     }
+    //     // })
+    //     return $(this).scrollTop();
+    // });
+    // console.log(  $('.ct li'))
+
+    // $('.ct li').scroll(function () {
+    //     console.log(1);
+    //     console.log($(this).offset().top);
+
+    // }
+    //上面的demo都是错误的写法。。。
+    //-----------------------
+    //错误 判断条件写错，将||写成&&
+    // function isVisible(node) {
+    //     if ($(this).offset().top < ($(window).scrollTop() + $(window).height() || $(window).scrollTop() < ($(this).outheight() + $(this).offset().top))) {
+    //         $(this).addClass('a');
+    //     }
+    // }
+    // var node = $('img');
+    // isVisible(node);
+    //----------------------------------------------------------------------------出问题的demo块-----------
+
+    // _IsShow = (function () {
+    //     var layout = function (ct) {
+    //         this.ct = ct;
+    //         // this.check();
+    //         this.scroll();
+    //     }
+    //     layout.prototype.IsShow = function ($node) {
+    //         // console.log(1);
+    //         var windowHeight = $(window).height();
+    //         var nodescroll = $(window).scrollTop();
+    //         var nodeHeight = $($node).outerHeight();
+    //         var nodeOffsetTop = $($node).offset().top;
+
+    //         if (nodeOffsetTop < nodescroll + windowHeight && nodescroll < nodeOffsetTop + nodeHeight) {
+    //             $($node).addClass('a');
+    //             return true;
+    //         } else {
+    //             return false;
+    //         }
+    //     }
+
+    //     layout.prototype.show = function ($imgs) {
+    //         // console.log($(this)); //window，不能使用$(this)
+    //         var url = $imgs.attr('data-src');
+    //         $imgs.attr('src', url);
+    //         $imgs.addClass('a'); //标志位
+
+    //     }
+    //     // check(); //先加载一次
+    //     layout.prototype.check = function (node) {
+    //         var _this = this;
+    //         var $node = node;
+    //         this.find('img').not('a').each(function () {
+    //             // $('.ct img').not('a').each(function () {
+    //             console.log($(this));
+    //             if (_this.IsShow($(this))) {
+    //                 _this.show($(this));
+    //             }
+    //         })
+    //     }
+    //     layout.prototype.scroll = function () {
+    //         _this = this;
+    //         console.log($(window));
+    //         $(window).scroll(_this.check); //由于创建的对象是一次的，所以到这里就执行了一次。
+
+    //     }
+    //     return {
+    //         init: function (ct) {
+    //             new layout(ct);
+    //         }
+    //     }
+    // })()
+    // _IsShow.init($('.ct'));
+    //----------------------------------------------------------------------------出问题的demo块----------
+
+    // var ct = $('.ct');
+
+    // function IsShow($node) {
+    //     var windowHeight = $(window).height();
+    //     var nodescroll = $(window).scrollTop();
+    //     var nodeHeight = $node.outerHeight();
+    //     var nodeOffsetTop = $node.offset().top;
+    //     if (nodeOffsetTop < nodescroll + windowHeight && nodescroll < nodeOffsetTop + nodeHeight) {
+    //         $node.addClass('a');
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // function show($imgs) {
+    //     // console.log($(this)); //window，不能使用$(this)
+    //     var url = $imgs.attr('data-src');
+    //     $imgs.attr('src', url);
+    //     $imgs.addClass('a'); //标志位
+
+    // }
+    // // check(); //先加载一次
+    // function check() {
+    //     $('.ct img').not('a').each(function () {
+    //         if (IsShow($(this))) {
+    //             show($(this));
+    //         }
+    //     })
+    // }
+    // $(window).scroll(check); //这种写法也可以的。
+    // function show($imgs){
+    //     // $(this).each(function(){
+    //         // console.log($(this));
+    //         var url=$imgs.attr('data-src');
+    //         $imgs.attr('src',url);
+    //     // })
+    // }
+    //-----------------------show的两种写法----------------
+    // function show($imgs) {
+    //     $imgs.each(function () {
+    //         // console.log($(this));
+    //         var url = $(this).attr('data-src');
+    //         $(this).attr('src', url);
+    //         $(this).addClass('a');//标志位
+    //     })
+    // }
+    //试试看新方式-------------------测试可信---------
+    //新方式少了each，可以降低性能使用率
+    //this.demo
+    //----------------------------------------------------------------------------
+    // function show($imgs) {
+    //     // console.log($(this)); //window，不能使用$(this)
+    //     var url = $imgs.attr('data-src');
+    //     $imgs.attr('src', url);
+    //     $imgs.addClass('a'); //标志位
+
+    // }
+    // check(); //先加载一次
+    // function check() {
+    //     $('.ct img').not('a').each(function () {
+    //         if (IsShow($(this))) {
+    //             show($(this));
+    //         }
+    //     })
+    // }
+    // $(window).scroll(check); //这种写法也可以的。
+    //----------------------------------------------------------------------------
+    // $('.ct img').scroll() //错误，是用窗口进行滚动的，是通过窗口的滚动来判断元素是否可见的。
+
+    // $('.ct img').not('a').each(function () {
+    //     if (IsShow($(this))) {
+    //         show($(this));
+    //     }
+    // }) //开始先做一次
+    // //封装上面的代码
+    // check()//先做一次 ，错误，check()是一个值：undefined,因为函数check没有返回值，其默认返回值为undefined;
+    //在这里，我们是需要调用函数check，不是得到值，所以就写check就好了 //错误的理解，函数的调用，直接写check();
+    //----------------------------------------------------------------------------
+    // check(); //先加载一次
+    // function check() {
+    //     $('.ct img').not('a').each(function () {
+    //         if (IsShow($(this))) {
+    //             show($(this));
+    //         }
+    //     })
+    // }
+    // $(window).scroll(check); //这种写法也可以的。
+    //------------------------------------------------------------------------------
+    // $(window).scroll(function () {
+    //     // console.log(1);
+    // })
+    // $(window).scroll(check())//错误的写法，原因不知。
+    ///////////---------------------------------
+    //  var a=0;
+    // $(window).on('scroll', function () {  //这里的on,绑定是函数名，而下面的check也是函数名，所以直接添加check，如下
+    //----------------------------------
+    //     $('.ct img').not('a').each(function () {
+    //         // a++;
+    //         if (IsShow($(this))) {
+    //             show($(this));
+    //         }
+    //     })
+    //     //  console.log(a);
+    // })
+
+    //---------------反思----------
+    // $(window).on('scroll', check); //$(window).on('scroll', check());其中的check()是得到一个值，我们是调用函数。直接写check就好了。
+    //check()就是函数的调用，而这里为什么不写check()，而是写check呢？因为on中绑定是函数名，并不是函数。
+    // $(window).scroll(check); //这种写法也可以的。
+    // $(window).scroll(function () {
+    //     $('.ct').each(function () {
+    //         console.log($(this).scrollTop());
+    //         console.log('------------');
+    //         console.log($(this).offset().top);
+    //         if ($(this).offset.top < ($(this).scrollTop() + $(window).height()) && $(this).scrollTop() < ($(this).height + $(this).offset().top)) {
+    //             var url = $(this).attr('data-src')
+    //             $(this).attr('src', url);
+    //         }
+    //     })
+    // })
+</script>
+
+</html>

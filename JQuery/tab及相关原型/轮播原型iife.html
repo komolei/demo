@@ -1,0 +1,448 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> 轮播原型-上完课写的封装</title>
+    <style>
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            /*list-style: none;*/
+        }
+
+        .carousel {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+            margin-left: 200px;
+        }
+
+        .ct-img {
+            position: relative;
+            font-size: 0;
+        }
+
+        .ct-img:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ct-img>li {
+            width: 300px;
+            height: 200px;
+            float: left;
+        }
+
+        .ct-img>li>a>img {
+            width: 300px;
+            height: 200px;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            border-radius: 50%;
+            background: #111;
+            opacity: .5;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            font-size: 30px;
+            text-decoration: none;
+            text-align: center;
+            line-height: 28px;
+            margin-top: -15px;
+        }
+
+        .btn-next {
+            left: 270px;
+        }
+
+        .bullet {
+            position: absolute;
+            margin-left: -3px;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .bullet li {
+            width: 10px;
+            height: 5px;
+            display: inline-block;
+            margin-left: 3px;
+            border-radius: 4px;
+            /*background: #fff;*/
+            border: 1px solid #fff;
+        }
+
+        .active {
+            background: #111;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="ct-img">
+
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+            <li index='1'>
+                <a href=""><img src="http://img.hb.aicdn.com/7fba91ae701ac1d8784ff0c37c1f6b30f017a45856106-G6sTxo_fw658" alt=""></a>
+            </li>
+            <li index='2'>
+                <a href=""><img src="http://img.hb.aicdn.com/4ea78ff63d50ea74d6cffa67d9ab32daba4daa234f735-SAfvcW_fw658" alt=""></a>
+            </li>
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+        </ul>
+        <a class="btn btn-pre" href="">&lt;</a>
+        <a class="btn btn-next" href="">&gt;</a>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </div>
+    </br>
+    <div class="carousel">
+        <ul class="ct-img">
+
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+            <li index='1'>
+                <a href=""><img src="http://img.hb.aicdn.com/7fba91ae701ac1d8784ff0c37c1f6b30f017a45856106-G6sTxo_fw658" alt=""></a>
+            </li>
+            <li index='2'>
+                <a href=""><img src="http://img.hb.aicdn.com/4ea78ff63d50ea74d6cffa67d9ab32daba4daa234f735-SAfvcW_fw658" alt=""></a>
+            </li>
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+        </ul>
+        <a class="btn btn-pre" href="">&lt;</a>
+        <a class="btn btn-next" href="">&gt;</a>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </div>
+    <br>
+    <div class="carousel">
+        <ul class="ct-img">
+
+            <li index='0'>
+                <a href=""><img src="http://img.hb.aicdn.com/60a39b487899dd6468ecd11f651eb49b34b564894c3fc-kZY1io_fw658" alt=""></a>
+            </li>
+            <li index='1'>
+                <a href=""><img src="http://img.hb.aicdn.com/7fba91ae701ac1d8784ff0c37c1f6b30f017a45856106-G6sTxo_fw658" alt=""></a>
+            </li>
+            <li index='2'>
+                <a href=""><img src="http://img.hb.aicdn.com/4ea78ff63d50ea74d6cffa67d9ab32daba4daa234f735-SAfvcW_fw658" alt=""></a>
+            </li>
+            <li index='3'>
+                <a href=""><img src="http://img.hb.aicdn.com/5b8943eeda6a58def7ee1f7f53aae42f37bd2e145f3d4-IC8YkD_fw658" alt=""></a>
+            </li>
+        </ul>
+        <a class="btn btn-pre" href="">&lt;</a>
+        <a class="btn btn-next" href="">&gt;</a>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+
+    </div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    //--------------------------------------------------------------------------------------------------------------
+
+    // var Carousel = function (carousel) {
+    //     this.carousel = carousel;
+    //     // var btnnext = this.btnnext = carousel.find('.btn-next');
+    //     // var btnpre = this.btnpre = carousel.find('.btn-pre');
+    //     // var ctimg = this.ctimgli = carousel.find('.ct-img li');
+    //     // var ctimg = this.ctimg = carousel.find('.ct-img');
+    //     // var index=this.index = 0;
+    //     // var bullet=this.bullet = carousel.find('.bullet');
+    //     // var len=this.len = carousel.find('.ct-img li').width();
+    //     // var isLockUp=this.isLockUp = false;
+    //     this.init();
+    //     this.bind();
+    // }
+    // Carousel.prototype.init = function () {
+    //     // this.carousel = $('.carousel');
+    //     // this.btnnext = $('.btn-next');
+    //     var btnnext = this.btnnext = this.carousel.find('.btn-next');
+    //     var btnpre = this.btnpre = this.carousel.find('.btn-pre');
+    //     var ctimgli = this.ctimgli = this.carousel.find('.ct-img li');
+    //     var ctimg = this.ctimg = this.carousel.find('.ct-img');
+    //     var index = this.index = 0;
+    //     var bullet = this.bullet = this.carousel.find('.bullet');
+    //     var len = this.len = this.carousel.find('.ct-img li').width();
+    //     var isLockUp = this.isLockUp = false;
+
+    //     ctimg.append(ctimgli.first().clone());
+    //     // this.ctimg.prepend(this.ctimgli.last().clone());//这样就可以不使用this了
+    //     ctimg.prepend(ctimgli.last().clone()); //这样就可以不使用this了
+    //     ctimg.css('left', -len);
+    //     ctimg.width(ctimg.children().length * len);
+    // }
+    // Carousel.prototype.bind = function () {
+
+    //     var _this = this;
+    //     this.btnnext.click(function () {
+    //         event.preventDefault();
+    //         if (_this.isLockUp) {
+    //             return;
+    //         }
+    //         _this.isLockUp = true;
+    //         _this.ctimg.animate({
+    //             left: '-=' + _this.len,
+    //         }, function () {
+    //             _this.index++;
+    //             // console.log(ctimgli.length);
+    //             if (_this.index == _this.ctimgli.length) {
+    //                 _this.index = 0;
+    //                 _this.ctimg.css('left', -_this.len + 'px');
+    //             }
+    //             // setBullet();
+    //             setBullet.call(_this);
+
+    //             _this.isLockUp = false;
+    //         })
+    //     })
+    //     this.btnpre.click(function () {
+    //         if (_this.isLockUp) return;
+    //         event.preventDefault();
+    //         _this.ctimg.animate({
+    //             left: '+=' + _this.len,
+    //         }, function () {
+    //             _this.index--;
+    //             if (_this.index < 0) {
+    //                 _this.ctimg.css('left', -(_this.ctimgli.length * _this.ctimgli.width()))
+    //                 _this.index = _this.ctimgli.length - 1;
+    //             }
+    //             _this.isLockUp = false;
+    //             // console.log("_this",_this);
+    //             // setBullet();                
+    //             setBullet.bind(_this)(); //这种方式不行。因为bind()会返回一个新的函数。要去function setBullet入手//错误的想法！！！
+    //             //刚刚在看同学的作业的时候，发现了bind()是会返回一个新的函数，然后我们需要在调用它一次，就直接在后面加();
+    //             //为什么apply,call()都不用再调用一次，因为这个方法本身就会直接进行调用的
+    //             //感谢任务9班-宋军
+    //             //在JS中，这三者都是用来改变函数的this对象的指向，第一个参数都是this要指向的对象。
+    //             // call中传入的后续参数是一个个列举出来的，而apply传入的是一个数组；bind可以像call那样传参，还可以在调用的时候再进行传参。
+    //             // call和apply都是对函数的直接调用，而bind返回的仍然是一个函数，因此后面还需要进行调用才可以。
+    //             // setBullet.call(_this);
+    //         })
+    //     })
+    //     //------------------------------------改用bind()--------------------------------------
+    //     function setBullet() {
+    //         // console.log("this:", this);
+    //         this.bullet.children().removeClass('active')
+    //             .eq(this.index)
+    //             .addClass('active');
+    //     }
+    //     //------------------------------------改用bind()--------------------------------------
+
+    //     // function setBullet() {
+    //     //     console.log("this:", this);
+    //     //     this.bullet.children().removeClass('active')
+    //     //         .eq(this.index)
+    //     //         .addClass('active');
+    //     // }
+    //     //------------------------------------------------------------------------------------
+    // }
+    // // console.log($('.carousel').eq(0))
+    // // var carousel = new Carousel($('.carousel').eq(0));
+    // // var carousel = new Carousel($('.carousel').eq(1));
+
+    // // (function init(){
+    // //     return init={
+    // //         new 
+    // //     }
+    // // })()
+
+    // // function init(ct) {
+    // //     return (function () {
+    // //         new Carousel(ct)
+    // //     })(ct)
+    // // }
+    //------------------------------------------------------------------------------------最终--------------------------
+
+    _Carousel = (function () {
+        //   (function (ct) {//这里的ct不需要的，因为下面是 _Carousel.init(ct),这里指定了ct=$('.carousel');
+        var Carousel = function (carousel) {
+            this.carousel = carousel;
+            // var btnnext = this.btnnext = carousel.find('.btn-next');
+            // var btnpre = this.btnpre = carousel.find('.btn-pre');
+            // var ctimg = this.ctimgli = carousel.find('.ct-img li');
+            // var ctimg = this.ctimg = carousel.find('.ct-img');
+            // var index=this.index = 0;
+            // var bullet=this.bullet = carousel.find('.bullet');
+            // var len=this.len = carousel.find('.ct-img li').width();
+            // var isLockUp=this.isLockUp = false;
+            this.init();
+            this.bind();
+        }
+        Carousel.prototype.init = function () {
+            // this.carousel = $('.carousel');
+            // this.btnnext = $('.btn-next');
+            var btnnext = this.btnnext = this.carousel.find('.btn-next');
+            var btnpre = this.btnpre = this.carousel.find('.btn-pre');
+            var ctimgli = this.ctimgli = this.carousel.find('.ct-img li');
+            var ctimg = this.ctimg = this.carousel.find('.ct-img');
+            var index = this.index = 0;
+            var bullet = this.bullet = this.carousel.find('.bullet');
+            var len = this.len = this.carousel.find('.ct-img li').width();
+            var isLockUp = this.isLockUp = false;
+
+            ctimg.append(ctimgli.first().clone());
+            // this.ctimg.prepend(this.ctimgli.last().clone());//这样就可以不使用this了
+            ctimg.prepend(ctimgli.last().clone()); //这样就可以不使用this了
+            ctimg.css('left', -len);
+            ctimg.width(ctimg.children().length * len);
+        }
+        Carousel.prototype.bind = function () {
+
+            var _this = this;
+            this.btnnext.click(function () {
+                event.preventDefault();
+                if (_this.isLockUp) {
+                    return;
+                }
+                _this.isLockUp = true;
+                _this.ctimg.animate({
+                    left: '-=' + _this.len,
+                }, function () {
+                    _this.index++;
+                    // console.log(ctimgli.length);
+                    if (_this.index == _this.ctimgli.length) {
+                        _this.index = 0;
+                        _this.ctimg.css('left', -_this.len + 'px');
+                    }
+                    // setBullet();
+                    setBullet.call(_this);
+
+                    _this.isLockUp = false;
+                })
+            })
+            this.btnpre.click(function () {
+                if (_this.isLockUp) return;
+                event.preventDefault();
+                _this.ctimg.animate({
+                    left: '+=' + _this.len,
+                }, function () {
+                    _this.index--;
+                    if (_this.index < 0) {
+                        _this.ctimg.css('left', -(_this.ctimgli.length * _this.ctimgli.width()))
+                        _this.index = _this.ctimgli.length - 1;
+                    }
+                    _this.isLockUp = false;
+                    // console.log("_this",_this);
+                    // setBullet();                
+                    setBullet.bind(_this)(); //这种方式不行。因为bind()会返回一个新的函数。要去function setBullet入手//错误的想法！！！
+                    //刚刚在看同学的作业的时候，发现了bind()是会返回一个新的函数，然后我们需要在调用它一次，就直接在后面加();
+                    //为什么apply,call()都不用再调用一次，因为这个方法本身就会直接进行调用的
+                    //感谢任务9班-宋军
+                    //在JS中，这三者都是用来改变函数的this对象的指向，第一个参数都是this要指向的对象。
+                    // call中传入的后续参数是一个个列举出来的，而apply传入的是一个数组；bind可以像call那样传参，还可以在调用的时候再进行传参。
+                    // call和apply都是对函数的直接调用，而bind返回的仍然是一个函数，因此后面还需要进行调用才可以。
+                    // setBullet.call(_this);
+                })
+            })
+            //------------------------------------改用bind()--------------------------------------
+            function setBullet() {
+                // console.log("this:", this);
+                this.bullet.children().removeClass('active')
+                    .eq(this.index)
+                    .addClass('active');
+            }
+            //------------------------------------改用bind()--------------------------------------
+
+            // function setBullet() {
+            //     console.log("this:", this);
+            //     this.bullet.children().removeClass('active')
+            //         .eq(this.index)
+            //         .addClass('active');
+            // }
+            //------------------------------------------------------------------------------------
+        }
+        return {
+            init: function (ct) {
+                ct.each(function (index, node) { //node是普通的DOM元素
+                    // new Carousel($(node)); //这里要Jquery元素。所以$()进行包裹。
+                    // console.log(this);
+                    // console.log(node);
+                    new Carousel($(this)); //$(this)===》如果你不想要普通的DOM元素，而想获得的是jQuery对象的话，使用$(this)函数。Jquer的文档查来的。
+                    //指的是node,也就是ct中的每一个子元素//猜错了，
+                    //是$('.carousel');
+                    // 回想each的用法：each(function(index,Element){}),其中的Element为匹配到的当前元素。在本例子中也就是ct
+
+                })
+            }
+        }
+
+    })()
+    var a = new _Carousel.init($('.carousel'));
+    //-----------------------------------------------------------------------------------自己写的-也可以的--------------------------
+    // _Carousel = (function () {
+    //     //   (function (ct) {//这里的ct不需要的，因为下面是 _Carousel.init(ct),这里指定了ct=$('.carousel');
+    //     return {
+    //         init: function (ct) {
+    //             ct.each(function (index, node) { //node是普通的DOM元素
+    //                 new Carousel($(node)); //这里要Jquery元素。所以$()进行包裹。
+    //                 // new Carousel($(this));
+
+    //             })
+    //         }
+    //     }
+
+    // })()
+    // var a = new _Carousel.init($('.carousel'));
+    //------------------------------------------------------------------------------------也可以的--------------------------
+    // _Carousel = function (ct) {
+    //     ct.each(function (index, node) {
+    //         new Carousel($(node));
+    //         // new Carousel($(this));
+
+    //     })
+    // }
+    // var a = new _Carousel($('.carousel'));
+    //------------------------------------------------------------------------------------仿照的---------
+    // var _Carousel = (function init() {
+    //     return {
+    //         init: function ($ct) {
+    //             $ct.each(function (index, node) {
+    //                 // console.log(index);
+    //                 new Carousel($(node));
+    //             })
+    //         }
+    //     }
+    // })()
+    // _Carousel.init($('.carousel'));
+    //------------------------------------------------------------------------------------
+
+    // new Carousel($('.carouserl'));
+</script>
+
+</html>

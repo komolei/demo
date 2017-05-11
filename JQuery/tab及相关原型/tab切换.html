@@ -224,7 +224,8 @@
         //------------------------------------------------------------------------------------------------------
         Tab.prototype.bind = function () {
             // var target = e.target;
-            var _this = this;//保持this=tab，实例化的对象  。this，会根据函数调用的方式不同，this的返回的对象也不同。所以在下面的onclick中，this是属于函数调用。所以this会等于window。这样不行。所以要保留一下this=tab的这个结果。
+            // console.log('this:sss',this);这里的this，指的是实例化的对象
+            var _this = this; //保持this=tab，实例化的对象  。this，会根据函数调用的方式不同，this的返回的对象也不同。所以在下面的onclick中，this是属于函数调用。所以this会等于window。这样不行。所以要保留一下this=tab的这个结果。
             // console.log(this.ulhead);
             // console.log('ct',this);
 
@@ -251,11 +252,18 @@
             // }
             //------------------------------------------------------fenkai-----------
             this.ulhead.onclick = function (e) {
-                console.log(1);
+                // console.log(this); //这里的this是onclick前的ulhead，也就是$('headnav');
                 // this.ulnav.forEach(function () {})
                 var target = e.target;
                 var index;
+                // console.log('_this.ulnav:', this.ulnav);
+                //this.querySelectorAll('.headnav>li')=_this.ulnav //将下面的_this.ulnav可以替换成这个，也是可以得。
+                //本质是相同的。在this.querySelectorAll()中的this是指的上面onclick函数前的ulhead。
+                // 然后在ulhead元素中在获取('.headnav>li'),刚刚就是_this.ulnav//_this.nav中的_this指向是实例化的对象。
+                // 同时在init()中， this.ulnav = this.ct.querySelectorAll('.headnav>li');而this.querySelectorAll('.headnav>li')。这两者的操作都是得到同一元素。所以本质是一样的。
+                //另外在进行_this=this的操作的时候，_this就包含了所有this的东西。所以就可以直接使用_this.ulnav,本质就是进行了一遍的this.ct.querySelectorAll('.headnav>li')的操作。
                 _this.ulnav.forEach(function (element) { //在这里的this是window了，因为这个是函数调用。所以要得到真正的ulnav。则要在上面保存一下this。
+                    console.log('this:', this);
                     element.classList.remove('active');
                 })
                 target.classList.add('active');
