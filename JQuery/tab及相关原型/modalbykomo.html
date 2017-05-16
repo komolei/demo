@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>modal </title>
+    <style>
+        body,
+        div,
+        ul,
+        li,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ct {
+            width: 750px;
+        }
+
+        .ct>ul>li {
+            list-style: none;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            background: #fff;
+            float: left;
+            margin-left: 20px;
+        }
+        /*.ct>ul>li:hover {
+            background: black;
+        }*/
+
+        .modal {
+            width: 400px;
+            height: 400px;
+            border: 1px solid #111;
+            border-radius: 4px;
+            display: none;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 22;
+        }
+
+        .modal {
+            text-align: center;
+        }
+
+        .modal p {
+            line-height: 40px;
+            display: inline-block;
+            /*text-align: center;*/
+        }
+
+        .modal p:nth-child(2) {
+            float: right;
+        }
+
+        .modal .text {
+            height: 200px;
+        }
+
+        .modal .sure,
+        .modal .cancal {
+            width: 50px;
+            height: 20px;
+            line-height: 20px;
+            /*display: inline-block;*/
+            border: 1px solid #ccc;
+            float: right;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .modal .sure:hover,.modal .cancal:hover {
+            background: red;
+        }
+
+        /*.modal .cancal:hover {
+            background: red;
+        }*/
+    </style>
+</head>
+
+<body>
+    <div class="ct">
+        <ul class=" ul clearfix">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div>
+        <!--<p>sssssssssssssssssssss</p>-->
+    </div>
+    <div class="modal">
+        <p>标题</p>
+        <p><a href="javascript:;">X</a></p>
+        <hr>
+        <div class="text"></div>
+        <hr>
+        <div class="sure">确定</div>
+        <div class="cancal">取消</on>
+        </div>
+</body>
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    // new Modal($('.ct'));
+    _Modal = (function () {
+        var Modal = function (ct) {
+            // this.modal = modal;
+            this.ct = ct;
+            this.bind();
+        }
+        Modal.prototype.bind = function () {
+            _this = this;
+            this.ct.on('click', function (e) {
+                if (e.target.tagName.toLowerCase() == "li") {
+                    _this.css();
+                }
+            })
+            this.cancal();
+        }
+        Modal.prototype.css = function () {
+            $('.modal').css({
+                display: 'block',
+                // zindex: 2,
+            })
+            $('body').css({
+                background: 'gray',
+                // zIndex: -1,
+                // visibility: 'hidden',
+            });
+        }
+        Modal.prototype.cancal = function () {
+            // console.log(1);
+            var _this = this;
+            var modal = $('.modal');
+            // modal.on('mouseleave', _this.ccss);
+            //  $('.modal >p:nth-child(2)').onclick = _this.ccss();
+            // $('.modal >p:nth-child(2)').onclick = function () {
+            //     // $('.modal').css("display", 'none');
+            //     console.log(11);
+            //     _this.ccss();
+            // }
+            // $('.modal .sure').onclick = function () {
+            //     console.log(1);
+            //     _this.ccss();
+            // }
+            $('.modal >p:nth-child(2)').click(_this.ccss);
+            $('.modal .sure').click(_this.ccss);
+            $('.modal .cancal').click(_this.ccss);
+
+        }
+        Modal.prototype.ccss = function () {
+            $('.modal').css("display", 'none');
+            $('body').css({
+                background: '#fff',
+                // zIndex: -10,
+            });
+        }
+        return {
+            init: function (ct) {
+                new Modal(ct);
+            }
+        }
+    })()
+    var a = new _Modal.init($('.ct'));
+    //------------------------------------------------------------------------------
+    // var Modal = function (ct) {
+    //     // this.modal = modal;
+    //     this.ct = ct;
+    //     this.bind();
+    // }
+    // Modal.prototype.bind = function () {
+    //     _this = this;
+    //     this.ct.on('click', function (e) {
+    //         if (e.target.tagName.toLowerCase() == "li") {
+    //             _this.css();
+    //         }
+    //     })
+    //     this.cancal();
+    // }
+    // Modal.prototype.css = function () {
+    //     $('.modal').css({
+    //         display: 'block',
+    //         zindex: 2,
+    //     })
+    //     $('body').css({
+    //         background: 'gray'
+    //     });
+    // }
+    // Modal.prototype.cancal = function () {
+    //     var _this = this;
+    //     var modal = $('.modal');
+    //     modal.on('mouseleave', function () {
+    //         modal.css("display", 'none');
+    //         $('body').css({
+    //             background: '#fff'
+    //         });
+
+    //     })
+    //     $('.modal >p:nth-child(2)').click() = function () {
+    //         $('.modal').css("display", 'block');
+    //     }
+    // }
+    // new Modal($('.ct'));
+</script>
+
+</html>

@@ -1,0 +1,15 @@
+<script src="../jquery-3.2.1.js"></script>
+<script>
+    var Lazyload = function () {
+        this.target = img;
+    }
+    Lazyload.prototype.addEvent = function () {
+        $(window).on('scroll', function () {
+            //检查一下是否加载当前图片
+            //检查当前图片是否在需要的显示的区域
+            var scrollTop = $(document).scrollTop();
+            var offsetTop = this.target.offset().top;
+            var height=this.target.out
+        })
+    }
+</script>

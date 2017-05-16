@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>tab跟学</title>
+    <style>
+        .root {
+            margin: auto;
+            width: 600px;
+            border-radius: 30px;
+            padding: 20px;
+        }
+
+        .tab-header {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .tab-header li,
+        .tab-body li {
+            display: inline-block;
+            padding: 5px 20px;
+        }
+        /*.active {
+            color: red;
+        }*/
+
+        .tab-body li {
+            display: none;
+        }
+
+        .tab-body .active {
+            display: block;
+        }
+
+        .active {
+            color: red;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root">
+        <ul class="tab-header">
+            <li data-index='1' class="active">tab1</li>
+            <li data-index='2'>tab2</li>
+            <li data-index='3'>tab3</li>
+        </ul>
+        <ul class="tab-body">
+            <li data-index='1' class="active">tab内容1</li>
+            <li data-index='2'>tab内容2</li>
+            <li data-index='3'>tab内容3</li>
+        </ul>
+    </div>
+    <script src="../jquery-3.2.1.js"></script>
+    <script type='text/javascript'>
+        var Tab = function (headDom, bodyDom) {
+            // debugger;
+            this.headDomLi = headDom.find('li');
+            this.bodyDomLi = bodyDom.find('li');
+            this.addEvent();
+        }
+        Tab.prototype.addEvent = function () {
+            var _this = this;
+            this.headDomLi.on('click', function () {
+                //当前的tab高亮
+                // debugger;
+                // var index = $(_this).data('data-index');
+                var index = $(this).attr('data-index');
+                debugger;
+                _this.highLight(index);
+                //内容区进行切换
+                _this.bodySwitch(index);
+            })
+        }
+        Tab.prototype.highLight = function (index) {
+            // var headDomLi = this.headDom.find('li');
+            this.headDomLi.removeClass('active');
+            this.headDomLi.eq(index - 1).addClass('active')
+        }
+        Tab.prototype.bodySwitch = function (index) {
+            // var bodyLi=this.bodyDom.find('li')
+            this.bodyDomLi.removeClass('active');
+            this.bodyDomLi.eq(index - 1).addClass('active');
+        }
+        new Tab($('.tab-header'), $('.tab-body'))
+    </script>
+</body>
+
+</html>
