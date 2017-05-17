@@ -27,7 +27,6 @@ require(['carousel', 'tab', 'exposure'], function (Carousel, Tab, Exposure) {
 //requireJS //定义模块mymodule.js
 define([dependencies], function () {
     var name = 'komo';
-
     function sayName() {
         console.log('my name', name);
 
