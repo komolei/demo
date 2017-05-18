@@ -1,0 +1,22 @@
+{
+  "name": "komoleiweather",
+  "version": "1.0.0",
+  "description": "天气命令行",
+  "main": "index.js",
+  "bin": {
+    "weather": "./index.js"
+  },
+  "scripts": {
+    "build":"echo xixi",
+    "start":"echo 开始就结束",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "komolei",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.16.1"
+  }
+}

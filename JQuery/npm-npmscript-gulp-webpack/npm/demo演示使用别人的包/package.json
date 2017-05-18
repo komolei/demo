@@ -1,0 +1,17 @@
+{
+  "name": "komolei-demo00",
+  "version": "1.0.0",
+  "description": "演示使用别人的包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "komolei",
+  "license": "ISC",
+  "dependencies": {
+    "komolei-demo0": "^1.0.0"
+  },
+  "devDependencies": {
+    "easytpl": "^1.0.4"
+  }
+}

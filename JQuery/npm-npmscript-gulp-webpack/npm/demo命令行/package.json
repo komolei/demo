@@ -1,0 +1,14 @@
+{
+  "name": "demominglinghang",
+  "version": "1.0.8",
+  "description": "komolei创建的命令行工具",
+  "main": "index.js",
+  "bin": {
+    "komo": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "komolei",
+  "license": "ISC"
+}
