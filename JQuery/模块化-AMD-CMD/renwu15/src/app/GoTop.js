@@ -13,6 +13,7 @@ define(function () {
             })
         } else {
             $('.GoTop').remove();
+            // $('.GoTop').hide();//不好，会在index.html中增加很多div class="GoTop"
         }
     }
     _GoTop = function () {
