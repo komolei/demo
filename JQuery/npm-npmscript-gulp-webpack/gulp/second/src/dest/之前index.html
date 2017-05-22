@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>实战</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_z67p1vxzm66zjjor.css">
+    <style>
+        body {
+
+            margin: 0;
+            width: 100%;
+        }
+
+        .GoTop {
+            width: 140px;
+            height: 140px;
+            border: 1px solid red;
+            border-radius: 4px;
+            position: fixed;
+            /*top: 500px;*/
+            bottom: 0;
+            /*left: 400px;*/
+            right: 0;
+            cursor: pointer;
+            text-align: center;
+            /*font-size: 40px;*/
+            line-height: 140px;
+            z-index: 333;
+        }
+
+        div {
+            padding: 0;
+            margin: 0;
+        }
+
+        #waterfullct {
+            position: relative;
+            width: 800px;
+            /*height: 1000px;*/
+            margin: 0 auto;
+            display: none;
+            /*overflow: scroll;*/
+        }
+
+        #waterfullct:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .item {
+            position: absolute;
+            /*我去，这坑，原来还要绝对定位*/
+            width: 200px;
+            height: 300px;
+            /*margin: 10px 10px;
+            border: 1px solid black;*/
+            float: left;
+            transition: all 1s;
+        }
+
+        #waterfullct img {
+            width: 200px;
+            height: 300px;
+            /*border: 1px solid red;*/
+        }
+
+        .h1 {
+            height: 400px;
+        }
+
+        .h2 {
+            height: 100px;
+        }
+
+        .h3 {
+            height: 200px;
+        }
+
+        .h4 {
+            height: 500px;
+        }
+
+        .h5 {
+            height: 150px;
+        }
+        /*.ct:after {
+            content: '';
+            display: block;
+            clear: both;
+        }*/
+
+        .nav {
+            height: 70px;
+            background: rgba(1, 1, 1, 0.7);
+            position: fixed;
+            z-index: 10;
+            width: 100%;
+        }
+
+        .dialog {
+            min-width: 736px;
+            margin: 0 auto;
+        }
+
+        .dialog:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .dialog i {
+            position: relative;
+            margin-left: 18%;
+        }
+
+        ul {
+            position: relative;
+            margin-left: 35%;
+            margin-top: -35px;
+        }
+
+        li {
+            position: relative;
+            float: left;
+            margin-left: 5%;
+            list-style: none;
+        }
+
+        li:after {
+            content: '';
+            display: inline-block;
+            clear: both;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        a:hover {
+            color: gray;
+        }
+        /*.ct {
+            overflow: auto;
+            min-width: 731px;
+            height: 800px;
+            background: url(https://img.alicdn.com/imgextra/i2/1021291283/TB2hHIlaw1J.eBjy0FaXXaXeVXa_!!1021291283.jpg), no-repeat;
+        }*/
+
+        .ct {
+            /*position: relative;*/
+            width: 1920px;
+            height: 800px;
+            overflow: hidden;
+            /*margin-left: 200px;*/
+        }
+
+        .ct-img {
+            position: relative;
+            font-size: 0;
+            margin-left: 0;
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .ct-img:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .ct-img>li {
+            width: 1920px;
+            height: 800px;
+            float: left;
+            margin: 0;
+        }
+
+        .ct-img>li>a>img {
+            width: 1920px;
+            height: 800px;
+        }
+
+        .ct p {
+            text-align: center;
+            position: relative;
+            top: 30%;
+            min-width: 731px;
+            color: #fff;
+            text-shadow: left;
+        }
+
+        .ct .p1 {
+            font-size: 40px;
+        }
+
+        .ct .p2 {
+            font-size: 60px;
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            border-radius: 50%;
+            background: #111;
+            opacity: .5;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            font-size: 30px;
+            text-decoration: none;
+            text-align: center;
+            line-height: 28px;
+            margin-top: -15px;
+        }
+
+        .btn-next {
+            left: 1890px;
+            /*float:left;*/
+        }
+
+        .bullet {
+            position: absolute;
+            margin-left: -3px;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .bullet li {
+            width: 10px;
+            height: 5px;
+            display: inline-block;
+            margin-left: 3px;
+            border-radius: 4px;
+            /*background: #fff;*/
+            border: 1px solid #fff;
+        }
+
+        .active {
+            background: red;
+            /*border: 1px solid red;*/
+        }
+
+        .ct button {
+            position: absolute;
+            left: 50%;
+            margin-left: -100px;
+            top: 600px;
+            width: 200px;
+            height: 80px;
+            background: black border none;
+            border-radius: 15px;
+            box-shadow: 1px 2px 11px 4px #fff;
+            outline: none;
+        }
+
+        .ct button span:first-child {
+            font-size: 30px;
+            text-shadow: darkred;
+            color: #fff;
+        }
+
+        .ct button:hover,
+        .ct button span {
+            opacity: 0.8;
+        }
+
+        .ct1,
+        .ct2-1,
+        .ct3 {
+            height: 500px;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .ct2 {
+            background: #f1f1f1;
+        }
+
+        .ct2-1 {
+            width: 800px;
+            /*height: 800px;*/
+            background: #f1f1f1;
+        }
+
+        .ct1 p,
+        .ct2 p,
+        .ct3 p,
+        .ct4 p,
+        .ct1 i {
+            text-align: center;
+        }
+
+        .ct1 p:first-child,
+        .ct2 p:first-child,
+        .ct3 p:first-child {
+
+            line-height: 30px;
+            font-size: 40px;
+            margin: 20px 0px;
+        }
+
+        .ct1 p:nth-child(2) {
+            font-size: 15px;
+            margin: 10px 0px;
+        }
+
+        .ct1 ul,
+        .ct2 ul {
+            margin: 0px;
+        }
+
+        .ct1 i {
+            display: block;
+        }
+
+        .ct1 li {
+            width: 33.333%;
+            margin: 0px;
+            margin-top: 20px;
+        }
+
+        .ct2 img {
+            width: 250px;
+            height: 160px;
+        }
+
+        .ct2 li {
+            margin: 0px;
+            box-shadow: 1px 2px 14px 5px rgba(1, 1, 1, 0.2);
+        }
+
+        .ct2-1 {
+            text-align: center;
+            /*height: 2000px;*/
+        }
+
+        .ct2-1 ul {
+            margin-left: -25px;
+        }
+
+        .ct2-1 li p {
+            font-size: 30px;
+            line-height: 30px;
+        }
+
+        .ct2-1 li {
+            float: left;
+            margin-left: 10px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .ct2-1 i {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -45px;
+            margin-left: -45px;
+            opacity: 0;
+        }
+
+        .ct2-1 i:hover {
+            opacity: 1;
+        }
+
+        .ct2-1:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .LoadMore {
+            width: 80px;
+            height: 40px;
+            border: 1px solid red;
+            border-radius: 5px;
+            display: inline-block;
+            line-height: 40px;
+            cursor: pointer;
+            position: relative;
+            /*z-index: 33;*/
+            margin: 20px 0;
+            /*padding-top: 20px;*/
+        }
+
+        .waterfullbtn {
+            width: 80px;
+            height: 40px;
+            border: 1px solid red;
+            border-radius: 5px;
+            /*display: inline-block;*/
+            line-height: 40px;
+            cursor: pointer;
+            /*position: relative;*/
+            /*z-index: 222223;*/
+            position: absolute;
+            /*z-index: 33;*/
+            /*margin: 20px  auto;*/
+            /*margin-bottom: 0px;*/
+            /*clear: both;*/
+            /*padding-top: 20px;*/
+            left: 50%;
+            margin-left: -40px;
+        }
+
+        #waterfullct {
+            text-align: center;
+            margin-right: 0px;
+        }
+
+        .ct span {
+            margin: 0;
+        }
+
+        .ct3 {
+            margin: 0;
+            padding-top: 80px;
+            width: 100%;
+            height: 1800px;
+            background: #fff;
+            clear: both;
+        }
+
+        .ct3 ul {
+            width: 800px;
+            padding: 0px;
+            min-width: 731px;
+            margin: 0 auto;
+        }
+
+        .ct3 li:after {
+            content: '';
+            display: inline-block;
+            clear: both;
+        }
+
+        .ct3 li {
+            margin: 0 auto;
+            width: 100%;
+            box-shadow: none;
+            padding-top: 60px;
+        }
+
+        .ct3 li p {
+            word-wrap: break-word;
+            word-break: break-all;
+            width: 300px;
+            border: none;
+        }
+
+        .ct3 li:nth-child(1) p,
+        .ct3 li:nth-child(3) p,
+        .ct3 li:nth-child(5) p {
+            margin-left: -50px;
+            text-align: right;
+        }
+
+        .ct3 li:nth-child(2) p,
+        .ct3 li:nth-child(4) p {
+            margin-left: 560px;
+            text-align: left;
+        }
+
+        .ct3 li p:first-child {
+            font-size: 30px;
+        }
+
+        .circle {
+            width: 160px;
+            height: 160px;
+            border-radius: 160px;
+            background: black;
+            position: absolute;
+            left: 50%;
+            top: 0%;
+            margin-top: 80px;
+            margin-left: -80px;
+            z-index: 3;
+            clear: both;
+        }
+        /*.circle-1 {}*/
+
+        .ct3 .circle-1 img {
+            margin: 10px 10px;
+            width: 140px;
+            height: 140px;
+            border-radius: 140px;
+            box-shadow: 2px 2px 10px 1px yellow;
+        }
+
+        .ct3 .line {
+            width: 4px;
+            height: 1400px;
+            background: gray;
+            position: relative;
+            left: 50%;
+            margin-left: -2px;
+            margin-top: 100px;
+        }
+
+        #ct4-p1 {
+            font-size: 40px;
+        }
+
+        .ct4 {
+            width: 700px;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        .ct4 ul:after {
+            content: '';
+            display: inline-block;
+            clear: both;
+        }
+
+        .ct4 ul {
+            min-width: 800px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .ct4 li:after {
+            content: '';
+            display: inline-block;
+            clear: both;
+        }
+
+        .ct4 li {
+            box-shadow: none;
+            margin-top: 50px;
+            position: absolute;
+            left: 50%;
+            margin-left: -135px;
+        }
+
+        .ct4 li:first-child {
+            margin-left: -385px;
+        }
+
+        .ct4 li:last-child {
+            margin-left: 115px;
+        }
+
+        .ct4 .circle {
+            width: 200px;
+            height: 200px;
+            margin-top: 0px;
+            margin-left: -100px;
+        }
+
+        .ct4 .circle-1 img {
+            margin: 10px 10px;
+            width: 180px;
+            height: 180px;
+            border-radius: 180px;
+            box-shadow: 2px 2px 10px 1px yellow;
+        }
+
+        .ct4-box {
+            margin-top: 220px;
+        }
+
+        .ct4-box-1 {
+            text-align: center;
+        }
+
+        .ct4-box-1 a {
+            margin: 0;
+            float: left;
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            outline: none;
+            background: black;
+            border-radius: 40px;
+            margin-left: 5px;
+        }
+
+        .ct5 {
+            width: 920px;
+            height: 150px;
+            margin: 0 auto;
+            margin-top: 35px;
+        }
+
+        .ct5 img {
+            width: 200px;
+            height: 150px;
+            margin-left: 50px;
+            border-radius: 14px;
+            box-shadow: 1px 2px 11px 4px gray;
+        }
+
+        .ct5 a:hover {
+            opacity: 0.4;
+        }
+
+        .ct5 ul {
+
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .ct5 li {
+            float: left;
+            margin: 0;
+            margin-left: -30px;
+            margin-top: 10px;
+        }
+
+        .ct6 {
+
+            margin-top: -20px;
+            background: url(https://img.alicdn.com/imgextra/i2/1021291283/TB2jizybp6AQeBjSZFIXXctXpXa_!!1021291283.jpg) no-repeat;
+        }
+
+        .ct6 p {
+            color: #fff;
+            text-align: center;
+        }
+
+        .ct6 p:first-child {
+            font-size: 40px;
+        }
+
+        .ct6 p:nth-child(2) {
+            font-size: 20px;
+        }
+
+        .ct6 form {
+            width: 900px;
+
+            margin: 0 auto;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .ct6 input {
+            display: block;
+
+            width: 400px;
+            height: 60px;
+            margin-left: 30px;
+            margin-top: 30px;
+            outline: none;
+            font-size: 20px;
+            border-radius: 25px;
+            box-shadow: 1px 2px 11px 4px #fff;
+        }
+
+        .ct6 input:nth-child(4) {
+            float: right;
+            height: 252px;
+            margin-top: -258px;
+            clear: both;
+            vertical-align: top;
+        }
+
+        .ct6 button {
+
+            width: 100px;
+            height: 80px;
+            margin-left: 22px;
+            background: #fff;
+            border: none;
+            border-radius: 35px;
+            box-shadow: 1px 2px 11px 9px gray;
+            outline: none;
+            font-size: 20px;
+        }
+
+        .ct6 button:hover {
+            opacity: 0.8;
+        }
+
+        .ct7 {
+            margin-top: 10px;
+            line-height: 2;
+            font-size: 20px;
+            text-align: center;
+            text-shadow: 5px 5px 3px red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <div class="dialog"><i class="iconfont icon-sock" style="font-size: 60px"></i>
+            <ul>
+                <li><a href="">SERVER</a></li>
+                <li><a href="">CATEGORY</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">TEAM</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="ct">
+        <ul class="ct-img">
+            <li>
+                <a href=""><img src="http://unsplash.it/1920/800" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="http://lorempixel.com/1920/800/sports" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="http://unsplash.it/1920/800/?random" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="http://lorempixel.com/1920/800/food" alt=""></a>
+            </li>
+        </ul><a class="btn btn-pre" href="">&lt;</a> <a class="btn btn-next" href="">&gt;</a>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <p class="p1">Welcome To Our Studio!</p>
+        <p class="p2">IT'S NICE TO MEET YOU</p><button><span>TELL ME MORE</span></button></div>
+    <div class="ct1">
+        <p>SERVER</p>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+        <ul>
+            <li><i class="iconfont icon-nbaicon" style="font-size: 90px"></i>
+                <p>NBA</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum
+                    ex magni, dicta impedit.</p>
+            </li>
+            <li><i class="iconfont icon-jian" style="font-size: 90px"></i>
+                <p>剑</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum
+                    ex magni, dicta impedit.</p>
+            </li>
+            <li><i class="iconfont icon-daofu" style="font-size: 90px"></i>
+                <p>斧子</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum
+                    ex magni, dicta impedit.</p>
+            </li>
+        </ul>
+    </div>
+    <div class="ct2">
+        <div class="ct2-1">
+            <p class="p1">PORTFOLIO</p>
+            <p class="p2">see you again.</p>
+            <div class="LoadMore">加载更多</div>
+            <div id="waterfullct">
+                <div class="waterfullbtn">加载瀑布流</div>
+            </div>
+            <div class="waterfullbtn" id="first">加载瀑布流</div>
+            <!--<ul>
+                <li>
+                    <a href="#">
+                        <div class="ct2-2"> <i class="iconfont icon-nbaicon" style="font-size: 90px;"></i>
+                            <img src="https://img.alicdn.com/imgextra/i3/1021291283/TB2qIgWXIwX61BjSspkXXaGYVXa_!!1021291283.jpg" alt=""></div>
+                    </a>
+                    <p>paint</p>
+
+
+                </li>
+                <li>
+                    <a href="#"> <i class="iconfont icon-nbaicon" style="font-size: 90px;"></i> <img src="https://img.alicdn.com/imgextra/i3/1021291283/TB21LlIX4Ab61BjSZFBXXc9pFXa_!!1021291283.jpg"
+                            alt=""></a>
+                    <p>shirt</p>
+                </li>
+                <li>
+                    <a href="#"> <i class="iconfont icon-nbaicon" style="font-size: 90px;"></i> <img src="https://img.alicdn.com/imgextra/i3/1021291283/TB2VCIYXNwa61BjSspeXXXX9FXa_!!1021291283.jpg"
+                            alt=""></a>
+                    <p>shoes</p>
+                </li>
+                <li>
+                    <a href="#"> <i class="iconfont icon-nbaicon" style="font-size: 90px;"></i> <img src="https://img.alicdn.com/imgextra/i3/1021291283/TB2ns3WXN3X61Bjy0FdXXanuXXa_!!1021291283.jpg"
+                            alt=""></a>
+                    <p>sock</p>
+                </li>
+                <li>
+                    <a href="#"> <i class="iconfont icon-nbaicon" style="font-size: 90px;"></i> <img src="https://img.alicdn.com/imgextra/i1/1021291283/TB2_5oVaOGO.eBjSZFjXXcU9FXa_!!1021291283.jpg"
+                            alt=""></a>
+                    <p>wazi</p>
+                </li>
+                <li>
+                    <a href="#"> <i class="iconfont icon-nbaicon" style="font-size: 90px;"></i> <img src="https://img.alicdn.com/imgextra/i3/1021291283/TB2pwkDbKnAQeBjSZFkXXaC5FXa_!!1021291283.jpg"
+                            alt=""></a>
+                    <p>shan</p>
+                </li>
+            </ul>-->
+        </div>
+        <div class="ct3">
+            <p class="p1">ABOUT</p>
+            <p class="p2">what can I do ?</p>
+            <ul>
+                <li class="ct3-li1">
+                    <p>2009-2011</p>
+                    <p>Our Humble Beginnings</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis
+                        temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                    <div
+                        class="circle">
+                        <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i3/1021291283/TB2S1ApasaJ.eBjy0FbXXcwrFXa_!!1021291283.jpg"
+                                alt=""></div>
+        </div>
+        </li>
+        <li class="ct3-li2">
+            <p>2009-2011</p>
+            <p>Our Humble Beginnings</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis
+                temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+            <div
+                class="circle">
+                <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i2/1021291283/TB2OmkmaraI.eBjSspaXXXIKpXa_!!1021291283.jpg" alt=""></div>
+    </div>
+    </li>
+    <li class="ct3-li3">
+        <p>2009-2011</p>
+        <p>Our Humble Beginnings</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus
+            qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+        <div class="circle">
+            <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i3/1021291283/TB271PUaF5N.eBjSZFKXXX_QVXa_!!1021291283.jpg" alt=""></div>
+        </div>
+    </li>
+    <li class="ct3-li4">
+        <p>2009-2011</p>
+        <p>Our Humble Beginnings</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus
+            qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+        <div class="circle">
+            <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i2/1021291283/TB2jf_YaF5N.eBjSZFvXXbvMFXa_!!1021291283.jpg" alt=""></div>
+        </div>
+    </li>
+    <li class="ct3-li5">
+        <p>2009-2011</p>
+        <p>Our Humble Beginnings</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus
+            qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+        <div class="circle">
+            <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i4/1021291283/TB2.72PaU5O.eBjSZFxXXaaJFXa_!!1021291283.jpg" alt=""></div>
+        </div>
+    </li>
+    </ul>
+    <div class="line"></div>
+    </div>
+    <p id="ct4-p1">OUR AMAZING TEAM</p>
+    <p class="p2">Lorem ipsum dolor sit amet consectetur.</p>
+    <div class="ct4">
+        <ul>
+            <li>
+                <div class="circle">
+                    <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i4/1021291283/TB2vQsUaQWM.eBjSZFhXXbdWpXa_!!1021291283.jpg"
+                            alt=""></div>
+                </div>
+                <div class="ct4-box">
+                    <div>
+                        <p>KOMO</p>
+                        <p>waht I can say?</p>
+                    </div>
+                    <div class="ct4-box-1"><a href=""><i class="iconfont icon-facebook1" style="font-size: 40px"></i></a> <a href=""><i class="iconfont icon-twitter" style="font-size: 40px"></i></a>                        <a href=""><i class="iconfont icon-i" style="font-size: 40px"></i></a></div>
+                </div>
+            </li>
+            <li>
+                <div class="circle">
+                    <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i4/1021291283/TB2nDXfaG9I.eBjy0FeXXXqwFXa_!!1021291283.jpg"
+                            alt=""></div>
+                </div>
+                <div class="ct4-box">
+                    <div>
+                        <p>KOMO</p>
+                        <p>waht I can say?</p>
+                    </div>
+                    <div class="ct4-box-1"><a href=""><i class="iconfont icon-facebook1" style="font-size: 40px"></i></a> <a href=""><i class="iconfont icon-twitter" style="font-size: 40px"></i></a>                        <a href=""><i class="iconfont icon-i" style="font-size: 40px"></i></a></div>
+                </div>
+            </li>
+            <li>
+                <div class="circle">
+                    <div class="circle-1"><img src="https://img.alicdn.com/imgextra/i3/1021291283/TB2zAZSaPm2.eBjSZFtXXX56VXa_!!1021291283.jpg"
+                            alt=""></div>
+                </div>
+                <div class="ct4-box">
+                    <div>
+                        <p>KOMO</p>
+                        <p>waht I can say?</p>
+                    </div>
+                    <div class="ct4-box-1"><a href=""><i class="iconfont icon-facebook1" style="font-size: 40px"></i></a> <a href=""><i class="iconfont icon-twitter" style="font-size: 40px"></i></a>                        <a href=""><i class="iconfont icon-i" style="font-size: 40px"></i></a></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+    <div class="ct5">
+        <ul>
+            <li>
+                <a href=""><img src="https://img.alicdn.com/imgextra/i2/1021291283/TB2cgoeXr1J.eBjSspnXXbUeXXa_!!1021291283.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="https://img.alicdn.com/imgextra/i2/1021291283/TB2Pbo6XyGO.eBjSZFpXXb3tFXa_!!1021291283.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="https://img.alicdn.com/imgextra/i1/1021291283/TB2HII9XCiK.eBjSZFsXXbxZpXa_!!1021291283.jpg" alt=""></a>
+            </li>
+            <li>
+                <a href=""><img src="https://img.alicdn.com/imgextra/i1/1021291283/TB2agoeXr1J.eBjSspnXXbUeXXa_!!1021291283.jpg" alt=""></a>
+            </li>
+        </ul>
+    </div>
+    <div class="ct6">
+        <p>CONTACT US</p>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+        <form action="#" method="post"><input type="text" name="name" placeholder="YOUR NAME:"> <input type="text" name="email" placeholder="YOUR EMAIL:">            <input type="text" name="phone" placeholder="YOUR PHONE:"> <input type="textarea" name="message" placeholder="YOUR MESSAGE:">            <button>SEND MESSAGE</button></form>
+    </div>
+    <div class="ct7"><span class="copyright">Copyright © Your Website 2014</span>
+        <p>KOMO GG</p>
+    </div>
+    <!--<script data-main="src/index.js" src="src/lib/require.js"></script>-->
+    <script data-main="./app.js" src="../lib/require.js"></script>
+    <!--// 所以改成data-main=./index.js-->
+    <!--<script src="./index.js"></script>//不是单纯的这样，而是要引入requirejs。因为在js中是按照amd规范写的-->
+</body>
+
+</html>
