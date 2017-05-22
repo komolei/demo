@@ -1,0 +1,17 @@
+{
+  "name": "komoleiyuyin",
+  "version": "1.0.0",
+  "description": "komolei的语音识别和合成",
+  "main": "index.js",
+  "bin": {
+    "yuyin": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "komolei"
+  ],
+  "author": "komolei",
+  "license": "ISC"
+}
