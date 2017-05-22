@@ -1,0 +1,15 @@
+{
+  "name": "renwu15",
+  "version": "1.0.0",
+  "description": "use webpack bundle打包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack"
+  },
+  "author": "komolei",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^2.5.1"
+  }
+}
