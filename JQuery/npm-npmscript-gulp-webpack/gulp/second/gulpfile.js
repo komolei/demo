@@ -11,7 +11,7 @@ var htmlmin = require("gulp-htmlmin");
 
 gulp.task("css", function () {
     return gulp.src("./src/image/*.css")
-        .pipe(concat("index.css"))
+        .pipe(concat("index1.css"))
         .pipe(cssnano())
         .pipe(gulp.dest("./src/dest"))
 })
@@ -19,7 +19,7 @@ gulp.task("js", function () {
     gulp.src("./src/app/*.js")
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
-        .pipe(concat("index.js"))
+        .pipe(concat("index1.js"))
         .pipe(uglify())
         .pipe(gulp.dest("./src/dest/"))
 })
@@ -31,5 +31,11 @@ gulp.task("html", function () {
         // .pipe(htmlmin("index.html"))
         .pipe(gulp.dest("./src/dest"))
 })
-gulp.task("default", ["js", "css", "html"]);
+gulp.task("img", function() {
+    return  gulp.src("./src/image/*")
+        .pipe(imagemin({optimizationLevel:5}))
+        // .pipe(concat())
+        .pipe(gulp.dest('./src/dest/img'))
+})
+gulp.task("default", ["js", "css","img", "html"]);
 // gulp.task("default", [ "js","css"]);
