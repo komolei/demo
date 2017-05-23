@@ -1,3 +1,5 @@
+// var $=require("jquery")//引入jquery。
+
 var GoTop = function () {
     var windowHeight = $(window).scrollTop();
     // console.log(windowHeight);

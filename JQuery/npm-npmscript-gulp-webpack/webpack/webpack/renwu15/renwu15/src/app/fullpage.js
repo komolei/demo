@@ -1,3 +1,5 @@
+// var $=require("jquery")//引入jquery。
+
 var _LoadMore = (function () {
     var LoadMore = function (btn) {
         this.btn = btn;

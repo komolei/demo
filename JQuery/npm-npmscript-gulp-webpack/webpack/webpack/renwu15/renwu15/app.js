@@ -22,6 +22,7 @@
 //     new Waterfull($(".waterfullbtn"));
 // })
 // var jquery = require("./src/lib/jquery.js")
+// var $=require("jquery")//要npm install --save jquery
 var _Carousel = require("./src/app/Carousel.js")
 var _GoTop = require("./src/app/GoTop.js")
 var waterfull = require("./src/app/waterfull.js")

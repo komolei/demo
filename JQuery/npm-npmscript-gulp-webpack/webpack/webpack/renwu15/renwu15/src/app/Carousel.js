@@ -1,3 +1,5 @@
+
+// var $=require("jquery")//引入jquery。
 var _Carousel = (function () {
     //   (function (ct) {//这里的ct不需要的，因为下面是 _Carousel.init(ct),这里指定了ct=$('.carousel');
     var Carousel = function (carousel) {

@@ -1,3 +1,5 @@
+// var $=require("jquery")//引入jquery。
+
 var Waterfull = function (ct) {
     this.ct = ct;
     this.addEvent();
