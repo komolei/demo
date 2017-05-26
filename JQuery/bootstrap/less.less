@@ -17,3 +17,27 @@
     border: @border;
     margin: @margin;
 }
+
+;
+.radiusargs (@border1: 10px, @a: 5px, @width: 20px, @height: 30px) {
+    border-top-left-radius: @border1;
+    border-top-right-radius: @border1;
+    border-bottom-left-radius: @a;
+    border-bottom-right-radius: @a;
+    width: @width;
+    height: @height;
+    border: @border;
+    margin: @margin;
+}
+
+// .box-shadow (@x: 0, @y: 0, @blur: 1px, @color: #000) {
+//   box-shadow: @arguments;
+//   -moz-box-shadow: @arguments;
+//   -webkit-box-shadow: @arguments;
+// }
+// .box-shadow(2px, 5px);
+#radius {
+    .radiusargs(4px, 4px, 30px, 20px);
+}
+
+;
