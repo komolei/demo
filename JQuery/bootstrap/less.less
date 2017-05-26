@@ -1,0 +1,19 @@
+// var less = require("less");
+// less.render(".class{ width: 2;}", function(e, css) {
+//     console.log(css);
+// })
+// var parser = new(less.Parser);
+// parser.parse('.class { width: 1 + 1 }', function(err, tree) {
+//     if (err) { return console.error(err) }
+//     console.log(tree.toCSS());
+// });
+@big: 100px;
+@small: 50px;
+@border: 1px solid red;
+@margin: 0 auto;
+.btn {
+    width: @big;
+    height: @big + 100;
+    border: @border;
+    margin: @margin;
+}
