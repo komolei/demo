@@ -9,21 +9,21 @@ var htmlmin = require("gulp-htmlmin");
 // var browse = require("browser-sync");
 // var sequence = require("run-sequence");
 
-gulp.task("css", function () {
+gulp.task("css", function() {
     return gulp.src("./src/image/*.css")
         .pipe(concat("index1.css"))
         .pipe(cssnano())
         .pipe(gulp.dest("./src/dest"))
 })
-gulp.task("js", function () {
+gulp.task("js", function() {
     gulp.src("./src/app/*.js")
         .pipe(jshint())
         .pipe(jshint.reporter('default'))
-        .pipe(concat("index1.js"))
+        .pipe(concat("index2.js"))
         .pipe(uglify())
         .pipe(gulp.dest("./src/dest/"))
 })
-gulp.task("html", function () {
+gulp.task("html", function() {
     return gulp.src("./*.html")
         .pipe(htmlmin({
             collapseWhitespace: true
@@ -32,10 +32,10 @@ gulp.task("html", function () {
         .pipe(gulp.dest("./src/dest"))
 })
 gulp.task("img", function() {
-    return  gulp.src("./src/image/*")
-        .pipe(imagemin({optimizationLevel:5}))
+    return gulp.src("./src/image/*")
+        .pipe(imagemin({ optimizationLevel: 5 }))
         // .pipe(concat())
         .pipe(gulp.dest('./src/dest/img'))
 })
-gulp.task("default", ["js", "css","img", "html"]);
+gulp.task("default", ["js", "css", "img", "html"]);
 // gulp.task("default", [ "js","css"]);
