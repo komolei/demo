@@ -1,0 +1,245 @@
+@keyframes circle {
+  from {
+    transform: rotate(30deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+ul,
+li,
+div {
+  padding: 0;
+  margin: 0;
+}
+@media all and (max-width: 770px) {
+  .ct {
+    width: 100%;
+  }
+  .nav {
+    height: 80px;
+  }
+  .nav .logo {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-left: 80px;
+    margin-top: 10px;
+  }
+  .nav .nav1 {
+    display: none;
+  }
+  .nav .nav2 {
+    display: block;
+    float: right;
+    margin-right: 10px;
+    position: relative;
+    z-index: 2;
+  }
+  .nav .nav2 p {
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 20px;
+    border: 5px solid red;
+    border-top-color: yellow;
+    border-radius: 50%;
+    animation: 3s circle infinite;
+  }
+  .nav .nav2 ul {
+    display: none;
+    text-align: center;
+    background: #fff;
+  }
+  .nav .nav2 ul a {
+    text-decoration: none;
+  }
+  .nav .nav2 ul a:hover {
+    color: red;
+  }
+  .nav .nav2 ul a li {
+    list-style: none;
+  }
+  .nav .nav2:hover > p {
+    border-top-color: greenyellow;
+    animation: 1s circle infinite;
+  }
+  .nav .nav2:hover > ul {
+    display: block;
+    color: #fff;
+    position: absolute;
+    z-index: 3;
+  }
+  .ct2 {
+    width: 100%;
+    background: url(https://img.alicdn.com/imgextra/i1/1021291283/TB2x6ryg3xlpuFjy0FoXXa.lXXa_!!1021291283.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .ct2 .banner {
+    text-align: center;
+    border-bottom: 2px solid #f34949;
+  }
+  .ct2 .banner .p1 {
+    font-size: 30px;
+  }
+  .ct2 .banner .span1 {
+    font-size: 12px;
+    color: #fff;
+  }
+  .ct2 .banner .ct2-line {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 1px;
+    background: #fff;
+  }
+  .ct3 {
+    width: 100%;
+  }
+  .ct3 .menulogo {
+    height: 70px;
+    width: 155px;
+    font-size: 25px;
+    background: #f34949;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+  }
+  .ct3 .menulogo > span {
+    display: inline-block;
+    padding-top: 20px;
+  }
+  .ct3 .menulogo .shadow {
+    position: relative;
+    margin-top: -20px;
+    width: 1px;
+    height: 1px;
+    border-top: 27px solid transparent;
+    border-bottom: 10px solid #fff;
+    border-left: 77.5px solid transparent;
+    border-right: 77.5px solid transparent;
+  }
+  .ct3 .menuct {
+    position: relative;
+  }
+  .ct3 .menuct ul {
+    margin-top: 80px;
+    padding: 0px;
+    display: inline-block;
+    position: relative;
+  }
+  .ct3 .menuct ul li {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 95px;
+    width: 230px;
+    list-style: none;
+    margin: 0 auto;
+  }
+  .ct3 .menuct ul li:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .ct3 .menuct ul li p::first-child {
+    width: 490px;
+    font-size: 16px;
+    color: #111;
+  }
+  .ct3 .menuct ul li p:nth-child(2) {
+    font-size: 10px;
+    color: #111;
+  }
+  .ct3 .menuct ul li p span {
+    font-size: 12px;
+  }
+  .ct3 .menuct ul li p span:nth-child(2) {
+    float: right;
+    margin-right: 0px;
+  }
+  .ct4 {
+    width: 100%;
+  }
+  .ct4 .ct4logo {
+    width: 132px;
+    height: 34;
+    margin: 0 auto;
+    border: 2px solid black;
+  }
+  .ct4 .ct4logo > span:first-child {
+    display: inline-block;
+    font-size: 14px;
+    color: #f1f1f1;
+    line-height: 34px;
+    margin-left: 15px;
+  }
+  .ct4 .content {
+    width: 100%;
+    height: 362px;
+    margin-top: 200px;
+    clear: both;
+  }
+  .ct4 .content p {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 82px;
+    color: red;
+  }
+  .ct4 .content button {
+    display: none;
+    float: right;
+    width: 70px;
+    height: 10px;
+    border: none;
+    outline: none;
+  }
+  .ct4 .content ul {
+    width: 100%;
+  }
+  .ct4 .content ul li {
+    float: left;
+    margin-right: 60px;
+    width: 160px;
+    height: 270px;
+    color: black;
+    list-style: none;
+    text-align: center;
+  }
+  .ct4 .content ul li > img:first-child {
+    width: 100%;
+    height: 200px;
+  }
+  .ct4 .content ul li > span:last-of-type {
+    float: right;
+  }
+  .ct5 {
+    width: 100%;
+    clear: both;
+  }
+  .ct5 li {
+    margin-top: 100px;
+    float: left;
+    margin-left: 20px;
+    list-style: none;
+  }
+  .ct5 li p {
+    font-size: 14px;
+  }
+  .ct5 li:last-of-type > p:first-of-type {
+    margin-top: 20px;
+    font-size: 10px;
+  }
+}
+#li {
+  float: left;
+  margin-right: 60px;
+  width: 230px;
+  height: 270px;
+  color: black;
+}
+#li:last-child {
+  margin-right: 0px;
+}
