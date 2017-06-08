@@ -55,15 +55,22 @@ body {}
 
 .nav1 {
     float: right;
-    width: 580px;
+    width: 660px;
     margin-right: 200px;
 }
 
-.nav1 ul {}
+.nav1-ul>a {
+    color: #111;
+}
+
+.nav1-ul>a:hover {
+    color: yellowgreen;
+    opacity: .5;
+}
 
 .nav1 li {
     float: left;
-    font-size: 14px;
+    font-size: 20px;
     margin-right: 50px;
     line-height: 110px;
     list-style: none;
@@ -250,6 +257,8 @@ body {}
 
 .ct5 p {
     font-size: 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
 }
 
 .ct5 li:last-of-type>p:first-of-type {
