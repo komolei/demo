@@ -1,0 +1,338 @@
+.clearfix:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+div,
+body,
+ul,
+li,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  color: #333;
+}
+.dropdown {
+  height: 38px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  display: block;
+  float: right;
+  border: 1px solid #111;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 2px rgba(1, 1, 1, 0.2);
+}
+.dropdown a {
+  text-decoration: none;
+}
+.dropdown a:hover {
+  color: #ffe76c;
+}
+.dropdown li {
+  list-style: none;
+  padding: 0 10px;
+  height: 24px;
+  border-radius: 4px;
+  -webkit-transition: all ease-in-out 0.5s;
+  transition: all ease-in-out 0.5s;
+}
+.dropdown .none {
+  display: none;
+}
+.dropdown .dr-f-ul > li {
+  float: left;
+}
+.dropdown .dr-f-ul > li::first-child {
+  border-left: 1px solid #ccc;
+}
+.dropdown .dr-f-ul > li::last-child {
+  border: none;
+  padding-right: 0;
+}
+.dropdown .dr-s-ul {
+  margin-left: -11px;
+}
+.dropdown .dr-s-ul > li::last-child {
+  border-bottom: 1px solid #ccc;
+}
+.dropdown .dr-s-ul i {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid #ccc;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+.dropdown .dr-s-ul .addi {
+  border-bottom-color: red;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+.drew {
+  width: 100%;
+  height: 400px;
+}
+.iconUse {
+  width: 1em;
+  height: 2em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+@keyframes circle {
+  from {
+    border: 3px solid #e6e6e6;
+  }
+  to {
+    border: 3px solid black;
+  }
+}
+@media (min-width: 770px) {
+  .icon {
+    width: 1em;
+    height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+  .icon:hover {
+    opacity: .3;
+  }
+  aside {
+    width: 200px;
+    float: left;
+    height: 100%;
+    background: #e6e6e6;
+  }
+  aside .head {
+    text-align: center;
+  }
+  aside .head h3 {
+    color: #010101;
+    font-size: 30px;
+    padding: 20px;
+  }
+  aside .head .dr {
+    display: none;
+  }
+  aside .circle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 75px;
+    border-radius: 50%;
+    border: 3px solid red;
+    border-bottom-color: black;
+    transition: all .4s;
+    animation: 5s circle infinite;
+  }
+  aside .ct {
+    background: #e6e6e6;
+    padding: 100px 0;
+  }
+  aside .ct ul li {
+    width: 200px;
+    height: 40px;
+    padding: 4px 0;
+    text-align: center;
+    line-height: 40px;
+  }
+  aside .ct ul li a {
+    text-decoration: none;
+  }
+  aside .ct ul li a:before {
+    content: ">";
+  }
+  aside .ct ul li a span {
+    font-size: 16px;
+  }
+  aside .ct ul li a span:hover {
+    color: #ffe76c;
+  }
+  aside .foot {
+    width: 200px;
+    background: #e6e6e6;
+    position: fixed;
+    top: 100%;
+    transform: translateY(-100%);
+    padding-top: 220px;
+    z-index: -1;
+  }
+  aside .foot li {
+    font-size: 32px;
+    margin-left: 4px;
+    padding: 0 4px;
+    float: left;
+  }
+  aside .foot li a i {
+    font-size: 20px;
+  }
+  aside .foot p {
+    text-align: center;
+  }
+  aside .foot p:last-child {
+    font-size: 12px;
+  }
+  .main {
+    background-size: cover;
+    height: 100%;
+    overflow: hidden;
+  }
+  .main #drew {
+    width: 100%;
+    height: 400px;
+  }
+  .main .head {
+    color: #333;
+    text-align: center;
+  }
+  .main .ct {
+    font-size: 25px;
+    margin-left: 50px;
+  }
+  .main .foot {
+    margin-left: 50px;
+  }
+  .main .foot p {
+    text-indent: 2em;
+    width: 1040px;
+    font-size: 20px;
+    line-height: 35px;
+  }
+}
+@media (max-width: 770px) {
+  .icon {
+    width: 1em;
+    height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+  .icon:hover {
+    opacity: .3;
+  }
+  width: 100%;
+  aside {
+    width: 100%;
+    height: 100%;
+  }
+  aside .head {
+    background-color: #999999;
+    text-align: center;
+  }
+  aside .head h3 {
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    margin-left: 20px;
+  }
+  aside .head .dr {
+    height: 38px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    display: block;
+    float: right;
+    border: 1px solid #111;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 2px rgba(1, 1, 1, 0.2);
+  }
+  aside .head .dr a {
+    text-decoration: none;
+  }
+  aside .head .dr a:hover {
+    color: #ffe76c;
+  }
+  aside .head .dr li {
+    list-style: none;
+    padding: 0 10px;
+    height: 24px;
+    border-radius: 4px;
+    -webkit-transition: all ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+  }
+  aside .head .dr .none {
+    display: none;
+  }
+  aside .head .dr .dr-f-ul > li {
+    float: left;
+  }
+  aside .head .dr .dr-f-ul > li::first-child {
+    border-left: 1px solid #ccc;
+  }
+  aside .head .dr .dr-f-ul > li::last-child {
+    border: none;
+    padding-right: 0;
+  }
+  aside .head .dr .dr-s-ul {
+    margin-left: -11px;
+  }
+  aside .head .dr .dr-s-ul > li::last-child {
+    border-bottom: 1px solid #ccc;
+  }
+  aside .head .dr .dr-s-ul i {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #ccc;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+  }
+  aside .head .dr .dr-s-ul .addi {
+    border-bottom-color: red;
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+  }
+  aside .ct {
+    display: none;
+  }
+  aside .ct ul li {
+    width: 200px;
+    height: 40px;
+    padding: 4px 0;
+  }
+  aside .ct ul li a {
+    text-decoration: none;
+  }
+  aside .ct ul li a:before {
+    content: ">";
+  }
+  aside .ct ul li a span {
+    font-size: 16px;
+  }
+  aside .ct ul li a span:hover {
+    color: #ffe76c;
+  }
+  aside .foot {
+    display: none;
+  }
+  .main {
+    height: 100%;
+    background-size: cover;
+    margin-left: 50px;
+  }
+  .main .head h1 {
+    text-align: center;
+  }
+  .main .ct p {
+    font-size: 18px;
+  }
+  .main .foot {
+    width: 100%;
+  }
+  .main .foot p {
+    width: 100%;
+    font-size: 15px;
+    line-height: 25px;
+  }
+}

@@ -1,0 +1,347 @@
+.clearfix:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+div,
+body,
+ul,
+li,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  color: #333;
+}
+.dropdown {
+  height: 38px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+  display: block;
+  float: right;
+  border: 1px solid #111;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 2px rgba(1, 1, 1, 0.2);
+}
+.dropdown a {
+  text-decoration: none;
+}
+.dropdown a:hover {
+  color: #ffe76c;
+}
+.dropdown li {
+  list-style: none;
+  padding: 0 10px;
+  height: 24px;
+  border-radius: 4px;
+  -webkit-transition: all ease-in-out 0.5s;
+  transition: all ease-in-out 0.5s;
+}
+.dropdown .none {
+  display: none;
+}
+.dropdown .dr-f-ul > li {
+  float: left;
+}
+.dropdown .dr-f-ul > li::first-child {
+  border-left: 1px solid #ccc;
+}
+.dropdown .dr-f-ul > li::last-child {
+  border: none;
+  padding-right: 0;
+}
+.dropdown .dr-s-ul {
+  margin-left: -11px;
+}
+.dropdown .dr-s-ul > li::last-child {
+  border-bottom: 1px solid #ccc;
+}
+.dropdown .dr-s-ul i {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-bottom: 10px solid #ccc;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+.dropdown .dr-s-ul .addi {
+  border-bottom-color: red;
+  -webkit-transform: rotateX(180deg);
+  transform: rotateX(180deg);
+}
+.drew {
+  width: 100%;
+  height: 400px;
+}
+.iconUse {
+  width: 1em;
+  height: 2em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+@media (min-width: 770px) {
+  .icon {
+    width: 1em;
+    height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+  .icon:hover {
+    opacity: .3;
+  }
+  .myself {
+    height: 100%;
+    background: #fff;
+    color: #333;
+  }
+  .myself aside {
+    width: 200px;
+    float: left;
+    height: 100%;
+  }
+  .myself aside .head {
+    text-align: center;
+  }
+  .myself aside .head h3 {
+    color: #010101;
+    font-size: 30px;
+    padding: 20px;
+  }
+  .myself aside .head .dr {
+    display: none;
+  }
+  .myself aside .circle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 75px;
+    border-radius: 50%;
+    border: 3px solid red;
+    border-bottom-color: black;
+    transition: all .4s;
+  }
+  .myself aside .circle:hover {
+    transform: rotate(360deg);
+    border: 3px solid black;
+  }
+  .myself aside .ct {
+    padding: 100px 0;
+  }
+  .myself aside .ct ul li {
+    width: 200px;
+    height: 40px;
+    padding: 4px 0;
+    text-align: center;
+    line-height: 40px;
+  }
+  .myself aside .ct ul li a {
+    text-decoration: none;
+  }
+  .myself aside .ct ul li a:before {
+    content: ">";
+  }
+  .myself aside .ct ul li a span {
+    font-size: 16px;
+  }
+  .myself aside .ct ul li a span:hover {
+    color: #ffe76c;
+  }
+  .myself aside .foot {
+    position: fixed;
+    top: 100%;
+    transform: translateY(-100%);
+  }
+  .myself aside .foot li {
+    font-size: 32px;
+    margin-left: 4px;
+    padding: 0 4px;
+    float: left;
+  }
+  .myself aside .foot li a i {
+    font-size: 20px;
+  }
+  .myself aside .foot p {
+    text-align: center;
+  }
+  .myself aside .foot p:last-child {
+    font-size: 12px;
+  }
+  .myself .main {
+    background-size: cover;
+    margin-left: -200px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .myself .main #drew {
+    width: 100%;
+    height: 400px;
+  }
+  .myself .main .head {
+    color: #333;
+    text-align: center;
+  }
+  .myself .main .ct img {
+    display: block;
+    width: 100%;
+  }
+  .myself .main .foot li {
+    color: #333;
+    margin-bottom: 10px;
+    text-indent: 2em;
+  }
+  .myself .main .foot > ul {
+    float: left;
+  }
+  .myself .main .foot .skill {
+    width: 50%;
+  }
+  .myself .main .foot .skill2 {
+    width: 50%;
+  }
+}
+@media (max-width: 770px) {
+  .icon {
+    width: 1em;
+    height: 2em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+  .icon:hover {
+    opacity: .3;
+  }
+  width: 100%;
+  aside {
+    width: 100%;
+    height: 100%;
+  }
+  aside .head {
+    background-color: #999999;
+    text-align: center;
+  }
+  aside .head h3 {
+    height: 40px;
+    line-height: 40px;
+    float: left;
+    margin-left: 20px;
+  }
+  aside .head .dr {
+    height: 38px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 16px;
+    display: block;
+    float: right;
+    border: 1px solid #111;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 2px rgba(1, 1, 1, 0.2);
+  }
+  aside .head .dr a {
+    text-decoration: none;
+  }
+  aside .head .dr a:hover {
+    color: #ffe76c;
+  }
+  aside .head .dr li {
+    list-style: none;
+    padding: 0 10px;
+    height: 24px;
+    border-radius: 4px;
+    -webkit-transition: all ease-in-out 0.5s;
+    transition: all ease-in-out 0.5s;
+  }
+  aside .head .dr .none {
+    display: none;
+  }
+  aside .head .dr .dr-f-ul > li {
+    float: left;
+  }
+  aside .head .dr .dr-f-ul > li::first-child {
+    border-left: 1px solid #ccc;
+  }
+  aside .head .dr .dr-f-ul > li::last-child {
+    border: none;
+    padding-right: 0;
+  }
+  aside .head .dr .dr-s-ul {
+    margin-left: -11px;
+  }
+  aside .head .dr .dr-s-ul > li::last-child {
+    border-bottom: 1px solid #ccc;
+  }
+  aside .head .dr .dr-s-ul i {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #ccc;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+  }
+  aside .head .dr .dr-s-ul .addi {
+    border-bottom-color: red;
+    -webkit-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+  }
+  aside .ct {
+    display: none;
+  }
+  aside .ct ul li {
+    width: 200px;
+    height: 40px;
+    padding: 4px 0;
+  }
+  aside .ct ul li a {
+    text-decoration: none;
+  }
+  aside .ct ul li a:before {
+    content: ">";
+  }
+  aside .ct ul li a span {
+    font-size: 16px;
+  }
+  aside .ct ul li a span:hover {
+    color: #ffe76c;
+  }
+  aside .foot {
+    display: none;
+  }
+  .main {
+    height: 100%;
+    background-size: cover;
+  }
+  .main .head h1 {
+    text-align: center;
+  }
+  .main .ct img {
+    width: 100%;
+  }
+  .main .foot {
+    width: 100%;
+  }
+  .main .foot li {
+    color: #333;
+    margin-bottom: 10px;
+    text-indent: 2em;
+  }
+  .main .foot > ul {
+    float: left;
+  }
+  .main .foot .skill {
+    width: 50%;
+  }
+  .main .foot .skill2 {
+    width: 48%;
+    padding-left: 2%;
+  }
+}
