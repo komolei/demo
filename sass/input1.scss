@@ -1,0 +1,10 @@
+// import 
+@import "./input.scss";
+.clckomo {
+    width: $xiao;
+    border: $xiao solid red;
+}
+
+.xiaohh {
+    @import './input.scss'
+}

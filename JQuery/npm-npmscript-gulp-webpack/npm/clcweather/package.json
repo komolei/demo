@@ -1,21 +1,21 @@
 {
-  "name": "clcweather",
-  "version": "1.0.0",
-  "description": "clc创建的天气查询包",
-  "main": "index.js",
-  "bin": {
-    "weatherc": "./index.js"
-  },
+    "name": "clcweather",
+    "version": "1.0.1",
+    "description": "clc创建的天气查询包",
+    "main": "index.js",
+    "bin": {
+        "weatherc": "./index.js"
+    },
 
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "weather"
-  ],
-  "author": "komolei",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.16.1"
-  }
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "weather"
+    ],
+    "author": "komolei",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.16.1"
+    }
 }

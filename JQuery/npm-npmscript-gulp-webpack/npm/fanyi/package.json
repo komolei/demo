@@ -1,21 +1,21 @@
 {
-  "name": "komoleifanyi",
-  "version": "1.0.1",
-  "description": "翻译命令行工具",
-  "main": "index.js",
-  "scripts": {
-    "start": "echo \"start",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "bin": {
-    "fanyi": "./index.js"
-  },
-  "keywords": [
-    "translate"
-  ],
-  "author": "komolei",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.16.1"
-  }
+    "name": "komoleifanyi",
+    "version": "1.0.2",
+    "description": "翻译命令行工具",
+    "main": "index.js",
+    "scripts": {
+        "start": "echo \"start",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "bin": {
+        "fanyi": "./index.js"
+    },
+    "keywords": [
+        "translate"
+    ],
+    "author": "komolei",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.16.1"
+    }
 }

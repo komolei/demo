@@ -1,0 +1,60 @@
+#a .a-1 {
+  background: yellow; }
+  #a .a-1 .child {
+    font-size: 12px; }
+    #a .a-1 .child .child-1 {
+      color: red; }
+
+.funky {
+  font-family: fantasy;
+  font-size: 30em;
+  font-weight: bold;
+  border-radius: 20px;
+  border-color: red; }
+
+.komo {
+  font-family: fantsy;
+  font-size: 10px; }
+
+.xiaojiahuo {
+  width: 1px;
+  height: 1px; }
+
+p.foo {
+  border-color: blue; }
+
+p.foo {
+  border-color: blue;
+  content: "hello world foo"; }
+
+p {
+  font: 10px/8px;
+  width: 500px;
+  width: 1;
+  height: 250px;
+  margin-left: 9px; }
+
+/*.clc {}*/
+.father .sidebar {
+  width: 300px; }
+  @media screen and (orientation: landscape) {
+    .father .sidebar {
+      width: 500px; }
+      .father .sidebar .hello {
+        font-size: 20px; } }
+
+/* Including a Mixin: @include -----
+
+ * Mixins are included in the document with the @include directive.
+ */
+.bfff {
+  background: blue;
+  width: 20px; }
+
+p {
+  content: "hello clc"; }
+
+b.color {
+  background: color; }
+
+/*# sourceMappingURL=output.css.map */

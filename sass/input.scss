@@ -1,0 +1,143 @@
+#a {
+    .a-1 {
+        background: yellow;
+        .child {
+            font-size: 12px;
+            .child-1 {
+                color: red
+            }
+        }
+    }
+}
+
+.funky {
+    font: {
+        family: fantasy;
+        size: 30em;
+        weight: bold;
+    }
+    border: {
+        radius: 20px;
+        color: red;
+    }
+}
+
+.komo {
+    font: {
+        family: fantsy;
+        size: 10px;
+    }
+}
+
+$xiao: 1px;
+.xiaojiahuo {
+    width: $xiao;
+    height: $xiao;
+}
+
+// // 插值Interpolation: #{}
+$name: foo;
+$attr: border;
+p.#{$name} {
+    #{$attr}-color: blue;
+}
+
+$name: foo;
+$attr: border;
+p.#{$name} {
+    #{$attr}-color: blue;
+    content: "hello world #{$name}"
+}
+
+p {
+    font: 10px/8px; // 纯 CSS，不是除法运算
+    $width: 1000px;
+    width: $width/2; // 使用了变量，是除法运算
+    width: round(1.5)/2; // 使用了函数，是除法运算
+    height: (500px/2); // 使用了圆括号，是除法运算
+    margin-left: 5px + 8px/2px; // 使用了加（+）号，是除法运算
+}
+
+
+/*.clc {}*/
+
+.father {
+    .sidebar {
+        width: 300px;
+        @media screen and (orientation: landscape) {
+            width: 500px;
+            .hello {
+                font-size: 20px
+            }
+        }
+    }
+}
+
+// .hoverlink {
+//     @extend ab: hover;
+// }
+// ab:hover {
+//     text-decoration: underline;
+// }
+// .comment ab.user:hover {
+//     font-weight: bold;
+// }
+// @mixin large-text {
+//     font: {
+//         family: Arial;
+//         size: 20px;
+//         weight: bold;
+//     }
+//     color: #ff0000;
+// }
+
+/* Including a Mixin: @include -----
+
+ * Mixins are included in the document with the @include directive.
+ */
+
+// .page-title {
+//     @include large-text;
+//     padding: 4px;
+//     margin-top: 10px;
+// }
+//@mixin和 @extend有啥区别？
+// 形式不一样。一个看上去简洁，一个不简洁
+//@mixin 是
+//@extend 是css选择权器的形式：.a这样的形式
+// @mixin <==> @include配合使用, 可添加参数
+@mixin abc($color:red, $width: 10px) {
+    background: $color;
+    width: $width;
+}
+
+.bfff {
+    @include abc(blue, 20px);
+}
+
+// .a {
+//     color: yellow;
+// }
+// .b {
+//     @extend .a;
+// }
+//插值 #{};
+// #a {
+//     color: red;
+// }
+// ;
+// .b {
+//     #a {}
+// }
+$a: clc;
+p {
+    content:"hello #{$a}"
+}
+
+;
+$a:color;
+b.#{$a} {
+    background:#{$a}
+}
+
+;
